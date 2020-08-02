@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TradingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Basket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Namad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TradingDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountOfPortion" Type="int" />
+          <Property Name="AvverageCost" Type="int" />
+          <Property Name="RealCost" Type="int" />
+          <Property Name="FirstOffer" Type="bit" />
+          <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvestmentType" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="GroupId" Type="bigint" />
+          <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BasketShopping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BasketID" Type="bigint" Nullable="false" />
+          <Property Name="ShoppingDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ShopCount" Type="int" Nullable="false" />
+          <Property Name="ShoppingCost" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Namad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Namad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="GeneralCode" Type="nvarchar(max)" />
+          <Property Name="tseID" Type="bigint" />
+          <Property Name="EnNamad" Type="varchar" MaxLength="50" />
+          <Property Name="EnName" Type="varchar" MaxLength="50" />
+          <Property Name="NamadGroup" Type="varchar" MaxLength="50" />
+          <Property Name="TableName" Type="nvarchar(max)" />
+          <Property Name="IndustryID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="NamadHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TradingDate" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NamadId" Type="bigint" Nullable="false" />
+          <Property Name="Tedad" Type="bigint" Nullable="false" />
+          <Property Name="Hajm" Type="bigint" Nullable="false" />
+          <Property Name="Arzesh" Type="bigint" Nullable="false" />
+          <Property Name="Dirooz" Type="bigint" Nullable="false" />
+          <Property Name="AvvalinGheymat" Type="bigint" Nullable="false" />
+          <Property Name="AkharinGheymat" Type="bigint" Nullable="false" />
+          <Property Name="KamtarinGheymat" Type="bigint" Nullable="false" />
+          <Property Name="BishtarinGheymat" Type="bigint" Nullable="false" />
+          <Property Name="PayaniGheymat" Type="bigint" Nullable="false" />
+          <Property Name="AkharinTaghyeer" Type="bigint" />
+          <Property Name="AkharinDarsad" Type="float" />
+          <Property Name="PayaniTaghyeer" Type="bigint" />
+          <Property Name="PayaniDarsad" Type="float" />
+          <Property Name="BuyTedad" Type="int" />
+          <Property Name="ShopTedad" Type="int" />
+          <Property Name="BuyHajm" Type="bigint" />
+          <Property Name="ShopHajm" Type="bigint" />
+          <Property Name="BuyCost" Type="bigint" />
+          <Property Name="ShopCost" Type="bigint" />
+        </EntityType>
+        <EntityType Name="NamadNotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tseID" Type="bigint" />
+          <Property Name="AnnounceDate" Type="varchar" MaxLength="16" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="NamadId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="PaymentDate" Type="varchar" MaxLength="10" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TradingModelStoreContainer">
+          <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasketShopping" EntityType="Self.BasketShopping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Industry" EntityType="Self.Industry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Namad" EntityType="Self.Namad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NamadHistory" EntityType="Self.NamadHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NamadNotify" EntityType="Self.NamadNotify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TradingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NamadHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TradingDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NamadId" Type="Int64" Nullable="false" />
+          <Property Name="Tedad" Type="Int64" Nullable="false" />
+          <Property Name="Hajm" Type="Int64" Nullable="false" />
+          <Property Name="Arzesh" Type="Int64" Nullable="false" />
+          <Property Name="Dirooz" Type="Int64" Nullable="false" />
+          <Property Name="AvvalinGheymat" Type="Int64" Nullable="false" />
+          <Property Name="AkharinGheymat" Type="Int64" Nullable="false" />
+          <Property Name="KamtarinGheymat" Type="Int64" Nullable="false" />
+          <Property Name="BishtarinGheymat" Type="Int64" Nullable="false" />
+          <Property Name="PayaniGheymat" Type="Int64" Nullable="false" />
+          <Property Name="AkharinTaghyeer" Type="Int64" />
+          <Property Name="AkharinDarsad" Type="Double" />
+          <Property Name="PayaniTaghyeer" Type="Int64" />
+          <Property Name="PayaniDarsad" Type="Double" />
+          <Property Name="BuyTedad" Type="Int32" />
+          <Property Name="ShopTedad" Type="Int32" />
+          <Property Name="BuyHajm" Type="Int64" />
+          <Property Name="ShopHajm" Type="Int64" />
+          <Property Name="BuyCost" Type="Int64" />
+          <Property Name="ShopCost" Type="Int64" />
+        </EntityType>
+        <EntityContainer Name="TradingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NamadHistories" EntityType="Self.NamadHistory" />
+          <EntitySet Name="Namads" EntityType="TradingModel.Namad" />
+          <EntitySet Name="Industries" EntityType="TradingModel.Industry" />
+          <EntitySet Name="NamadNotifies" EntityType="TradingModel.NamadNotify" />
+          <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
+          <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
+          <EntitySet Name="Baskets" EntityType="TradingModel.Basket" />
+        </EntityContainer>
+        <EntityType Name="Namad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Namad1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GeneralCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tseID" Type="Int64" />
+          <Property Name="EnNamad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EnName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NamadGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IndustryID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Industry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NamadNotify">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="tseID" Type="Int64" Nullable="true" />
+          <Property Name="AnnounceDate" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NamadId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BasketShopping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasketID" Type="Int64" Nullable="false" />
+          <Property Name="ShoppingDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ShopCount" Type="Int32" Nullable="false" />
+          <Property Name="ShoppingCost" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="PaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Basket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Namad" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TradingDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CountOfPortion" Type="Int32" />
+          <Property Name="AvverageCost" Type="Int32" />
+          <Property Name="RealCost" Type="Int32" />
+          <Property Name="FirstOffer" Type="Boolean" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvestmentType" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int64" />
+          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TradingModelStoreContainer" CdmEntityContainer="TradingEntities">
+          <EntitySetMapping Name="NamadHistories">
+            <EntityTypeMapping TypeName="TradingModel.NamadHistory">
+              <MappingFragment StoreEntitySet="NamadHistory">
+                <ScalarProperty Name="ShopCost" ColumnName="ShopCost" />
+                <ScalarProperty Name="BuyCost" ColumnName="BuyCost" />
+                <ScalarProperty Name="ShopHajm" ColumnName="ShopHajm" />
+                <ScalarProperty Name="BuyHajm" ColumnName="BuyHajm" />
+                <ScalarProperty Name="ShopTedad" ColumnName="ShopTedad" />
+                <ScalarProperty Name="BuyTedad" ColumnName="BuyTedad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TradingDate" ColumnName="TradingDate" />
+                <ScalarProperty Name="NamadId" ColumnName="NamadId" />
+                <ScalarProperty Name="Tedad" ColumnName="Tedad" />
+                <ScalarProperty Name="Hajm" ColumnName="Hajm" />
+                <ScalarProperty Name="Arzesh" ColumnName="Arzesh" />
+                <ScalarProperty Name="Dirooz" ColumnName="Dirooz" />
+                <ScalarProperty Name="AvvalinGheymat" ColumnName="AvvalinGheymat" />
+                <ScalarProperty Name="AkharinGheymat" ColumnName="AkharinGheymat" />
+                <ScalarProperty Name="KamtarinGheymat" ColumnName="KamtarinGheymat" />
+                <ScalarProperty Name="BishtarinGheymat" ColumnName="BishtarinGheymat" />
+                <ScalarProperty Name="PayaniGheymat" ColumnName="PayaniGheymat" />
+                <ScalarProperty Name="AkharinTaghyeer" ColumnName="AkharinTaghyeer" />
+                <ScalarProperty Name="AkharinDarsad" ColumnName="AkharinDarsad" />
+                <ScalarProperty Name="PayaniTaghyeer" ColumnName="PayaniTaghyeer" />
+                <ScalarProperty Name="PayaniDarsad" ColumnName="PayaniDarsad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Namads">
+            <EntityTypeMapping TypeName="TradingModel.Namad">
+              <MappingFragment StoreEntitySet="Namad">
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="NamadGroup" ColumnName="NamadGroup" />
+                <ScalarProperty Name="EnName" ColumnName="EnName" />
+                <ScalarProperty Name="EnNamad" ColumnName="EnNamad" />
+                <ScalarProperty Name="tseID" ColumnName="tseID" />
+                <ScalarProperty Name="GeneralCode" ColumnName="GeneralCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Namad1" ColumnName="Namad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Industries">
+            <EntityTypeMapping TypeName="TradingModel.Industry">
+              <MappingFragment StoreEntitySet="Industry">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NamadNotifies">
+            <EntityTypeMapping TypeName="TradingModel.NamadNotify">
+              <MappingFragment StoreEntitySet="NamadNotify">
+                <ScalarProperty Name="NamadId" ColumnName="NamadId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AnnounceDate" ColumnName="AnnounceDate" />
+                <ScalarProperty Name="tseID" ColumnName="tseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasketShoppings">
+            <EntityTypeMapping TypeName="TradingModel.BasketShopping">
+              <MappingFragment StoreEntitySet="BasketShopping">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShoppingCost" ColumnName="ShoppingCost" />
+                <ScalarProperty Name="ShopCount" ColumnName="ShopCount" />
+                <ScalarProperty Name="ShoppingDate" ColumnName="ShoppingDate" />
+                <ScalarProperty Name="BasketID" ColumnName="BasketID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="TradingModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Baskets">
+            <EntityTypeMapping TypeName="TradingModel.Basket">
+              <MappingFragment StoreEntitySet="Basket">
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvestmentType" ColumnName="InvestmentType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="FirstOffer" ColumnName="FirstOffer" />
+                <ScalarProperty Name="RealCost" ColumnName="RealCost" />
+                <ScalarProperty Name="AvverageCost" ColumnName="AvverageCost" />
+                <ScalarProperty Name="CountOfPortion" ColumnName="CountOfPortion" />
+                <ScalarProperty Name="TradingDate" ColumnName="TradingDate" />
+                <ScalarProperty Name="Namad" ColumnName="Namad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

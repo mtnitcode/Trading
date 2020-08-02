@@ -86,6 +86,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteFromWatchListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnChartContainer = new System.Windows.Forms.Panel();
             this.lblWindowColor = new System.Windows.Forms.Label();
             this.cboWindowsColors = new System.Windows.Forms.ComboBox();
@@ -108,7 +109,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.monthImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
@@ -132,11 +132,11 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.pnChartContainer.SuspendLayout();
             this.pnChartRelControls.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -720,7 +720,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.cmbOrderby);
             this.splitContainer1.Panel2.Controls.Add(this.label17);
             this.splitContainer1.Size = new System.Drawing.Size(1296, 553);
-            this.splitContainer1.SplitterDistance = 887;
+            this.splitContainer1.SplitterDistance = 886;
             this.splitContainer1.TabIndex = 4;
             // 
             // dataGridView1
@@ -745,7 +745,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(887, 553);
+            this.dataGridView1.Size = new System.Drawing.Size(886, 553);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
@@ -765,6 +765,10 @@
             this.deleteFromWatchListToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.deleteFromWatchListToolStripMenuItem.Text = "Delete from watch List";
             this.deleteFromWatchListToolStripMenuItem.Click += new System.EventHandler(this.deleteFromWatchListToolStripMenuItem_Click);
+            // 
+            // namadStatusBindingSource
+            // 
+            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
             // 
             // pnChartContainer
             // 
@@ -973,15 +977,12 @@
             this.timer2.Interval = 300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // namadStatusBindingSource
-            // 
-            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 70;
             // 
             // todayImageDataGridViewImageColumn
             // 
@@ -1000,50 +1001,58 @@
             // benefitAvverageInLast3WeekDataGridViewTextBoxColumn
             // 
             this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLast3Week";
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.HeaderText = "3PreWeek";
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.HeaderText = "3PreWk";
             this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLast3WeekDataGridViewTextBoxColumn";
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.Width = 50;
             // 
             // benefitAvverageInLast2WeekDataGridViewTextBoxColumn
             // 
             this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLast2Week";
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.HeaderText = "benefitAvverageInLast2Week";
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.HeaderText = "2PreWk";
             this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLast2WeekDataGridViewTextBoxColumn";
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.Width = 50;
             // 
             // benefitAvverageInLastWeekDataGridViewTextBoxColumn
             // 
             this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLastWeek";
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.HeaderText = "benefitAvverageInLastWeek";
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.HeaderText = "LstWk";
             this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLastWeekDataGridViewTextBoxColumn";
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.Width = 50;
             // 
             // benefitAvverateInDayDataGridViewTextBoxColumn
             // 
             this.benefitAvverateInDayDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverateInDay";
-            this.benefitAvverateInDayDataGridViewTextBoxColumn.HeaderText = "benefitAvverateInDay";
+            this.benefitAvverateInDayDataGridViewTextBoxColumn.HeaderText = "LstDay";
             this.benefitAvverateInDayDataGridViewTextBoxColumn.Name = "benefitAvverateInDayDataGridViewTextBoxColumn";
+            this.benefitAvverateInDayDataGridViewTextBoxColumn.Width = 50;
             // 
             // benefitAvverateInMonthDataGridViewTextBoxColumn
             // 
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverateInMonth";
-            this.benefitAvverateInMonthDataGridViewTextBoxColumn.HeaderText = "benefitAvverateInMonth";
+            this.benefitAvverateInMonthDataGridViewTextBoxColumn.HeaderText = "LstMnth";
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.Name = "benefitAvverateInMonthDataGridViewTextBoxColumn";
+            this.benefitAvverateInMonthDataGridViewTextBoxColumn.Width = 50;
             // 
             // myAvveragebenefitPercentDataGridViewTextBoxColumn
             // 
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.DataPropertyName = "MyAvveragebenefitPercent";
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyAvveragebenefitPercent";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyBenf";
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Width = 50;
             // 
             // lastCostDataGridViewTextBoxColumn
             // 
             this.lastCostDataGridViewTextBoxColumn.DataPropertyName = "LastCost";
             this.lastCostDataGridViewTextBoxColumn.HeaderText = "LastCost";
             this.lastCostDataGridViewTextBoxColumn.Name = "lastCostDataGridViewTextBoxColumn";
+            this.lastCostDataGridViewTextBoxColumn.Width = 60;
             // 
             // myAvverageBuyCostDataGridViewTextBoxColumn
             // 
             this.myAvverageBuyCostDataGridViewTextBoxColumn.DataPropertyName = "MyAvverageBuyCost";
-            this.myAvverageBuyCostDataGridViewTextBoxColumn.HeaderText = "MyAvverageBuyCost";
+            this.myAvverageBuyCostDataGridViewTextBoxColumn.HeaderText = "BuyCost";
             this.myAvverageBuyCostDataGridViewTextBoxColumn.Name = "myAvverageBuyCostDataGridViewTextBoxColumn";
+            this.myAvverageBuyCostDataGridViewTextBoxColumn.Width = 60;
             // 
             // industryDataGridViewTextBoxColumn
             // 
@@ -1076,12 +1085,12 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.pnChartContainer.ResumeLayout(false);
             this.pnChartContainer.PerformLayout();
             this.pnChartRelControls.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

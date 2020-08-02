@@ -659,7 +659,6 @@ namespace TradingData
             LoadChartTypes(cboChartTypes);
 
             InitialTodayNamadStatus();
-
             InitialMonthNamadHistory();
 
 
@@ -884,6 +883,7 @@ namespace TradingData
                         NamadStatus n = new NamadStatus { Name = s, TodayImage = null, MonthImage = null };
 
                         OrderedDictionary d = (OrderedDictionary)_NamadDiagramDateHistory[s];
+                        if(d!= null)
                         for(int i = d.Count-1; i>=0; i--)
                         {
 
@@ -1279,6 +1279,7 @@ namespace TradingData
         private void InitialMonthNamadHistory()
         {
 
+            _NamadDiagramDateHistory.Clear();
 
             for (int i = 4; i<=5; i++)
             {
@@ -1336,7 +1337,7 @@ namespace TradingData
                 if (e.RowIndex == -1) return;
                 if (e.ColumnIndex == 1)
                 {
-                    
+
                     if (e.RowIndex >= 0 && _namadStatuses.Count > 0 && _NamadDiagramHistory[_namadStatuses[e.RowIndex].Name] != null)
                     {
                         OrderedDictionary val = (OrderedDictionary)_NamadDiagramHistory[_namadStatuses[e.RowIndex].Name];
@@ -1450,7 +1451,11 @@ namespace TradingData
                     if ((float)e.Value < 0 && (float)e.Value > -2.5)
                         e.CellStyle.BackColor = Color.OrangeRed;
                 }
-
+                if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value != null)
+                    if ((int)e.Value < (int)((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value)
+                        e.CellStyle.BackColor = Color.OrangeRed;
+                    else
+                        e.CellStyle.BackColor = Color.GreenYellow;
 
             }
             catch (Exception ex)
@@ -1522,6 +1527,8 @@ namespace TradingData
         private void button17_Click(object sender, EventArgs e)
         {
             this.timer1.Enabled = true;
+
+            InitialMonthNamadHistory();
 
             var operation = new ParameterizedThreadStart(ShowHistory);
             Thread bigStackThread = new Thread(operation);

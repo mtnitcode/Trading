@@ -219,6 +219,7 @@ namespace ChartGenerator
         public float BenefitChange;
         public long BuyQueue;
         public long ShopQueue;
+        public int LastCost;
     }
 
     public struct Line

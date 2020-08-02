@@ -104,20 +104,23 @@
             this.chOrderby = new System.Windows.Forms.CheckBox();
             this.cmbOrderby = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.monthImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.benefitAvverateInMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.industryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -131,9 +134,9 @@
             this.contextMenuStrip1.SuspendLayout();
             this.pnChartContainer.SuspendLayout();
             this.pnChartRelControls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -294,7 +297,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1051, 585);
+            this.tabControl1.Size = new System.Drawing.Size(1310, 585);
             this.tabControl1.TabIndex = 14;
             // 
             // tabPage1
@@ -316,7 +319,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1224, 559);
+            this.tabPage1.Size = new System.Drawing.Size(1302, 559);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "GetData";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -347,7 +350,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1224, 559);
+            this.tabPage2.Size = new System.Drawing.Size(1302, 559);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Basket";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -568,7 +571,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1224, 559);
+            this.tabPage3.Size = new System.Drawing.Size(1302, 559);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Shopping";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -690,7 +693,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1043, 559);
+            this.tabPage4.Size = new System.Drawing.Size(1302, 559);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Watch List";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -716,8 +719,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.chOrderby);
             this.splitContainer1.Panel2.Controls.Add(this.cmbOrderby);
             this.splitContainer1.Panel2.Controls.Add(this.label17);
-            this.splitContainer1.Size = new System.Drawing.Size(1037, 553);
-            this.splitContainer1.SplitterDistance = 710;
+            this.splitContainer1.Size = new System.Drawing.Size(1296, 553);
+            this.splitContainer1.SplitterDistance = 887;
             this.splitContainer1.TabIndex = 4;
             // 
             // dataGridView1
@@ -728,18 +731,21 @@
             this.nameDataGridViewTextBoxColumn,
             this.todayImageDataGridViewImageColumn,
             this.monthImageDataGridViewImageColumn,
-            this.benefitAvverateInDayDataGridViewTextBoxColumn,
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn,
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn,
             this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn,
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn,
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn,
+            this.benefitAvverateInDayDataGridViewTextBoxColumn,
             this.benefitAvverateInMonthDataGridViewTextBoxColumn,
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn,
+            this.lastCostDataGridViewTextBoxColumn,
+            this.myAvverageBuyCostDataGridViewTextBoxColumn,
             this.industryDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.DataSource = this.namadStatusBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(710, 553);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 553);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
@@ -935,6 +941,26 @@
             this.label17.Text = "Order By :";
             this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dataGridView2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1302, 559);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "ErrorLogs";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1296, 553);
+            this.dataGridView2.TabIndex = 0;
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -946,6 +972,10 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // namadStatusBindingSource
+            // 
+            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -967,40 +997,53 @@
             this.monthImageDataGridViewImageColumn.Name = "monthImageDataGridViewImageColumn";
             this.monthImageDataGridViewImageColumn.Width = 150;
             // 
-            // benefitAvverateInDayDataGridViewTextBoxColumn
+            // benefitAvverageInLast3WeekDataGridViewTextBoxColumn
             // 
-            this.benefitAvverateInDayDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverateInDay";
-            this.benefitAvverateInDayDataGridViewTextBoxColumn.HeaderText = "DayAvv";
-            this.benefitAvverateInDayDataGridViewTextBoxColumn.Name = "benefitAvverateInDayDataGridViewTextBoxColumn";
-            this.benefitAvverateInDayDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // benefitAvverageInLastWeekDataGridViewTextBoxColumn
-            // 
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLastWeek";
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.HeaderText = "W3Sum";
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLastWeekDataGridViewTextBoxColumn";
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.Width = 50;
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLast3Week";
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.HeaderText = "3PreWeek";
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLast3WeekDataGridViewTextBoxColumn";
             // 
             // benefitAvverageInLast2WeekDataGridViewTextBoxColumn
             // 
             this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLast2Week";
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.HeaderText = "W2Sum";
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.HeaderText = "benefitAvverageInLast2Week";
             this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLast2WeekDataGridViewTextBoxColumn";
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn.Width = 50;
             // 
-            // benefitAvverageInLast3WeekDataGridViewTextBoxColumn
+            // benefitAvverageInLastWeekDataGridViewTextBoxColumn
             // 
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLast3Week";
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.HeaderText = "W1Sum";
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLast3WeekDataGridViewTextBoxColumn";
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn.Width = 50;
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverageInLastWeek";
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.HeaderText = "benefitAvverageInLastWeek";
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn.Name = "benefitAvverageInLastWeekDataGridViewTextBoxColumn";
+            // 
+            // benefitAvverateInDayDataGridViewTextBoxColumn
+            // 
+            this.benefitAvverateInDayDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverateInDay";
+            this.benefitAvverateInDayDataGridViewTextBoxColumn.HeaderText = "benefitAvverateInDay";
+            this.benefitAvverateInDayDataGridViewTextBoxColumn.Name = "benefitAvverateInDayDataGridViewTextBoxColumn";
             // 
             // benefitAvverateInMonthDataGridViewTextBoxColumn
             // 
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.DataPropertyName = "benefitAvverateInMonth";
-            this.benefitAvverateInMonthDataGridViewTextBoxColumn.HeaderText = "MonthSum";
+            this.benefitAvverateInMonthDataGridViewTextBoxColumn.HeaderText = "benefitAvverateInMonth";
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.Name = "benefitAvverateInMonthDataGridViewTextBoxColumn";
-            this.benefitAvverateInMonthDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // myAvveragebenefitPercentDataGridViewTextBoxColumn
+            // 
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.DataPropertyName = "MyAvveragebenefitPercent";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyAvveragebenefitPercent";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
+            // 
+            // lastCostDataGridViewTextBoxColumn
+            // 
+            this.lastCostDataGridViewTextBoxColumn.DataPropertyName = "LastCost";
+            this.lastCostDataGridViewTextBoxColumn.HeaderText = "LastCost";
+            this.lastCostDataGridViewTextBoxColumn.Name = "lastCostDataGridViewTextBoxColumn";
+            // 
+            // myAvverageBuyCostDataGridViewTextBoxColumn
+            // 
+            this.myAvverageBuyCostDataGridViewTextBoxColumn.DataPropertyName = "MyAvverageBuyCost";
+            this.myAvverageBuyCostDataGridViewTextBoxColumn.HeaderText = "MyAvverageBuyCost";
+            this.myAvverageBuyCostDataGridViewTextBoxColumn.Name = "myAvverageBuyCostDataGridViewTextBoxColumn";
             // 
             // industryDataGridViewTextBoxColumn
             // 
@@ -1008,35 +1051,11 @@
             this.industryDataGridViewTextBoxColumn.HeaderText = "Industry";
             this.industryDataGridViewTextBoxColumn.Name = "industryDataGridViewTextBoxColumn";
             // 
-            // namadStatusBindingSource
-            // 
-            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dataGridView2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1043, 559);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "ErrorLogs";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1037, 553);
-            this.dataGridView2.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 585);
+            this.ClientSize = new System.Drawing.Size(1310, 585);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1060,9 +1079,9 @@
             this.pnChartContainer.ResumeLayout(false);
             this.pnChartContainer.PerformLayout();
             this.pnChartRelControls.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1135,16 +1154,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.BindingSource namadStatusBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn todayImageDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewImageColumn monthImageDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInDayDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLastWeekDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLast2WeekDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLast3WeekDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInMonthDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn industryDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel pnChartContainer;
         private System.Windows.Forms.Panel pnChartRelControls;
         private System.Windows.Forms.Button cmdSave;
@@ -1158,6 +1167,19 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.BindingSource namadStatusBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn todayImageDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewImageColumn monthImageDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLast3WeekDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLast2WeekDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverageInLastWeekDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInDayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInMonthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn myAvveragebenefitPercentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastCostDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn myAvverageBuyCostDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn industryDataGridViewTextBoxColumn;
     }
 }
 

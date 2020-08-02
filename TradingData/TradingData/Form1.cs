@@ -797,7 +797,7 @@ namespace TradingData
 
         void ShowChart()
         {
-            if (_TotalBenefit.Count > 0)
+            if (_TotalBenefit.Count > 0 && _TotalLoss.Count > 0)
             {
                 DataTable dtBenefitComparison = new DataTable();
                 dtBenefitComparison.Columns.Add("Benefit", typeof(int));
@@ -874,6 +874,9 @@ namespace TradingData
                 ShowHistoryFinished = false;
                 List<NamadStatus> namadStatuses = new List<NamadStatus>();
 
+                List<Basket> myTradingStatus = CustomDataProvider.GetMyPortionStatus();
+
+
                 if (GetLastNamadStatus())
                 {
                     foreach (string s in _NamadDiagramHistory.Keys)// var dictIndex = 0 ; dictIndex < _NamadDiagramHistory.Count - 1; dictIndex++)
@@ -907,12 +910,41 @@ namespace TradingData
                             ChangeStatus ch2 = (ChangeStatus)d2[d2.Count - 1];
 
                             n.benefitAvverateInDay = ch2.BenefitChange;
-
+                            n.LastCost = ch2.LastCost;
                             if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
                             if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
                         }
+
+                        if (myTradingStatus != null)
+                        {
+                            List<Basket> bs = myTradingStatus.FindAll(x => x.Namad == n.Name) ;
+
+                            long sumBuy = 0;
+                            long sumCount = 0;
+
+                            foreach(Basket bb in bs)
+                            {
+                                sumBuy += (int)bb.RealCost;
+                                sumCount += (int)bb.CountOfPortion;
+
+                            }
+
+                            if (bs.Count > 0)
+                            {
+                                n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
+                                n.MyAvveragebenefitPercent = (float)(n.LastCost - n.MyAvverageBuyCost) / 100;
+                            }
+                        
+                        }
+
+
+
                         namadStatuses.Add(n);
                     }
+
+
+
+
 
                     List<NamadStatus> namadStatuses2 = null;
                     if (Form1._orderBy == 3)
@@ -933,6 +965,8 @@ namespace TradingData
                         namadStatuses2 = namadStatuses.OrderBy(n => n.Name).ToList();
 
                     }
+
+
 
                     lock (_namadStatuses)   // lock on the list
                     {
@@ -1050,12 +1084,14 @@ namespace TradingData
                                     {
                                         if (outNamadh.BuyTedad == null)
                                         {
+                                            int ival = 0;
                                             outNamadh.BuyTedad = int.Parse(namadInfo[3]);
                                             outNamadh.ShopTedad = int.Parse(namadInfo[2]);
                                             outNamadh.BuyCost = long.Parse(namadInfo[4]);
                                             outNamadh.ShopCost = long.Parse(namadInfo[5]);
                                             outNamadh.BuyHajm = long.Parse(namadInfo[6]);
-                                            outNamadh.ShopHajm = long.Parse(namadInfo[7]);
+                                            if (int.TryParse(namadInfo[7], out ival)) outNamadh.ShopHajm = long.Parse(namadInfo[7]);
+                                            else outNamadh.ShopHajm = 0;
                                         }
                                     }
                                     sTotal += l.Replace(",", ";") + "\r\n";
@@ -1217,12 +1253,12 @@ namespace TradingData
                                     {
                                         outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
 
-                                        outVal.Insert(outVal.Count , stime, new ChangeStatus { BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+                                        outVal.Insert(outVal.Count , stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
                                     }
                                     else
                                     {
                                         OrderedDictionary Val = new OrderedDictionary();
-                                        Val.Insert(0 , stime, new ChangeStatus { BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+                                        Val.Insert(0 , stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
 
                                         _NamadDiagramHistory.Insert(0 , namadName, Val);
                                     }
@@ -1372,17 +1408,6 @@ namespace TradingData
 
                 if (e.ColumnIndex == 3 && e.Value != null)
                 {
-                    if ((float)e.Value > 2.5)
-                        e.CellStyle.BackColor = Color.Green;
-                    if ((float)e.Value > 0 && (float)e.Value <= 2.5)
-                        e.CellStyle.BackColor = Color.GreenYellow;
-                    if ((float)e.Value < -2.5)
-                        e.CellStyle.BackColor = Color.Red;
-                    if ((float)e.Value < 0 && (float)e.Value > -2.5)
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                }
-                if (e.ColumnIndex == 4 && e.Value != null)
-                {
                     if ((float)e.Value > 10)
                         e.CellStyle.BackColor = Color.Green;
                     if ((float)e.Value > 0 && (float)e.Value <= 10)
@@ -1403,7 +1428,7 @@ namespace TradingData
                     if ((float)e.Value < 0 && (float)e.Value >= -10)
                         e.CellStyle.BackColor = Color.OrangeRed;
                 }
-                if (e.ColumnIndex == 6 && e.Value != null)
+                if (e.ColumnIndex == 4 && e.Value != null)
                 {
                     if ((float)e.Value > 10)
                         e.CellStyle.BackColor = Color.Green;
@@ -1414,6 +1439,18 @@ namespace TradingData
                     if ((float)e.Value < 0 && (float)e.Value >= -10)
                         e.CellStyle.BackColor = Color.OrangeRed;
                 }
+                if (e.ColumnIndex == 6 && e.Value != null)
+                {
+                    if ((float)e.Value > 2.5)
+                        e.CellStyle.BackColor = Color.Green;
+                    if ((float)e.Value > 0 && (float)e.Value <= 2.5)
+                        e.CellStyle.BackColor = Color.GreenYellow;
+                    if ((float)e.Value < -2.5)
+                        e.CellStyle.BackColor = Color.Red;
+                    if ((float)e.Value < 0 && (float)e.Value > -2.5)
+                        e.CellStyle.BackColor = Color.OrangeRed;
+                }
+
 
             }
             catch (Exception ex)

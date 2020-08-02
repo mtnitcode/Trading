@@ -24,10 +24,24 @@ namespace ChartGenerator
         public float benefitAvverageInLastWeek { get; set; }
         public float benefitAvverageInLast2Week { get; set; }
         public float benefitAvverageInLast3Week { get; set; }
-        public long MyBenefit { get; set; }
-        public string LastMytradeDate { get; set; }
-        public long LastTradigCost { get; set; }
-        public long LastBuyAmount { get; set; }
-        public long LastShoppingAmount { get; set; }
+        public Basket BasketInfo { get; set; }
+
+        public float MyAvveragebenefitPercent { get; set; }
+
+        public long MyAvverageBuyCost { get; set; }
+
+        public int LastCost {get;set;}
     }
+
+    public class Basket
+    {
+        public Basket()
+        {
+        }
+
+        public long OwnerName { get; set; }
+        public string RealCost { get; set; }
+        public long TradingDate { get; set; }
+    }
+
 }

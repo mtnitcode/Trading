@@ -91,7 +91,6 @@
             // 
             // namadStatusBindingSource
             // 
-            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
             // 
             // button2
             // 

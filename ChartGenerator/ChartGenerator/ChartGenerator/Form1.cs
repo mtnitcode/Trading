@@ -84,6 +84,7 @@ namespace ChartGenerator
 
         private void button2_Click(object sender, EventArgs e)
         {
+            /*
             List<NamadStatus> ll = new List<NamadStatus>();
 
             using (DiagramGenerator dg = new DiagramGenerator())
@@ -96,7 +97,7 @@ namespace ChartGenerator
                 }
             }
             this.namadStatusBindingSource.DataSource = ll;
-
+            */
 
         }
     }

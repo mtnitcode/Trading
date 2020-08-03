@@ -908,6 +908,9 @@ namespace TradingData
 
                             n.benefitAvverateInDay = ch2.BenefitChange;
                             n.LastCost = ch2.LastCost;
+                            n.BuyQueue =  (float) Math.Round( (double) (ch2.BuyQueue / 1000000) , 2);
+                            n.ShopQueue = (float) Math.Round((double) (ch2.ShopQueue / 1000000) , 2);
+                            
                             if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
                             if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
                         }
@@ -923,13 +926,14 @@ namespace TradingData
                             {
                                 sumBuy += (int)bb.RealCost;
                                 sumCount += (int)bb.CountOfPortion;
-
                             }
 
                             if (bs.Count > 0)
                             {
                                 n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
-                                n.MyAvveragebenefitPercent = (float)((n.LastCost * 100 / n.MyAvverageBuyCost) - 100);
+                                n.MyAvveragebenefitPercent = (((float) n.LastCost  / n.MyAvverageBuyCost)-1)*100;
+
+                                n.LastTradingDate = bs[bs.Count - 1].TradingDate;
                             }
 
                         }
@@ -986,7 +990,7 @@ namespace TradingData
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
             }
-            if (Form1._orderBy == 8)
+            if (Form1._orderBy == 10)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ToList();
             }
@@ -1165,8 +1169,9 @@ namespace TradingData
         private void InitialTodayNamadStatus()
         {
 
-            string[] files = Directory.GetFiles(Application.StartupPath+"\\History");
+            List<string> files = Directory.GetFiles(Application.StartupPath+"\\History").ToList().OrderByDescending(x=>x).ToList();
 
+            int fileCount = 0;
             foreach(string filename in files)
             {
                 if(Path.GetExtension(filename) == ".history")
@@ -1178,8 +1183,10 @@ namespace TradingData
                     var InsertCollection = ProcessLastNamadStatus(sLines, stime , out sTotal);
                     string fname = Path.GetFileName(filename);
                     LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
+                    fileCount++;
 
                 }
+                if (fileCount >= 30) break;
 
             }
         }
@@ -1277,7 +1284,7 @@ namespace TradingData
                         {
                             outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
 
-                            outVal.Insert(outVal.Count, stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+                            outVal.Insert(outVal.Count, stime, new ChangeStatus {  LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
                         }
                         else
                         {
@@ -1471,8 +1478,8 @@ namespace TradingData
                     if ((float)e.Value < 0 && (float)e.Value > -2.5)
                         e.CellStyle.BackColor = Color.OrangeRed;
                 }
-                if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value != null)
-                    if (int.Parse(e.Value.ToString()) > (int)((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value)
+                if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[8]).Value != null)
+                    if (int.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[8]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value.ToString()))
                         e.CellStyle.BackColor = Color.OrangeRed;
                     else
                         e.CellStyle.BackColor = Color.GreenYellow;

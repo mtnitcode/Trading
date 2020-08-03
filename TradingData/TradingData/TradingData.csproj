@@ -106,6 +106,7 @@
     <Compile Include="NamadNotify.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>
+    <Compile Include="NamadStatus.cs" />
     <Compile Include="Payment.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>

@@ -573,7 +573,6 @@ namespace TradingData
                                         date += int.Parse(sd).ToString("D2");
                                     }
                                     date = date.Substring(0, 16);
-                                    long tseID = 0;
                                     //string s = ((JArray)ob)[1].ToString().Replace('ی' , 'ي');
                                     string sNamad = ob["Symbol"].ToString().Replace('ی', 'ي').Replace('ک', 'ك');
                                     string sCompanyName = ob["CompanyName"].ToString().Replace('ی', 'ي').Replace('ک', 'ك');
@@ -584,7 +583,6 @@ namespace TradingData
                                     {
                                         NamadNotify namadNot = dbn.NamadNotifies.Where(n => n.NamadId == namad.ID && n.AnnounceDate == date).FirstOrDefault();
 
-                                        //tseID = (long)namad.tseID;
                                         if (namadNot == null)
                                         {
                                             NamadNotify newNamad = new NamadNotify { NamadId = namad.ID, Title = title, AnnounceDate = date };
@@ -601,7 +599,6 @@ namespace TradingData
                                             dbn1.SaveChanges();
 
                                             namadid = newNamad1.ID;
-                                            tseID = 0;
                                         }
                                         NamadNotify newNamad = new NamadNotify { NamadId = namadid, Title = title, AnnounceDate = date };
                                         dbn.NamadNotifies.Add(newNamad);

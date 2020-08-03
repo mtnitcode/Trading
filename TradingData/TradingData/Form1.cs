@@ -880,26 +880,26 @@ namespace TradingData
                         NamadStatus n = new NamadStatus { Name = s, TodayImage = null, MonthImage = null };
 
                         OrderedDictionary d = (OrderedDictionary)_NamadDiagramDateHistory[s];
-                        if(d!= null)
-                        for(int i = d.Count-1; i>=0; i--)
-                        {
+                        if (d != null)
+                            for (int i = d.Count - 1; i >= 0; i--)
+                            {
 
-                            ChangeStatus ch = (ChangeStatus)d[i];
-                            if (i > d.Count - 5)
-                            {
-                                n.benefitAvverageInLastWeek += ch.BenefitChange;
-                            }
-                            if (i > d.Count - 10 && i <= d.Count - 5)
-                            {
-                                n.benefitAvverageInLast2Week += ch.BenefitChange;
-                            }
-                            if (i > d.Count - 15 && i <= d.Count - 10)
-                            {
-                                n.benefitAvverageInLast3Week += ch.BenefitChange;
-                            }
+                                ChangeStatus ch = (ChangeStatus)d[i];
+                                if (i > d.Count - 5)
+                                {
+                                    n.benefitAvverageInLastWeek += ch.BenefitChange;
+                                }
+                                if (i > d.Count - 10 && i <= d.Count - 5)
+                                {
+                                    n.benefitAvverageInLast2Week += ch.BenefitChange;
+                                }
+                                if (i > d.Count - 15 && i <= d.Count - 10)
+                                {
+                                    n.benefitAvverageInLast3Week += ch.BenefitChange;
+                                }
 
-                            n.benefitAvverateInMonth += ch.BenefitChange;
-                        }
+                                n.benefitAvverateInMonth += ch.BenefitChange;
+                            }
 
                         OrderedDictionary d2 = (OrderedDictionary)_NamadDiagramHistory[s];
                         if (d2 != null)
@@ -914,12 +914,12 @@ namespace TradingData
 
                         if (myTradingStatus != null)
                         {
-                            List<Basket> bs = myTradingStatus.FindAll(x => x.Namad == n.Name) ;
+                            List<Basket> bs = myTradingStatus.FindAll(x => x.Namad == n.Name);
 
                             long sumBuy = 0;
                             long sumCount = 0;
 
-                            foreach(Basket bb in bs)
+                            foreach (Basket bb in bs)
                             {
                                 sumBuy += (int)bb.RealCost;
                                 sumCount += (int)bb.CountOfPortion;
@@ -929,42 +929,17 @@ namespace TradingData
                             if (bs.Count > 0)
                             {
                                 n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
-                                n.MyAvveragebenefitPercent = (float)(n.LastCost - n.MyAvverageBuyCost) / 100;
+                                n.MyAvveragebenefitPercent = (float)((n.LastCost * 100 / n.MyAvverageBuyCost) - 100);
                             }
-                        
+
                         }
-
-
 
                         namadStatuses.Add(n);
                     }
 
-
-
-
-
                     List<NamadStatus> namadStatuses2 = null;
-                    if (Form1._orderBy == 3)
-                    {
-                        namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverageInLastWeek).ToList();
-                    }
-                    if (Form1._orderBy == 1)
-                    {
-                        namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
-                    }
-                    if (Form1._orderBy == 2)
-                    {
-                        namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
-
-                    }
-                    if (Form1._orderBy == 0)
-                    {
-                        namadStatuses2 = namadStatuses.OrderBy(n => n.Name).ToList();
-
-                    }
-
-
-
+                    namadStatuses2 = OrderGrid(namadStatuses);
+                    if (namadStatuses2 == null) namadStatuses2 = namadStatuses;
                     lock (_namadStatuses)   // lock on the list
                     {
                         _namadStatuses.Clear();
@@ -996,6 +971,33 @@ namespace TradingData
             }
         }
 
+        private static List<NamadStatus> OrderGrid(List<NamadStatus> namadStatuses )
+        {
+            List<NamadStatus> namadStatuses2 = null;
+            if (Form1._orderBy == 5)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverageInLastWeek).ToList();
+            }
+            if (Form1._orderBy == 6)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
+            }
+            if (Form1._orderBy == 7)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
+            }
+            if (Form1._orderBy == 8)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ToList();
+            }
+            if (Form1._orderBy == 0)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.Name).ToList();
+            }
+
+            return namadStatuses2;
+        }
+
         OrderedDictionary _NamadDiagramHistory = new OrderedDictionary() ;//  <string, SortedDictionary<int, ChangeStatus>> _NamadDiagramHistory = new SortedDictionary<string, SortedDictionary<int, ChangeStatus>>();
         OrderedDictionary _NamadDiagramDateHistory = new OrderedDictionary();// SortedDictionary<string, SortedDictionary<int, ChangeStatus>>();
         OrderedDictionary LastNamadStatus = new OrderedDictionary();// SortedDictionary<string, SortedDictionary<long, NamadHistory>>();
@@ -1021,10 +1023,15 @@ namespace TradingData
                         StreamReader reader = new StreamReader(dataStream);
                         string responseFromServer = reader.ReadToEnd();
 
-                        string[] lines = responseFromServer.Split(';');
+                        string[] sLines = responseFromServer.Split(';');
 
                         string sTotal = "";
                         string stime = DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00");
+
+                        var InsertCollection = ProcessLastNamadStatus( sLines, stime , out sTotal);
+                        LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
+
+                        /*
                         //using (var db = new TradingContext())
                         {
                             SortedDictionary<long, NamadHistory> InsertCollection = new SortedDictionary<long, NamadHistory>();
@@ -1137,7 +1144,7 @@ namespace TradingData
                             LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
 
                         }
-
+*/
                         File.WriteAllText(string.Format("{0}\\History\\NamadHistory-{1}.history", Application.StartupPath, DateTime.Now.Year + "" + DateTime.Now.Month + "" + DateTime.Now.Day + "-" + DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00")), sTotal);
 
                         //                    Byte[] info = new UTF8Encoding(true).GetBytes(sTotal);
@@ -1167,110 +1174,126 @@ namespace TradingData
                     string[] sLines = File.ReadAllLines(filename);
                     string stime = Path.GetFileNameWithoutExtension(filename).Split('-')[2];
                     //using (var db = new TradingContext())
-                    {
-                        SortedDictionary<long, NamadHistory> InsertCollection = new SortedDictionary<long, NamadHistory>();
-
-                        SortedDictionary<long, string> NamadNames = new SortedDictionary<long, string>();
-
-                        int lineNumber = 1;
-                        foreach (string l in sLines)
-                        {
-                            if (lineNumber == 1)
-                            {
-                                lineNumber++;
-                                continue;
-                            }
-                            lineNumber++;
-                            string[] namadInfo = l.Split(';');
-                            long tseID = long.Parse(namadInfo[0]);
-
-                            if (namadInfo.Length >= 23)
-                            {
-                                string s = namadInfo[2];
-                                s = s.Replace('ی', 'ي');
-                                s = s.Replace('ک', 'ك');
-
-                                NamadNames.Add(tseID, s);
-
-                                NamadHistory nh = new NamadHistory
-                                {
-                                    AkharinGheymat = long.Parse(namadInfo[7]),
-                                    AkharinDarsad = Math.Round((Math.Round((float.Parse(namadInfo[7]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5),
-                                    Arzesh = long.Parse(namadInfo[10]),
-                                    BishtarinGheymat = long.Parse(namadInfo[12]),
-                                    Dirooz = long.Parse(namadInfo[13]),
-                                    Hajm = long.Parse(namadInfo[9]),
-                                    AvvalinGheymat = long.Parse(namadInfo[5]),
-                                    KamtarinGheymat = long.Parse(namadInfo[11]),
-                                    NamadId = 0,
-                                    PayaniGheymat = long.Parse(namadInfo[6]),
-                                    Tedad = long.Parse(namadInfo[8]),
-                                    TradingDate = this.txtDate.Text.Replace('/', '-'),
-                                    PayaniTaghyeer = long.Parse(namadInfo[6]) - long.Parse(namadInfo[13]),
-                                    PayaniDarsad = Math.Round((Math.Round((float.Parse(namadInfo[6]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5)
-                                };
-                                InsertCollection.Add(tseID, nh);
-                            }
-                            else
-                            {
-                                long tTseID = long.Parse(namadInfo[0]);
-                                NamadHistory outNamadh = new NamadHistory();
-                                if (InsertCollection.TryGetValue(tTseID, out outNamadh))
-                                {
-                                    if (outNamadh.BuyTedad == null)
-                                    {
-                                        outNamadh.BuyTedad = int.Parse(namadInfo[3]);
-                                        outNamadh.ShopTedad = int.Parse(namadInfo[2]);
-                                        outNamadh.BuyCost = long.Parse(namadInfo[4]);
-                                        outNamadh.ShopCost = long.Parse(namadInfo[5]);
-                                        outNamadh.BuyHajm = long.Parse(namadInfo[6]);
-                                        outNamadh.ShopHajm = long.Parse(namadInfo[7]);
-                                    }
-                                }
-                            }
-
-                        }
-
-                        List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
-
-                        foreach (KeyValuePair<long, NamadHistory> h in InsertCollection)
-                        {
-
-                            string namadName = "";
-
-                            if (NamadNames.TryGetValue(h.Key, out namadName))
-                            {
-                                if (!watchList.Contains(namadName)) continue;
-
-                                OrderedDictionary outVal = null;
-
-                                if (namadName != "")
-                                {
-                                    if (_NamadDiagramHistory[namadName] != null)
-                                    {
-                                        outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
-
-                                        outVal.Insert(outVal.Count , stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
-                                    }
-                                    else
-                                    {
-                                        OrderedDictionary Val = new OrderedDictionary();
-                                        Val.Insert(0 , stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
-
-                                        _NamadDiagramHistory.Insert(0 , namadName, Val);
-                                    }
-                                }
-                            }
-                        }
-
-                        string fname = Path.GetFileName(filename);
-                        LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
-
-                    }
+                    string sTotal = "";
+                    var InsertCollection = ProcessLastNamadStatus(sLines, stime , out sTotal);
+                    string fname = Path.GetFileName(filename);
+                    LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
 
                 }
 
             }
+        }
+
+        private SortedDictionary<long, NamadHistory> ProcessLastNamadStatus(string[] sLines, string stime , out string  sTotal )
+        {
+
+            sTotal = "";
+            SortedDictionary<long, NamadHistory> InsertCollection = new SortedDictionary<long, NamadHistory>();
+
+            SortedDictionary<long, string> NamadNames = new SortedDictionary<long, string>();
+
+            int lineNumber = 1;
+            foreach (string l in sLines)
+            {
+                if (lineNumber == 1)
+                {
+                    lineNumber++;
+                    continue;
+                }
+                lineNumber++;
+                string[] namadInfo = l.Split(',');
+                long tseID = long.Parse(namadInfo[0]);
+
+                if (namadInfo.Length >= 23)
+                {
+                    string s = namadInfo[2];
+                    s = s.Replace('ی', 'ي');
+                    s = s.Replace('ک', 'ك');
+
+                    NamadNames.Add(tseID, s);
+
+                    NamadHistory nh = new NamadHistory
+                    {
+                        AkharinGheymat = long.Parse(namadInfo[7]),
+                        AkharinDarsad = Math.Round((Math.Round((float.Parse(namadInfo[7]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5),
+                        Arzesh = long.Parse(namadInfo[10]),
+                        BishtarinGheymat = long.Parse(namadInfo[12]),
+                        Dirooz = long.Parse(namadInfo[13]),
+                        Hajm = long.Parse(namadInfo[9]),
+                        AvvalinGheymat = long.Parse(namadInfo[5]),
+                        KamtarinGheymat = long.Parse(namadInfo[11]),
+                        NamadId = 0,
+                        PayaniGheymat = long.Parse(namadInfo[6]),
+                        Tedad = long.Parse(namadInfo[8]),
+                        TradingDate = this.txtDate.Text.Replace('/', '-'),
+                        PayaniTaghyeer = long.Parse(namadInfo[6]) - long.Parse(namadInfo[13]),
+                        PayaniDarsad = Math.Round((Math.Round((float.Parse(namadInfo[6]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5)
+                    };
+                    InsertCollection.Add(tseID, nh);
+                    sTotal += l + "\r\n";
+
+                }
+                else
+                {
+                    long tTseID = long.Parse(namadInfo[0]);
+                    NamadHistory outNamadh = new NamadHistory();
+                    if (InsertCollection.TryGetValue(tTseID, out outNamadh))
+                    {
+                        if (outNamadh.BuyTedad == null)
+                        {
+                            outNamadh.BuyTedad = int.Parse(namadInfo[3]);
+                            outNamadh.ShopTedad = int.Parse(namadInfo[2]);
+                            outNamadh.BuyCost = long.Parse(namadInfo[4]);
+                            outNamadh.ShopCost = long.Parse(namadInfo[5]);
+                            outNamadh.BuyHajm = long.Parse(namadInfo[6]);
+                            int ival = 0;
+                            if (int.TryParse(namadInfo[7], out ival)) outNamadh.ShopHajm = long.Parse(namadInfo[7]);
+                            else outNamadh.ShopHajm = 0;
+                        }
+
+                    }
+                    sTotal += l + "\r\n";
+
+                }
+
+            }
+
+            List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
+
+            foreach (KeyValuePair<long, NamadHistory> h in InsertCollection)
+            {
+
+                string namadName = "";
+
+                if (NamadNames.TryGetValue(h.Key, out namadName))
+                {
+                    if (!watchList.Contains(namadName)) continue;
+
+                    OrderedDictionary outVal = null;
+
+                    if (namadName != "")
+                    {
+                        if (_NamadDiagramHistory[namadName] != null)
+                        {
+                            outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
+
+                            outVal.Insert(outVal.Count, stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+                        }
+                        else
+                        {
+                            OrderedDictionary Val = new OrderedDictionary();
+                            Val.Insert(0, stime, new ChangeStatus { LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+
+                            _NamadDiagramHistory.Insert(0, namadName, Val);
+                        }
+                    }
+                }
+            }
+
+            return InsertCollection;
+
+
+
         }
 
         private void InitialMonthNamadHistory()
@@ -1449,7 +1472,7 @@ namespace TradingData
                         e.CellStyle.BackColor = Color.OrangeRed;
                 }
                 if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value != null)
-                    if ((int)e.Value < (int)((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value)
+                    if (int.Parse(e.Value.ToString()) > (int)((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value)
                         e.CellStyle.BackColor = Color.OrangeRed;
                     else
                         e.CellStyle.BackColor = Color.GreenYellow;
@@ -1509,11 +1532,6 @@ namespace TradingData
             File.WriteAllLines(Application.StartupPath + "\\watchList.txt", watchList.ToArray());
         }
 
-        private void cmbOrderby_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Form1._orderBy = this.cmbOrderby.SelectedIndex;
-
-        }
 
         private void button16_Click(object sender, EventArgs e)
         {
@@ -1540,6 +1558,25 @@ namespace TradingData
             {
                 ShowChart();
                 ShowHistoryFinished = false;
+            }
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            Form1._orderBy = e.ColumnIndex;
+
+            List<NamadStatus> namadStatuses2 = null;
+            namadStatuses2 = OrderGrid(_namadStatuses);
+            if (namadStatuses2 != null)
+            {
+                lock (_namadStatuses)   // lock on the list
+                {
+                    _namadStatuses.Clear();
+                    _namadStatuses = namadStatuses2;
+                }
+
+                this.namadStatusBindingSource.DataSource = _namadStatuses;
             }
         }
     }

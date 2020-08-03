@@ -84,6 +84,18 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.monthImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.benefitAvverateInMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.industryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteFromWatchListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -103,24 +115,21 @@
             this.cmbWatchList = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.chOrderby = new System.Windows.Forms.CheckBox();
-            this.cmbOrderby = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.monthImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.benefitAvverageInLast3WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverageInLast2WeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverageInLastWeekDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benefitAvverateInMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.industryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label19 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -297,7 +306,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1310, 585);
+            this.tabControl1.Size = new System.Drawing.Size(1310, 698);
             this.tabControl1.TabIndex = 14;
             // 
             // tabPage1
@@ -693,7 +702,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1302, 559);
+            this.tabPage4.Size = new System.Drawing.Size(1302, 672);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Watch List";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -701,6 +710,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -710,6 +721,16 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.label23);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox5);
+            this.splitContainer1.Panel2.Controls.Add(this.label22);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox4);
+            this.splitContainer1.Panel2.Controls.Add(this.label21);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox3);
+            this.splitContainer1.Panel2.Controls.Add(this.label20);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.label19);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.pnChartContainer);
             this.splitContainer1.Panel2.Controls.Add(this.button17);
             this.splitContainer1.Panel2.Controls.Add(this.button16);
@@ -717,9 +738,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.cmbWatchList);
             this.splitContainer1.Panel2.Controls.Add(this.label18);
             this.splitContainer1.Panel2.Controls.Add(this.chOrderby);
-            this.splitContainer1.Panel2.Controls.Add(this.cmbOrderby);
             this.splitContainer1.Panel2.Controls.Add(this.label17);
-            this.splitContainer1.Size = new System.Drawing.Size(1296, 553);
+            this.splitContainer1.Size = new System.Drawing.Size(1296, 666);
             this.splitContainer1.SplitterDistance = 886;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -745,237 +765,13 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(886, 553);
+            this.dataGridView1.Size = new System.Drawing.Size(886, 666);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
             this.dataGridView1.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dataGridView1_CellValueNeeded);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteFromWatchListToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 26);
-            // 
-            // deleteFromWatchListToolStripMenuItem
-            // 
-            this.deleteFromWatchListToolStripMenuItem.Name = "deleteFromWatchListToolStripMenuItem";
-            this.deleteFromWatchListToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.deleteFromWatchListToolStripMenuItem.Text = "Delete from watch List";
-            this.deleteFromWatchListToolStripMenuItem.Click += new System.EventHandler(this.deleteFromWatchListToolStripMenuItem_Click);
-            // 
-            // namadStatusBindingSource
-            // 
-            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
-            // 
-            // pnChartContainer
-            // 
-            this.pnChartContainer.Controls.Add(this.lblWindowColor);
-            this.pnChartContainer.Controls.Add(this.cboWindowsColors);
-            this.pnChartContainer.Controls.Add(this.cboChartTypes);
-            this.pnChartContainer.Controls.Add(this.lblChartType);
-            this.pnChartContainer.Controls.Add(this.lblChartBackColor);
-            this.pnChartContainer.Controls.Add(this.cboChartBackColor);
-            this.pnChartContainer.Controls.Add(this.pnChartRelControls);
-            this.pnChartContainer.Controls.Add(this.pnChart);
-            this.pnChartContainer.Location = new System.Drawing.Point(16, 181);
-            this.pnChartContainer.Name = "pnChartContainer";
-            this.pnChartContainer.Size = new System.Drawing.Size(349, 317);
-            this.pnChartContainer.TabIndex = 42;
-            // 
-            // lblWindowColor
-            // 
-            this.lblWindowColor.AutoSize = true;
-            this.lblWindowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWindowColor.Location = new System.Drawing.Point(29, 287);
-            this.lblWindowColor.Name = "lblWindowColor";
-            this.lblWindowColor.Size = new System.Drawing.Size(83, 15);
-            this.lblWindowColor.TabIndex = 13;
-            this.lblWindowColor.Text = "Window Color";
-            // 
-            // cboWindowsColors
-            // 
-            this.cboWindowsColors.FormattingEnabled = true;
-            this.cboWindowsColors.Location = new System.Drawing.Point(118, 287);
-            this.cboWindowsColors.Name = "cboWindowsColors";
-            this.cboWindowsColors.Size = new System.Drawing.Size(121, 21);
-            this.cboWindowsColors.TabIndex = 12;
-            // 
-            // cboChartTypes
-            // 
-            this.cboChartTypes.FormattingEnabled = true;
-            this.cboChartTypes.Location = new System.Drawing.Point(118, 260);
-            this.cboChartTypes.Name = "cboChartTypes";
-            this.cboChartTypes.Size = new System.Drawing.Size(121, 21);
-            this.cboChartTypes.TabIndex = 11;
-            // 
-            // lblChartType
-            // 
-            this.lblChartType.AutoSize = true;
-            this.lblChartType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChartType.Location = new System.Drawing.Point(47, 264);
-            this.lblChartType.Name = "lblChartType";
-            this.lblChartType.Size = new System.Drawing.Size(65, 15);
-            this.lblChartType.TabIndex = 10;
-            this.lblChartType.Text = "Chart Type";
-            // 
-            // lblChartBackColor
-            // 
-            this.lblChartBackColor.AutoSize = true;
-            this.lblChartBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChartBackColor.Location = new System.Drawing.Point(17, 237);
-            this.lblChartBackColor.Name = "lblChartBackColor";
-            this.lblChartBackColor.Size = new System.Drawing.Size(95, 15);
-            this.lblChartBackColor.TabIndex = 6;
-            this.lblChartBackColor.Text = "Chart BackColor";
-            // 
-            // cboChartBackColor
-            // 
-            this.cboChartBackColor.FormattingEnabled = true;
-            this.cboChartBackColor.Location = new System.Drawing.Point(118, 231);
-            this.cboChartBackColor.Name = "cboChartBackColor";
-            this.cboChartBackColor.Size = new System.Drawing.Size(121, 21);
-            this.cboChartBackColor.TabIndex = 5;
-            // 
-            // pnChartRelControls
-            // 
-            this.pnChartRelControls.Controls.Add(this.cmdSave);
-            this.pnChartRelControls.Location = new System.Drawing.Point(20, 513);
-            this.pnChartRelControls.Name = "pnChartRelControls";
-            this.pnChartRelControls.Size = new System.Drawing.Size(649, 39);
-            this.pnChartRelControls.TabIndex = 1;
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Location = new System.Drawing.Point(300, 13);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(75, 23);
-            this.cmdSave.TabIndex = 0;
-            this.cmdSave.Text = "Save Chart";
-            this.cmdSave.UseVisualStyleBackColor = true;
-            // 
-            // pnChart
-            // 
-            this.pnChart.Location = new System.Drawing.Point(20, 19);
-            this.pnChart.Name = "pnChart";
-            this.pnChart.Size = new System.Drawing.Size(312, 205);
-            this.pnChart.TabIndex = 0;
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(93, 140);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(219, 23);
-            this.button17.TabIndex = 41;
-            this.button17.Text = "Start WatchList";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(93, 111);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(219, 23);
-            this.button16.TabIndex = 40;
-            this.button16.Text = "Stop WatchList";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(93, 82);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(219, 23);
-            this.button15.TabIndex = 39;
-            this.button15.Text = "Add To WatchList";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // cmbWatchList
-            // 
-            this.cmbWatchList.FormattingEnabled = true;
-            this.cmbWatchList.Location = new System.Drawing.Point(93, 55);
-            this.cmbWatchList.Name = "cmbWatchList";
-            this.cmbWatchList.Size = new System.Drawing.Size(219, 21);
-            this.cmbWatchList.TabIndex = 38;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(33, 58);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(47, 13);
-            this.label18.TabIndex = 37;
-            this.label18.Text = "Namad :";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // chOrderby
-            // 
-            this.chOrderby.AutoSize = true;
-            this.chOrderby.Location = new System.Drawing.Point(318, 30);
-            this.chOrderby.Name = "chOrderby";
-            this.chOrderby.Size = new System.Drawing.Size(47, 17);
-            this.chOrderby.TabIndex = 36;
-            this.chOrderby.Text = "Asc ";
-            this.chOrderby.UseVisualStyleBackColor = true;
-            // 
-            // cmbOrderby
-            // 
-            this.cmbOrderby.FormattingEnabled = true;
-            this.cmbOrderby.Items.AddRange(new object[] {
-            "By Name",
-            "On Today ",
-            "On Last month",
-            "On Last week"});
-            this.cmbOrderby.Location = new System.Drawing.Point(93, 28);
-            this.cmbOrderby.Name = "cmbOrderby";
-            this.cmbOrderby.Size = new System.Drawing.Size(219, 21);
-            this.cmbOrderby.TabIndex = 35;
-            this.cmbOrderby.SelectedIndexChanged += new System.EventHandler(this.cmbOrderby_SelectedIndexChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(33, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(54, 13);
-            this.label17.TabIndex = 34;
-            this.label17.Text = "Order By :";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dataGridView2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1302, 559);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "ErrorLogs";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1296, 553);
-            this.dataGridView2.TabIndex = 0;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 60000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Enabled = true;
-            this.timer2.Interval = 300;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -1060,11 +856,400 @@
             this.industryDataGridViewTextBoxColumn.HeaderText = "Industry";
             this.industryDataGridViewTextBoxColumn.Name = "industryDataGridViewTextBoxColumn";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteFromWatchListToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 26);
+            // 
+            // deleteFromWatchListToolStripMenuItem
+            // 
+            this.deleteFromWatchListToolStripMenuItem.Name = "deleteFromWatchListToolStripMenuItem";
+            this.deleteFromWatchListToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.deleteFromWatchListToolStripMenuItem.Text = "Delete from watch List";
+            this.deleteFromWatchListToolStripMenuItem.Click += new System.EventHandler(this.deleteFromWatchListToolStripMenuItem_Click);
+            // 
+            // namadStatusBindingSource
+            // 
+            this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
+            // 
+            // pnChartContainer
+            // 
+            this.pnChartContainer.Controls.Add(this.lblWindowColor);
+            this.pnChartContainer.Controls.Add(this.cboWindowsColors);
+            this.pnChartContainer.Controls.Add(this.cboChartTypes);
+            this.pnChartContainer.Controls.Add(this.lblChartType);
+            this.pnChartContainer.Controls.Add(this.lblChartBackColor);
+            this.pnChartContainer.Controls.Add(this.cboChartBackColor);
+            this.pnChartContainer.Controls.Add(this.pnChartRelControls);
+            this.pnChartContainer.Controls.Add(this.pnChart);
+            this.pnChartContainer.Location = new System.Drawing.Point(16, 113);
+            this.pnChartContainer.Name = "pnChartContainer";
+            this.pnChartContainer.Size = new System.Drawing.Size(349, 317);
+            this.pnChartContainer.TabIndex = 42;
+            // 
+            // lblWindowColor
+            // 
+            this.lblWindowColor.AutoSize = true;
+            this.lblWindowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWindowColor.Location = new System.Drawing.Point(73, 292);
+            this.lblWindowColor.Name = "lblWindowColor";
+            this.lblWindowColor.Size = new System.Drawing.Size(83, 15);
+            this.lblWindowColor.TabIndex = 13;
+            this.lblWindowColor.Text = "Window Color";
+            // 
+            // cboWindowsColors
+            // 
+            this.cboWindowsColors.FormattingEnabled = true;
+            this.cboWindowsColors.Location = new System.Drawing.Point(162, 292);
+            this.cboWindowsColors.Name = "cboWindowsColors";
+            this.cboWindowsColors.Size = new System.Drawing.Size(121, 21);
+            this.cboWindowsColors.TabIndex = 12;
+            // 
+            // cboChartTypes
+            // 
+            this.cboChartTypes.FormattingEnabled = true;
+            this.cboChartTypes.Location = new System.Drawing.Point(162, 265);
+            this.cboChartTypes.Name = "cboChartTypes";
+            this.cboChartTypes.Size = new System.Drawing.Size(121, 21);
+            this.cboChartTypes.TabIndex = 11;
+            // 
+            // lblChartType
+            // 
+            this.lblChartType.AutoSize = true;
+            this.lblChartType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChartType.Location = new System.Drawing.Point(91, 269);
+            this.lblChartType.Name = "lblChartType";
+            this.lblChartType.Size = new System.Drawing.Size(65, 15);
+            this.lblChartType.TabIndex = 10;
+            this.lblChartType.Text = "Chart Type";
+            // 
+            // lblChartBackColor
+            // 
+            this.lblChartBackColor.AutoSize = true;
+            this.lblChartBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChartBackColor.Location = new System.Drawing.Point(61, 242);
+            this.lblChartBackColor.Name = "lblChartBackColor";
+            this.lblChartBackColor.Size = new System.Drawing.Size(95, 15);
+            this.lblChartBackColor.TabIndex = 6;
+            this.lblChartBackColor.Text = "Chart BackColor";
+            // 
+            // cboChartBackColor
+            // 
+            this.cboChartBackColor.FormattingEnabled = true;
+            this.cboChartBackColor.Location = new System.Drawing.Point(162, 236);
+            this.cboChartBackColor.Name = "cboChartBackColor";
+            this.cboChartBackColor.Size = new System.Drawing.Size(121, 21);
+            this.cboChartBackColor.TabIndex = 5;
+            // 
+            // pnChartRelControls
+            // 
+            this.pnChartRelControls.Controls.Add(this.cmdSave);
+            this.pnChartRelControls.Location = new System.Drawing.Point(20, 513);
+            this.pnChartRelControls.Name = "pnChartRelControls";
+            this.pnChartRelControls.Size = new System.Drawing.Size(649, 39);
+            this.pnChartRelControls.TabIndex = 1;
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Location = new System.Drawing.Point(300, 13);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(75, 23);
+            this.cmdSave.TabIndex = 0;
+            this.cmdSave.Text = "Save Chart";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            // 
+            // pnChart
+            // 
+            this.pnChart.Location = new System.Drawing.Point(10, 15);
+            this.pnChart.Name = "pnChart";
+            this.pnChart.Size = new System.Drawing.Size(327, 209);
+            this.pnChart.TabIndex = 0;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(75, 84);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(123, 23);
+            this.button17.TabIndex = 41;
+            this.button17.Text = "Start WatchList";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(204, 84);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(124, 23);
+            this.button16.TabIndex = 40;
+            this.button16.Text = "Stop WatchList";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(204, 55);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(124, 23);
+            this.button15.TabIndex = 39;
+            this.button15.Text = "Add To WatchList";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // cmbWatchList
+            // 
+            this.cmbWatchList.FormattingEnabled = true;
+            this.cmbWatchList.Location = new System.Drawing.Point(75, 55);
+            this.cmbWatchList.Name = "cmbWatchList";
+            this.cmbWatchList.Size = new System.Drawing.Size(123, 21);
+            this.cmbWatchList.TabIndex = 38;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(17, 58);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(47, 13);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "Namad :";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // chOrderby
+            // 
+            this.chOrderby.AutoSize = true;
+            this.chOrderby.Location = new System.Drawing.Point(75, 30);
+            this.chOrderby.Name = "chOrderby";
+            this.chOrderby.Size = new System.Drawing.Size(47, 17);
+            this.chOrderby.TabIndex = 36;
+            this.chOrderby.Text = "Asc ";
+            this.chOrderby.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(11, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 13);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Order By :";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dataGridView2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1302, 672);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "ErrorLogs";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1296, 666);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 60000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 300;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(33, 447);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(141, 15);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "Balance Rate In Benefit :";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"});
+            this.comboBox1.Location = new System.Drawing.Point(178, 446);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 43;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(43, 475);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(129, 15);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "Balance Rate In Loss :";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"});
+            this.comboBox2.Location = new System.Drawing.Point(178, 474);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 45;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(23, 504);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(149, 15);
+            this.label21.TabIndex = 48;
+            this.label21.Text = "Balance Rate In dullness :";
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"});
+            this.comboBox3.Location = new System.Drawing.Point(178, 504);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 47;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(19, 558);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(153, 15);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Queue Amount Threshold :";
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "0.3 M",
+            "0.5 M",
+            "0.7 M",
+            "0.9 M",
+            "1.0 M",
+            "1.3 M",
+            "1.5 M",
+            "2.0 M",
+            "2.5 M",
+            "3.0 M",
+            "5.0 M",
+            "7.0 M",
+            "10.0 M",
+            "15.0 M",
+            "20.0 M",
+            "> 20.0 M"});
+            this.comboBox4.Location = new System.Drawing.Point(179, 558);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 21);
+            this.comboBox4.TabIndex = 49;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(30, 531);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(141, 15);
+            this.label23.TabIndex = 52;
+            this.label23.Text = "Distance with Buy  Date :";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "15 D",
+            "1 M",
+            "1.5 M",
+            "2 M",
+            "3 M",
+            "4 M",
+            "5 M",
+            "6 M",
+            "1 Y",
+            ">1 Y"});
+            this.comboBox5.Location = new System.Drawing.Point(178, 531);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 21);
+            this.comboBox5.TabIndex = 51;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1310, 585);
+            this.ClientSize = new System.Drawing.Size(1310, 698);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
@@ -1159,7 +1344,6 @@
         private System.Windows.Forms.ComboBox cmbWatchList;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox chOrderby;
-        private System.Windows.Forms.ComboBox cmbOrderby;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
@@ -1189,6 +1373,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvverageBuyCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn industryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

@@ -86,14 +86,15 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteFromWatchListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cmbThresholdAmount = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cmbBalanceOnDullness = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cmbBalanceInLoss = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbBalanceInBenefit = new System.Windows.Forms.ComboBox();
+            this.cmbBalanceInLoss = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.cmbThresholdAmount = new System.Windows.Forms.ComboBox();
+            this.cmbBalanceOnDullness = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.pnChartContainer = new System.Windows.Forms.Panel();
             this.lblWindowColor = new System.Windows.Forms.Label();
             this.cboWindowsColors = new System.Windows.Forms.ComboBox();
@@ -115,7 +116,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
@@ -128,6 +128,7 @@
             this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CountOfPortion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuyQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShopQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,11 +144,11 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.pnChartContainer.SuspendLayout();
             this.pnChartRelControls.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -753,6 +754,7 @@
             this.lastCostDataGridViewTextBoxColumn,
             this.myAvverageBuyCostDataGridViewTextBoxColumn,
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn,
+            this.CountOfPortion,
             this.BuyQueue,
             this.ShopQueue,
             this.TrDate,
@@ -785,119 +787,22 @@
             this.deleteFromWatchListToolStripMenuItem.Text = "Delete from watch List";
             this.deleteFromWatchListToolStripMenuItem.Click += new System.EventHandler(this.deleteFromWatchListToolStripMenuItem_Click);
             // 
-            // label22
+            // groupBox1
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(16, 110);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(153, 15);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "Queue Amount Threshold :";
-            // 
-            // cmbThresholdAmount
-            // 
-            this.cmbThresholdAmount.FormattingEnabled = true;
-            this.cmbThresholdAmount.Items.AddRange(new object[] {
-            "0.3 M",
-            "0.5 M",
-            "0.7 M",
-            "0.9 M",
-            "1.0 M",
-            "1.3 M",
-            "1.5 M",
-            "2.0 M",
-            "2.5 M",
-            "3.0 M",
-            "5.0 M",
-            "7.0 M",
-            "10.0 M",
-            "15.0 M",
-            "20.0 M",
-            "> 20.0 M"});
-            this.cmbThresholdAmount.Location = new System.Drawing.Point(176, 110);
-            this.cmbThresholdAmount.Name = "cmbThresholdAmount";
-            this.cmbThresholdAmount.Size = new System.Drawing.Size(121, 21);
-            this.cmbThresholdAmount.TabIndex = 49;
-            this.cmbThresholdAmount.Text = "0.3 M";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(12, 79);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(157, 15);
-            this.label21.TabIndex = 48;
-            this.label21.Text = "Balance Rate On Dullness :";
-            // 
-            // cmbBalanceOnDullness
-            // 
-            this.cmbBalanceOnDullness.FormattingEnabled = true;
-            this.cmbBalanceOnDullness.Items.AddRange(new object[] {
-            "10",
-            "15",
-            "20",
-            "25",
-            "30",
-            "35",
-            "40",
-            "45",
-            "50",
-            "55",
-            "60",
-            "65",
-            "70",
-            "75",
-            "80",
-            "85",
-            "90",
-            "95",
-            "100"});
-            this.cmbBalanceOnDullness.Location = new System.Drawing.Point(175, 78);
-            this.cmbBalanceOnDullness.Name = "cmbBalanceOnDullness";
-            this.cmbBalanceOnDullness.Size = new System.Drawing.Size(121, 21);
-            this.cmbBalanceOnDullness.TabIndex = 47;
-            this.cmbBalanceOnDullness.Text = "20";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(40, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(129, 15);
-            this.label20.TabIndex = 46;
-            this.label20.Text = "Balance Rate In Loss :";
-            // 
-            // cmbBalanceInLoss
-            // 
-            this.cmbBalanceInLoss.FormattingEnabled = true;
-            this.cmbBalanceInLoss.Items.AddRange(new object[] {
-            "10",
-            "15",
-            "20",
-            "25",
-            "30",
-            "35",
-            "40",
-            "45",
-            "50",
-            "55",
-            "60",
-            "65",
-            "70",
-            "75",
-            "80",
-            "85",
-            "90",
-            "95",
-            "100"});
-            this.cmbBalanceInLoss.Location = new System.Drawing.Point(175, 48);
-            this.cmbBalanceInLoss.Name = "cmbBalanceInLoss";
-            this.cmbBalanceInLoss.Size = new System.Drawing.Size(121, 21);
-            this.cmbBalanceInLoss.TabIndex = 45;
-            this.cmbBalanceInLoss.Text = "15";
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.cmbBalanceInBenefit);
+            this.groupBox1.Controls.Add(this.cmbBalanceInLoss);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.cmbThresholdAmount);
+            this.groupBox1.Controls.Add(this.cmbBalanceOnDullness);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Location = new System.Drawing.Point(16, 449);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(367, 155);
+            this.groupBox1.TabIndex = 53;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = " Alarm Configs ";
             // 
             // label19
             // 
@@ -937,6 +842,120 @@
             this.cmbBalanceInBenefit.Size = new System.Drawing.Size(121, 21);
             this.cmbBalanceInBenefit.TabIndex = 43;
             this.cmbBalanceInBenefit.Text = "25";
+            // 
+            // cmbBalanceInLoss
+            // 
+            this.cmbBalanceInLoss.FormattingEnabled = true;
+            this.cmbBalanceInLoss.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"});
+            this.cmbBalanceInLoss.Location = new System.Drawing.Point(175, 48);
+            this.cmbBalanceInLoss.Name = "cmbBalanceInLoss";
+            this.cmbBalanceInLoss.Size = new System.Drawing.Size(121, 21);
+            this.cmbBalanceInLoss.TabIndex = 45;
+            this.cmbBalanceInLoss.Text = "15";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(16, 110);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(153, 15);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Queue Amount Threshold :";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(40, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(129, 15);
+            this.label20.TabIndex = 46;
+            this.label20.Text = "Balance Rate In Loss :";
+            // 
+            // cmbThresholdAmount
+            // 
+            this.cmbThresholdAmount.FormattingEnabled = true;
+            this.cmbThresholdAmount.Items.AddRange(new object[] {
+            "0.3 M",
+            "0.5 M",
+            "0.7 M",
+            "0.9 M",
+            "1.0 M",
+            "1.3 M",
+            "1.5 M",
+            "2.0 M",
+            "2.5 M",
+            "3.0 M",
+            "5.0 M",
+            "7.0 M",
+            "10.0 M",
+            "15.0 M",
+            "20.0 M",
+            "> 20.0 M"});
+            this.cmbThresholdAmount.Location = new System.Drawing.Point(176, 110);
+            this.cmbThresholdAmount.Name = "cmbThresholdAmount";
+            this.cmbThresholdAmount.Size = new System.Drawing.Size(121, 21);
+            this.cmbThresholdAmount.TabIndex = 49;
+            this.cmbThresholdAmount.Text = "0.3 M";
+            // 
+            // cmbBalanceOnDullness
+            // 
+            this.cmbBalanceOnDullness.FormattingEnabled = true;
+            this.cmbBalanceOnDullness.Items.AddRange(new object[] {
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "35",
+            "40",
+            "45",
+            "50",
+            "55",
+            "60",
+            "65",
+            "70",
+            "75",
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"});
+            this.cmbBalanceOnDullness.Location = new System.Drawing.Point(175, 78);
+            this.cmbBalanceOnDullness.Name = "cmbBalanceOnDullness";
+            this.cmbBalanceOnDullness.Size = new System.Drawing.Size(121, 21);
+            this.cmbBalanceOnDullness.TabIndex = 47;
+            this.cmbBalanceOnDullness.Text = "20";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(12, 79);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(157, 15);
+            this.label21.TabIndex = 48;
+            this.label21.Text = "Balance Rate On Dullness :";
             // 
             // pnChartContainer
             // 
@@ -1131,23 +1150,6 @@
             this.timer2.Interval = 300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.cmbBalanceInBenefit);
-            this.groupBox1.Controls.Add(this.cmbBalanceInLoss);
-            this.groupBox1.Controls.Add(this.label22);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.cmbThresholdAmount);
-            this.groupBox1.Controls.Add(this.cmbBalanceOnDullness);
-            this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Location = new System.Drawing.Point(16, 449);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 155);
-            this.groupBox1.TabIndex = 53;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = " Alarm Configs ";
-            // 
             // namadStatusBindingSource
             // 
             this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
@@ -1229,6 +1231,13 @@
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Width = 50;
             // 
+            // CountOfPortion
+            // 
+            this.CountOfPortion.DataPropertyName = "CountOfPortion";
+            this.CountOfPortion.HeaderText = "Cont";
+            this.CountOfPortion.Name = "CountOfPortion";
+            this.CountOfPortion.Width = 50;
+            // 
             // BuyQueue
             // 
             this.BuyQueue.DataPropertyName = "BuyQueue";
@@ -1281,13 +1290,13 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.pnChartContainer.ResumeLayout(false);
             this.pnChartContainer.PerformLayout();
             this.pnChartRelControls.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -1394,6 +1403,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvverageBuyCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvveragebenefitPercentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CountOfPortion;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShopQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrDate;

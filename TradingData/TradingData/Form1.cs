@@ -868,38 +868,67 @@ namespace TradingData
             try
             {
                 ShowHistoryFinished = false;
-                List<NamadStatus> namadStatuses = new List<NamadStatus>();
-
+                OrderedDictionary  namadStatuses = new  OrderedDictionary();
                 List<Basket> myTradingStatus = CustomDataProvider.GetMyPortionStatus();
 
+                List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
+                foreach (string s in watchList)// var dictIndex = 0 ; dictIndex < _NamadDiagramHistory.Count - 1; dictIndex++)
+                {
+                    NamadStatus n = new NamadStatus { Name = s, TodayImage = null, MonthImage = null };
+
+                    OrderedDictionary d = (OrderedDictionary)_NamadDiagramDateHistory[s];
+                    if (d != null)
+                        for (int i = d.Count - 1; i >= 0; i--)
+                        {
+
+                            ChangeStatus ch = (ChangeStatus)d[i];
+                            if (i > d.Count - 5)
+                            {
+                                n.benefitAvverageInLastWeek += ch.BenefitChange;
+                            }
+                            if (i > d.Count - 10 && i <= d.Count - 5)
+                            {
+                                n.benefitAvverageInLast2Week += ch.BenefitChange;
+                            }
+                            if (i > d.Count - 15 && i <= d.Count - 10)
+                            {
+                                n.benefitAvverageInLast3Week += ch.BenefitChange;
+                            }
+
+                            n.benefitAvverateInMonth += ch.BenefitChange;
+                        }
+
+                    if (myTradingStatus != null)
+                    {
+                        List<Basket> bs = myTradingStatus.FindAll(x => x.Namad == n.Name);
+
+                        int sumBuy = 0;
+                        int sumCount = 0;
+
+                        foreach (Basket bb in bs)
+                        {
+                            sumBuy += (int)bb.RealCost;
+                            sumCount += (int)bb.CountOfPortion;
+                        }
+
+                        if (bs.Count > 0)
+                        {
+                            n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
+                            n.CountOfPortion = sumCount;
+                            n.LastTradingDate = bs[bs.Count - 1].TradingDate;
+                        }
+
+                    }
+                    namadStatuses.Add (s ,  n);
+
+                }
 
                 if (GetLastNamadStatus())
                 {
                     foreach (string s in _NamadDiagramHistory.Keys)// var dictIndex = 0 ; dictIndex < _NamadDiagramHistory.Count - 1; dictIndex++)
                     {
-                        NamadStatus n = new NamadStatus { Name = s, TodayImage = null, MonthImage = null };
 
-                        OrderedDictionary d = (OrderedDictionary)_NamadDiagramDateHistory[s];
-                        if (d != null)
-                            for (int i = d.Count - 1; i >= 0; i--)
-                            {
-
-                                ChangeStatus ch = (ChangeStatus)d[i];
-                                if (i > d.Count - 5)
-                                {
-                                    n.benefitAvverageInLastWeek += ch.BenefitChange;
-                                }
-                                if (i > d.Count - 10 && i <= d.Count - 5)
-                                {
-                                    n.benefitAvverageInLast2Week += ch.BenefitChange;
-                                }
-                                if (i > d.Count - 15 && i <= d.Count - 10)
-                                {
-                                    n.benefitAvverageInLast3Week += ch.BenefitChange;
-                                }
-
-                                n.benefitAvverateInMonth += ch.BenefitChange;
-                            }
+                        var n = (NamadStatus)namadStatuses[s];
 
                         OrderedDictionary d2 = (OrderedDictionary)_NamadDiagramHistory[s];
                         if (d2 != null)
@@ -908,62 +937,49 @@ namespace TradingData
 
                             n.benefitAvverateInDay = ch2.BenefitChange;
                             n.LastCost = ch2.LastCost;
-                            n.BuyQueue =  (float) Math.Round( (double) (ch2.BuyQueue / 1000000) , 2);
-                            n.ShopQueue = (float) Math.Round((double) (ch2.ShopQueue / 1000000) , 2);
+                            if(n.LastCost !=0)
+                                n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
+                            else
+                                n.MyAvveragebenefitPercent = 0;
+
+                            n.BuyQueue =  (float) Math.Round( ((double)ch2.BuyQueue / 1000000) , 2);
+                            n.ShopQueue = (float) Math.Round( ((double)ch2.ShopQueue / 1000000) , 2);
                             
                             if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
                             if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
                         }
 
-                        if (myTradingStatus != null)
-                        {
-                            List<Basket> bs = myTradingStatus.FindAll(x => x.Namad == n.Name);
 
-                            long sumBuy = 0;
-                            long sumCount = 0;
-
-                            foreach (Basket bb in bs)
-                            {
-                                sumBuy += (int)bb.RealCost;
-                                sumCount += (int)bb.CountOfPortion;
-                            }
-
-                            if (bs.Count > 0)
-                            {
-                                n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
-                                n.MyAvveragebenefitPercent = (((float) n.LastCost  / n.MyAvverageBuyCost)-1)*100;
-
-                                n.LastTradingDate = bs[bs.Count - 1].TradingDate;
-                            }
-
-                        }
-
-                        namadStatuses.Add(n);
                     }
 
-                    List<NamadStatus> namadStatuses2 = null;
-                    namadStatuses2 = OrderGrid(namadStatuses);
-                    if (namadStatuses2 == null) namadStatuses2 = namadStatuses;
-                    lock (_namadStatuses)   // lock on the list
-                    {
-                        _namadStatuses.Clear();
-                        _namadStatuses = namadStatuses2;
-                    }
-
-                    this.BeginInvoke(
-                                new Action(() =>
-                                {
-                                    this.namadStatusBindingSource.DataSource = _namadStatuses;
-                                    this.timer1.Enabled = true;
-                                }
-                                ));
-
-                    System.GC.Collect();
-                    System.GC.WaitForPendingFinalizers();
-
-                    ShowHistoryFinished = true;
 
                 }
+
+                List<NamadStatus> nslist = new List<NamadStatus>();
+                foreach (NamadStatus ns in namadStatuses.Values)
+                    nslist.Add(ns);
+
+                List<NamadStatus> namadStatuses2 = null;
+                namadStatuses2 = OrderGrid(nslist);
+                if (namadStatuses2 == null) namadStatuses2 = nslist;
+                lock (_namadStatuses)   // lock on the list
+                {
+                    _namadStatuses.Clear();
+                    _namadStatuses = namadStatuses2;
+                }
+
+                this.BeginInvoke(
+                            new Action(() =>
+                            {
+                                this.namadStatusBindingSource.DataSource = _namadStatuses;
+                                this.timer1.Enabled = true;
+                            }
+                            ));
+
+                System.GC.Collect();
+                System.GC.WaitForPendingFinalizers();
+
+                ShowHistoryFinished = true;
 
             }
             catch (Exception ex)
@@ -1013,6 +1029,9 @@ namespace TradingData
         {
             try
             {
+                if (DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 35, 0))
+                    return false;
+
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.tsetmc.com/tsev2/data/MarketWatchInit.aspx?h=0&r=0");
                 request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
@@ -1149,7 +1168,7 @@ namespace TradingData
 
                         }
 */
-                        File.WriteAllText(string.Format("{0}\\History\\NamadHistory-{1}.history", Application.StartupPath, DateTime.Now.Year + "" + DateTime.Now.Month + "" + DateTime.Now.Day + "-" + DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00")), sTotal);
+                        File.WriteAllText(string.Format("{0}\\History\\NamadHistory-{1}.history", Application.StartupPath, DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00") + "-" + DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00")), sTotal);
 
                         //                    Byte[] info = new UTF8Encoding(true).GetBytes(sTotal);
                         //                    output.Write(info, (int)output.Length-1, info.Length);
@@ -1168,13 +1187,15 @@ namespace TradingData
 
         private void InitialTodayNamadStatus()
         {
+            if (DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 35, 0))
+                return ;
 
             List<string> files = Directory.GetFiles(Application.StartupPath+"\\History").ToList().OrderByDescending(x=>x).ToList();
 
             int fileCount = 0;
             foreach(string filename in files)
             {
-                if(Path.GetExtension(filename) == ".history")
+                if(Path.GetExtension(filename) == ".history" && filename.Contains(DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00")))
                 {
                     string[] sLines = File.ReadAllLines(filename);
                     string stime = Path.GetFileNameWithoutExtension(filename).Split('-')[2];
@@ -1483,6 +1504,15 @@ namespace TradingData
                         e.CellStyle.BackColor = Color.OrangeRed;
                     else
                         e.CellStyle.BackColor = Color.GreenYellow;
+
+                if (e.ColumnIndex == 12 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value != null)
+                    if (float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+                        e.CellStyle.BackColor = Color.LightSeaGreen;
+
+                if (e.ColumnIndex == 13 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value != null)
+                    if (float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+                        e.CellStyle.BackColor = Color.PaleVioletRed;
+
 
             }
             catch (Exception ex)

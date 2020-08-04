@@ -28,6 +28,7 @@ namespace ChartGenerator
         public float MyAvveragebenefitPercent { get; set; }
         public long MyAvverageBuyCost { get; set; }
         public int LastCost {get;set;}
+        public int CountOfPortion {get;set; }
         public float BuyQueue {get;set;}
         public float ShopQueue { get;set;}
         public string LastTradingDate { get; set; }

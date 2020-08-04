@@ -10,8 +10,8 @@
         <EntityTypeShape EntityType="TradingModel.Industry" Width="1.5" PointX="5.25" PointY="4" />
         <EntityTypeShape EntityType="TradingModel.NamadNotify" Width="1.5" PointX="0.875" PointY="5" />
         <EntityTypeShape EntityType="TradingModel.BasketShopping" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="TradingModel.Payment" Width="1.5" PointX="4.75" PointY="7.75" />
         <EntityTypeShape EntityType="TradingModel.Basket" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="TradingModel.Payment" Width="1.5" PointX="9.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -673,18 +673,22 @@ namespace TradingData
                     this.cmbWatchList.Items.Add(n.Namad1);
                 }
 
-                var baskets = db.Baskets.ToList();
 
-                var bsk = baskets.OrderBy(x => x.Namad).ToList();
-
-                foreach (Basket n in bsk)
-                {
-                    this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
-                }
 
                 //var dbrow = db.Database.SqlQuery("select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-')" , null);
 
 
+            }
+
+           
+
+            var baskets = CustomDataProvider.GetMyPortionStatus();
+
+            var bsk = baskets.OrderBy(x => x.Namad).ToList();
+
+            foreach (Basket n in bsk)
+            {
+                this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
             }
 
 
@@ -1614,6 +1618,50 @@ namespace TradingData
                 }
 
                 this.namadStatusBindingSource.DataSource = _namadStatuses;
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            List<PaymentStatus> ststuses = CustomDataProvider.GetPaymentStatus();
+            //namadStatuses2 = OrderGrid(_namadStatuses);
+            if (ststuses != null)
+            {
+
+                this.paymentStatusBindingSource.DataSource = ststuses;
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            using (var dbn1 = new TradingContext())
+            {
+                Payment bsk = new Payment
+                {
+                    OwnerName = this.cmbPaymentOwner.Text,
+                     Amount = long.Parse(this.txtPaymentAmount.Text),
+                      PaymentDate = this.txtPaymentDate.Text,
+                       BrokerName = this.cmbBroker.Text,
+                        Description = this.txtPaymentDesc.Text
+                };
+
+                dbn1.Payments.Add(bsk);
+                dbn1.SaveChanges();
+                this.txtPaymentAmount.Text = "";
+
+                MessageBox.Show("Insersion Completed");
+
+            }
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            List<TradingStatus> ststuses = CustomDataProvider.GetTradingsForMembers(this.cmbTradingStatusOwners.Text);
+            //namadStatuses2 = OrderGrid(_namadStatuses);
+            if (ststuses != null)
+            {
+
+                this.tradingStatusBindingSource.DataSource = ststuses;
             }
         }
     }

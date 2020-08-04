@@ -7,6 +7,36 @@ using System.Threading.Tasks;
 
 namespace ChartGenerator
 {
+
+    public class TradingStatus
+    {
+        public TradingStatus()
+        {
+
+        }
+
+        public string ReportDate { get; set; }
+        public int BasketId { get; set; }
+        public string OwnerName { get; set; }
+        public string NamadDesc { get; set; }
+        public string NamadName { get; set; }
+        public string TradingDate { get; set; }
+        public int CountOfPortion { get; set; }
+        public int RemainedPortion { get; set; }
+        public string RealCost { get; set; }
+        public string AvverageCost { get; set; }
+        public string TotalCost { get; set; }
+        public string ToDayCost { get; set; }
+        public string BenefitAmount { get; set; }
+        public double BenefitPercent { get; set; }
+        public string TotalMonyeAmount { get; set; }
+        public int FirstOffer { get; set; }
+        public string BuyAmount { get; set; }
+        public string ShopAmount { get; set; }
+
+
+    }
+
     public class NamadStatus
     {
 
@@ -45,4 +75,14 @@ namespace ChartGenerator
         public long TradingDate { get; set; }
     }
 
+    public class PaymentStatus
+    {
+        public PaymentStatus()
+        {
+        }
+
+        public string OwnerName { get; set; }
+        public string TotalPayment { get; set; }
+        public string RemainedAmount { get; set; }
+    }
 }

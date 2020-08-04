@@ -100,6 +100,8 @@
           <Property Name="Amount" Type="bigint" />
           <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="TradingModelStoreContainer">
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
@@ -147,8 +149,8 @@
           <EntitySet Name="Industries" EntityType="TradingModel.Industry" />
           <EntitySet Name="NamadNotifies" EntityType="TradingModel.NamadNotify" />
           <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
-          <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
           <EntitySet Name="Baskets" EntityType="TradingModel.Basket" />
+          <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
         </EntityContainer>
         <EntityType Name="Namad">
           <Key>
@@ -193,15 +195,6 @@
           <Property Name="ShoppingCost" Type="Int64" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Payment">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="PaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Int64" />
-          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -217,6 +210,17 @@
           <Property Name="InvestmentType" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GroupId" Type="Int64" />
+          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="PaymentDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
@@ -300,16 +304,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="TradingModel.Payment">
-              <MappingFragment StoreEntitySet="Payments">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Baskets">
             <EntityTypeMapping TypeName="TradingModel.Basket">
               <MappingFragment StoreEntitySet="Basket">
@@ -325,6 +319,18 @@
                 <ScalarProperty Name="CountOfPortion" ColumnName="CountOfPortion" />
                 <ScalarProperty Name="TradingDate" ColumnName="TradingDate" />
                 <ScalarProperty Name="Namad" ColumnName="Namad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="TradingModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

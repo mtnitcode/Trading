@@ -46,28 +46,61 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtPaymentDesc = new System.Windows.Forms.TextBox();
+            this.cmbPaymentBroker = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtPaymentDate = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.txtPaymentAmount = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cmbPaymentOwner = new System.Windows.Forms.ComboBox();
+            this.button18 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.cmbBasketIds = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button14 = new System.Windows.Forms.Button();
+            this.txtShopTotal = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtShopDate = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtShopCost = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtShopCount = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmbBroker = new System.Windows.Forms.ComboBox();
+            this.txtBuyCont = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.txtBuyAvvCost = new System.Windows.Forms.TextBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cmbInvestmentType = new System.Windows.Forms.ComboBox();
+            this.txtBuyRealCost = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.cmbBuyNamad = new System.Windows.Forms.ComboBox();
+            this.txtBuyDate = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
+            this.cmdBuyOwner = new System.Windows.Forms.ComboBox();
             this.txtTotalCost = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmdBuyOwner = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtBuyDate = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBuyRealCost = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtBuyAvvCost = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBuyCont = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button20 = new System.Windows.Forms.Button();
+            this.dgTradingStatus = new System.Windows.Forms.DataGridView();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cmbTradingStatusOwners = new System.Windows.Forms.ComboBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -107,42 +140,11 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.cmbBasketIds = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button14 = new System.Windows.Forms.Button();
-            this.txtShopTotal = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtShopDate = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtShopCost = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtShopCount = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button18 = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cmbPaymentOwner = new System.Windows.Forms.ComboBox();
-            this.txtPaymentAmount = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.button19 = new System.Windows.Forms.Button();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtPaymentDate = new System.Windows.Forms.TextBox();
-            this.cmbPaymentBroker = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtPaymentDesc = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.cmbTradingStatusOwners = new System.Windows.Forms.ComboBox();
-            this.dgTradingStatus = new System.Windows.Forms.DataGridView();
             this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalPaymentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remainedAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tradingStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.todayImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.monthImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
@@ -156,8 +158,8 @@
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.industryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namadStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tradingStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrokerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.basketIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namadDescDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -175,11 +177,15 @@
             this.firstOfferDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.buyAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shopAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button20 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -192,14 +198,9 @@
             this.pnChartRelControls.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -400,6 +401,326 @@
             this.tabPage2.Text = "Trading ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.txtPaymentDesc);
+            this.groupBox4.Controls.Add(this.cmbPaymentBroker);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.txtPaymentDate);
+            this.groupBox4.Controls.Add(this.button19);
+            this.groupBox4.Controls.Add(this.txtPaymentAmount);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.cmbPaymentOwner);
+            this.groupBox4.Controls.Add(this.button18);
+            this.groupBox4.Controls.Add(this.dataGridView3);
+            this.groupBox4.Location = new System.Drawing.Point(31, 340);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(595, 306);
+            this.groupBox4.TabIndex = 42;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = " Payment Status ";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(0, 276);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(66, 13);
+            this.label27.TabIndex = 52;
+            this.label27.Text = "Description :";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtPaymentDesc
+            // 
+            this.txtPaymentDesc.Location = new System.Drawing.Point(72, 273);
+            this.txtPaymentDesc.Name = "txtPaymentDesc";
+            this.txtPaymentDesc.Size = new System.Drawing.Size(207, 20);
+            this.txtPaymentDesc.TabIndex = 51;
+            // 
+            // cmbPaymentBroker
+            // 
+            this.cmbPaymentBroker.FormattingEnabled = true;
+            this.cmbPaymentBroker.Items.AddRange(new object[] {
+            "آگاه",
+            "تدبیرگران"});
+            this.cmbPaymentBroker.Location = new System.Drawing.Point(72, 246);
+            this.cmbPaymentBroker.Name = "cmbPaymentBroker";
+            this.cmbPaymentBroker.Size = new System.Drawing.Size(207, 21);
+            this.cmbPaymentBroker.TabIndex = 50;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(18, 249);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(44, 13);
+            this.label26.TabIndex = 49;
+            this.label26.Text = "Broker :";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(30, 223);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(36, 13);
+            this.label25.TabIndex = 47;
+            this.label25.Text = "Date :";
+            // 
+            // txtPaymentDate
+            // 
+            this.txtPaymentDate.Location = new System.Drawing.Point(72, 220);
+            this.txtPaymentDate.Name = "txtPaymentDate";
+            this.txtPaymentDate.Size = new System.Drawing.Size(207, 20);
+            this.txtPaymentDate.TabIndex = 48;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(365, 271);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(207, 23);
+            this.button19.TabIndex = 46;
+            this.button19.Text = "Add To Payment";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // txtPaymentAmount
+            // 
+            this.txtPaymentAmount.Location = new System.Drawing.Point(343, 194);
+            this.txtPaymentAmount.Name = "txtPaymentAmount";
+            this.txtPaymentAmount.Size = new System.Drawing.Size(154, 20);
+            this.txtPaymentAmount.TabIndex = 45;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(286, 197);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 13);
+            this.label24.TabIndex = 44;
+            this.label24.Text = "Total Cost :";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(24, 196);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(44, 13);
+            this.label23.TabIndex = 42;
+            this.label23.Text = "Owner :";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cmbPaymentOwner
+            // 
+            this.cmbPaymentOwner.FormattingEnabled = true;
+            this.cmbPaymentOwner.Items.AddRange(new object[] {
+            "خودم",
+            "ثمانه",
+            "حاج علیرضا",
+            "مامان",
+            "محمدطاها"});
+            this.cmbPaymentOwner.Location = new System.Drawing.Point(72, 193);
+            this.cmbPaymentOwner.Name = "cmbPaymentOwner";
+            this.cmbPaymentOwner.Size = new System.Drawing.Size(207, 21);
+            this.cmbPaymentOwner.TabIndex = 43;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(366, 144);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(207, 23);
+            this.button18.TabIndex = 40;
+            this.button18.Text = "Referesh";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AutoGenerateColumns = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ownerNameDataGridViewTextBoxColumn,
+            this.totalPaymentDataGridViewTextBoxColumn,
+            this.remainedAmountDataGridViewTextBoxColumn});
+            this.dataGridView3.DataSource = this.paymentStatusBindingSource;
+            this.dataGridView3.Location = new System.Drawing.Point(23, 19);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(550, 148);
+            this.dataGridView3.TabIndex = 41;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.txtDescription);
+            this.groupBox3.Controls.Add(this.cmbBasketIds);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.button14);
+            this.groupBox3.Controls.Add(this.txtShopTotal);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.txtShopDate);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.txtShopCost);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.txtShopCount);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Location = new System.Drawing.Point(642, 18);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(589, 305);
+            this.groupBox3.TabIndex = 41;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = " Shop ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(31, 142);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(66, 13);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "Description :";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(137, 136);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(219, 20);
+            this.txtDescription.TabIndex = 47;
+            // 
+            // cmbBasketIds
+            // 
+            this.cmbBasketIds.FormattingEnabled = true;
+            this.cmbBasketIds.Location = new System.Drawing.Point(137, 103);
+            this.cmbBasketIds.Name = "cmbBasketIds";
+            this.cmbBasketIds.Size = new System.Drawing.Size(219, 21);
+            this.cmbBasketIds.TabIndex = 46;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(31, 106);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(63, 13);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "Basket-Ids :";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(354, 264);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(219, 23);
+            this.button14.TabIndex = 44;
+            this.button14.Text = "Save Shop";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // txtShopTotal
+            // 
+            this.txtShopTotal.Location = new System.Drawing.Point(419, 20);
+            this.txtShopTotal.Name = "txtShopTotal";
+            this.txtShopTotal.Size = new System.Drawing.Size(154, 20);
+            this.txtShopTotal.TabIndex = 43;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(362, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 13);
+            this.label11.TabIndex = 42;
+            this.label11.Text = "Total Cost :";
+            // 
+            // txtShopDate
+            // 
+            this.txtShopDate.Location = new System.Drawing.Point(135, 75);
+            this.txtShopDate.Name = "txtShopDate";
+            this.txtShopDate.Size = new System.Drawing.Size(219, 20);
+            this.txtShopDate.TabIndex = 41;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(58, 81);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 13);
+            this.label13.TabIndex = 40;
+            this.label13.Text = "Date :";
+            // 
+            // txtShopCost
+            // 
+            this.txtShopCost.Location = new System.Drawing.Point(135, 49);
+            this.txtShopCost.Name = "txtShopCost";
+            this.txtShopCost.Size = new System.Drawing.Size(219, 20);
+            this.txtShopCost.TabIndex = 39;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(16, 52);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(83, 13);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "Avverage Cost :";
+            // 
+            // txtShopCount
+            // 
+            this.txtShopCount.Location = new System.Drawing.Point(135, 23);
+            this.txtShopCount.Name = "txtShopCount";
+            this.txtShopCount.Size = new System.Drawing.Size(219, 20);
+            this.txtShopCount.TabIndex = 37;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(58, 26);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 36;
+            this.label16.Text = "Count :";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.cmbBroker);
+            this.groupBox2.Controls.Add(this.txtBuyCont);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtBuyAvvCost);
+            this.groupBox2.Controls.Add(this.txtDesc);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.cmbInvestmentType);
+            this.groupBox2.Controls.Add(this.txtBuyRealCost);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.cmbBuyNamad);
+            this.groupBox2.Controls.Add(this.txtBuyDate);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.button13);
+            this.groupBox2.Controls.Add(this.cmdBuyOwner);
+            this.groupBox2.Controls.Add(this.txtTotalCost);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(31, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(595, 304);
+            this.groupBox2.TabIndex = 40;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = " Buy ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(62, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Count :";
+            // 
             // cmbBroker
             // 
             this.cmbBroker.FormattingEnabled = true;
@@ -411,6 +732,14 @@
             this.cmbBroker.Size = new System.Drawing.Size(207, 21);
             this.cmbBroker.TabIndex = 39;
             // 
+            // txtBuyCont
+            // 
+            this.txtBuyCont.Location = new System.Drawing.Point(139, 25);
+            this.txtBuyCont.Name = "txtBuyCont";
+            this.txtBuyCont.Size = new System.Drawing.Size(207, 20);
+            this.txtBuyCont.TabIndex = 1;
+            this.txtBuyCont.TextChanged += new System.EventHandler(this.txtBuyCont_TextChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -420,6 +749,15 @@
             this.label14.TabIndex = 38;
             this.label14.Text = "Broker :";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Avverage Cost :";
             // 
             // label12
             // 
@@ -431,12 +769,28 @@
             this.label12.Text = "Description :";
             this.label12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // txtBuyAvvCost
+            // 
+            this.txtBuyAvvCost.Location = new System.Drawing.Point(139, 51);
+            this.txtBuyAvvCost.Name = "txtBuyAvvCost";
+            this.txtBuyAvvCost.Size = new System.Drawing.Size(207, 20);
+            this.txtBuyAvvCost.TabIndex = 3;
+            // 
             // txtDesc
             // 
             this.txtDesc.Location = new System.Drawing.Point(139, 237);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(434, 20);
             this.txtDesc.TabIndex = 36;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(47, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "RealCost :";
             // 
             // cmbInvestmentType
             // 
@@ -453,6 +807,14 @@
             this.cmbInvestmentType.Size = new System.Drawing.Size(207, 21);
             this.cmbInvestmentType.TabIndex = 16;
             // 
+            // txtBuyRealCost
+            // 
+            this.txtBuyRealCost.Location = new System.Drawing.Point(139, 77);
+            this.txtBuyRealCost.Name = "txtBuyRealCost";
+            this.txtBuyRealCost.Size = new System.Drawing.Size(207, 20);
+            this.txtBuyRealCost.TabIndex = 5;
+            this.txtBuyRealCost.TextChanged += new System.EventHandler(this.txtBuyRealCost_TextChanged);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -463,6 +825,15 @@
             this.label8.Text = "Investment Type : ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(67, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Date :";
+            // 
             // cmbBuyNamad
             // 
             this.cmbBuyNamad.FormattingEnabled = true;
@@ -470,6 +841,13 @@
             this.cmbBuyNamad.Name = "cmbBuyNamad";
             this.cmbBuyNamad.Size = new System.Drawing.Size(207, 21);
             this.cmbBuyNamad.TabIndex = 14;
+            // 
+            // txtBuyDate
+            // 
+            this.txtBuyDate.Location = new System.Drawing.Point(139, 103);
+            this.txtBuyDate.Name = "txtBuyDate";
+            this.txtBuyDate.Size = new System.Drawing.Size(207, 20);
+            this.txtBuyDate.TabIndex = 7;
             // 
             // label7
             // 
@@ -481,6 +859,16 @@
             this.label7.Text = "Namad :";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(62, 132);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Owner :";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(366, 263);
@@ -490,6 +878,20 @@
             this.button13.Text = "Add To Basket";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // cmdBuyOwner
+            // 
+            this.cmdBuyOwner.FormattingEnabled = true;
+            this.cmdBuyOwner.Items.AddRange(new object[] {
+            "خودم",
+            "ثمانه",
+            "حاج علیرضا",
+            "مامان",
+            "محمدطاها"});
+            this.cmdBuyOwner.Location = new System.Drawing.Point(139, 129);
+            this.cmdBuyOwner.Name = "cmdBuyOwner";
+            this.cmdBuyOwner.Size = new System.Drawing.Size(207, 21);
+            this.cmdBuyOwner.TabIndex = 9;
             // 
             // txtTotalCost
             // 
@@ -508,96 +910,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Total Cost :";
             // 
-            // cmdBuyOwner
-            // 
-            this.cmdBuyOwner.FormattingEnabled = true;
-            this.cmdBuyOwner.Items.AddRange(new object[] {
-            "خودم",
-            "ثمانه",
-            "حاج علیرضا",
-            "مامان",
-            "محمدطاها"});
-            this.cmdBuyOwner.Location = new System.Drawing.Point(139, 129);
-            this.cmdBuyOwner.Name = "cmdBuyOwner";
-            this.cmdBuyOwner.Size = new System.Drawing.Size(207, 21);
-            this.cmdBuyOwner.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 132);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Owner :";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // txtBuyDate
-            // 
-            this.txtBuyDate.Location = new System.Drawing.Point(139, 103);
-            this.txtBuyDate.Name = "txtBuyDate";
-            this.txtBuyDate.Size = new System.Drawing.Size(207, 20);
-            this.txtBuyDate.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(67, 106);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Date :";
-            // 
-            // txtBuyRealCost
-            // 
-            this.txtBuyRealCost.Location = new System.Drawing.Point(139, 77);
-            this.txtBuyRealCost.Name = "txtBuyRealCost";
-            this.txtBuyRealCost.Size = new System.Drawing.Size(207, 20);
-            this.txtBuyRealCost.TabIndex = 5;
-            this.txtBuyRealCost.TextChanged += new System.EventHandler(this.txtBuyRealCost_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 80);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "RealCost :";
-            // 
-            // txtBuyAvvCost
-            // 
-            this.txtBuyAvvCost.Location = new System.Drawing.Point(139, 51);
-            this.txtBuyAvvCost.Name = "txtBuyAvvCost";
-            this.txtBuyAvvCost.Size = new System.Drawing.Size(207, 20);
-            this.txtBuyAvvCost.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Avverage Cost :";
-            // 
-            // txtBuyCont
-            // 
-            this.txtBuyCont.Location = new System.Drawing.Point(139, 25);
-            this.txtBuyCont.Name = "txtBuyCont";
-            this.txtBuyCont.Size = new System.Drawing.Size(207, 20);
-            this.txtBuyCont.TabIndex = 1;
-            this.txtBuyCont.TextChanged += new System.EventHandler(this.txtBuyCont_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(62, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Count :";
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.button20);
@@ -611,6 +923,73 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "TradingStatus";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(301, 13);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(207, 23);
+            this.button20.TabIndex = 41;
+            this.button20.Text = "Referesh List";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // dgTradingStatus
+            // 
+            this.dgTradingStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgTradingStatus.AutoGenerateColumns = false;
+            this.dgTradingStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTradingStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.reportDateDataGridViewTextBoxColumn,
+            this.BrokerName,
+            this.basketIdDataGridViewTextBoxColumn,
+            this.ownerNameDataGridViewTextBoxColumn1,
+            this.namadDescDataGridViewTextBoxColumn,
+            this.namadNameDataGridViewTextBoxColumn,
+            this.tradingDateDataGridViewTextBoxColumn,
+            this.countOfPortionDataGridViewTextBoxColumn,
+            this.remainedPortionDataGridViewTextBoxColumn,
+            this.realCostDataGridViewTextBoxColumn,
+            this.avverageCostDataGridViewTextBoxColumn,
+            this.totalCostDataGridViewTextBoxColumn,
+            this.toDayCostDataGridViewTextBoxColumn,
+            this.benefitAmountDataGridViewTextBoxColumn,
+            this.benefitPercentDataGridViewTextBoxColumn,
+            this.totalMonyeAmountDataGridViewTextBoxColumn,
+            this.firstOfferDataGridViewCheckBoxColumn,
+            this.buyAmountDataGridViewTextBoxColumn,
+            this.shopAmountDataGridViewTextBoxColumn});
+            this.dgTradingStatus.DataSource = this.tradingStatusBindingSource;
+            this.dgTradingStatus.Location = new System.Drawing.Point(6, 55);
+            this.dgTradingStatus.Name = "dgTradingStatus";
+            this.dgTradingStatus.Size = new System.Drawing.Size(1441, 609);
+            this.dgTradingStatus.TabIndex = 12;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(11, 18);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(44, 13);
+            this.label28.TabIndex = 10;
+            this.label28.Text = "Owner :";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cmbTradingStatusOwners
+            // 
+            this.cmbTradingStatusOwners.FormattingEnabled = true;
+            this.cmbTradingStatusOwners.Items.AddRange(new object[] {
+            "خودم",
+            "ثمانه",
+            "حاج علیرضا",
+            "مامان",
+            "محمدطاها"});
+            this.cmbTradingStatusOwners.Location = new System.Drawing.Point(88, 15);
+            this.cmbTradingStatusOwners.Name = "cmbTradingStatusOwners";
+            this.cmbTradingStatusOwners.Size = new System.Drawing.Size(207, 21);
+            this.cmbTradingStatusOwners.TabIndex = 11;
             // 
             // tabPage4
             // 
@@ -1090,373 +1469,6 @@
             this.timer2.Interval = 300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.cmbBroker);
-            this.groupBox2.Controls.Add(this.txtBuyCont);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtBuyAvvCost);
-            this.groupBox2.Controls.Add(this.txtDesc);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.cmbInvestmentType);
-            this.groupBox2.Controls.Add(this.txtBuyRealCost);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.cmbBuyNamad);
-            this.groupBox2.Controls.Add(this.txtBuyDate);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.button13);
-            this.groupBox2.Controls.Add(this.cmdBuyOwner);
-            this.groupBox2.Controls.Add(this.txtTotalCost);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(31, 18);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(595, 304);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = " Buy ";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.txtDescription);
-            this.groupBox3.Controls.Add(this.cmbBasketIds);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.button14);
-            this.groupBox3.Controls.Add(this.txtShopTotal);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.txtShopDate);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.txtShopCost);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.txtShopCount);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Location = new System.Drawing.Point(642, 18);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(589, 305);
-            this.groupBox3.TabIndex = 41;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = " Shop ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(31, 142);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(66, 13);
-            this.label10.TabIndex = 48;
-            this.label10.Text = "Description :";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(137, 136);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(219, 20);
-            this.txtDescription.TabIndex = 47;
-            // 
-            // cmbBasketIds
-            // 
-            this.cmbBasketIds.FormattingEnabled = true;
-            this.cmbBasketIds.Location = new System.Drawing.Point(137, 103);
-            this.cmbBasketIds.Name = "cmbBasketIds";
-            this.cmbBasketIds.Size = new System.Drawing.Size(219, 21);
-            this.cmbBasketIds.TabIndex = 46;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(31, 106);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 13);
-            this.label9.TabIndex = 45;
-            this.label9.Text = "Basket-Ids :";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(354, 264);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(219, 23);
-            this.button14.TabIndex = 44;
-            this.button14.Text = "Save Shop";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // txtShopTotal
-            // 
-            this.txtShopTotal.Location = new System.Drawing.Point(419, 20);
-            this.txtShopTotal.Name = "txtShopTotal";
-            this.txtShopTotal.Size = new System.Drawing.Size(154, 20);
-            this.txtShopTotal.TabIndex = 43;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(362, 23);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 13);
-            this.label11.TabIndex = 42;
-            this.label11.Text = "Total Cost :";
-            // 
-            // txtShopDate
-            // 
-            this.txtShopDate.Location = new System.Drawing.Point(135, 75);
-            this.txtShopDate.Name = "txtShopDate";
-            this.txtShopDate.Size = new System.Drawing.Size(219, 20);
-            this.txtShopDate.TabIndex = 41;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(58, 81);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(36, 13);
-            this.label13.TabIndex = 40;
-            this.label13.Text = "Date :";
-            // 
-            // txtShopCost
-            // 
-            this.txtShopCost.Location = new System.Drawing.Point(135, 49);
-            this.txtShopCost.Name = "txtShopCost";
-            this.txtShopCost.Size = new System.Drawing.Size(219, 20);
-            this.txtShopCost.TabIndex = 39;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(16, 52);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 13);
-            this.label15.TabIndex = 38;
-            this.label15.Text = "Avverage Cost :";
-            // 
-            // txtShopCount
-            // 
-            this.txtShopCount.Location = new System.Drawing.Point(135, 23);
-            this.txtShopCount.Name = "txtShopCount";
-            this.txtShopCount.Size = new System.Drawing.Size(219, 20);
-            this.txtShopCount.TabIndex = 37;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(58, 26);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 13);
-            this.label16.TabIndex = 36;
-            this.label16.Text = "Count :";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label27);
-            this.groupBox4.Controls.Add(this.txtPaymentDesc);
-            this.groupBox4.Controls.Add(this.cmbPaymentBroker);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.label25);
-            this.groupBox4.Controls.Add(this.txtPaymentDate);
-            this.groupBox4.Controls.Add(this.button19);
-            this.groupBox4.Controls.Add(this.txtPaymentAmount);
-            this.groupBox4.Controls.Add(this.label24);
-            this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.cmbPaymentOwner);
-            this.groupBox4.Controls.Add(this.button18);
-            this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(31, 340);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(595, 306);
-            this.groupBox4.TabIndex = 42;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = " Payment Status ";
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(366, 144);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(207, 23);
-            this.button18.TabIndex = 40;
-            this.button18.Text = "Referesh";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AutoGenerateColumns = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ownerNameDataGridViewTextBoxColumn,
-            this.totalPaymentDataGridViewTextBoxColumn,
-            this.remainedAmountDataGridViewTextBoxColumn});
-            this.dataGridView3.DataSource = this.paymentStatusBindingSource;
-            this.dataGridView3.Location = new System.Drawing.Point(23, 19);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(550, 148);
-            this.dataGridView3.TabIndex = 41;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(24, 196);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(44, 13);
-            this.label23.TabIndex = 42;
-            this.label23.Text = "Owner :";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cmbPaymentOwner
-            // 
-            this.cmbPaymentOwner.FormattingEnabled = true;
-            this.cmbPaymentOwner.Items.AddRange(new object[] {
-            "خودم",
-            "ثمانه",
-            "حاج علیرضا",
-            "مامان",
-            "محمدطاها"});
-            this.cmbPaymentOwner.Location = new System.Drawing.Point(72, 193);
-            this.cmbPaymentOwner.Name = "cmbPaymentOwner";
-            this.cmbPaymentOwner.Size = new System.Drawing.Size(207, 21);
-            this.cmbPaymentOwner.TabIndex = 43;
-            // 
-            // txtPaymentAmount
-            // 
-            this.txtPaymentAmount.Location = new System.Drawing.Point(343, 194);
-            this.txtPaymentAmount.Name = "txtPaymentAmount";
-            this.txtPaymentAmount.Size = new System.Drawing.Size(154, 20);
-            this.txtPaymentAmount.TabIndex = 45;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(286, 197);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 13);
-            this.label24.TabIndex = 44;
-            this.label24.Text = "Total Cost :";
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(365, 271);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(207, 23);
-            this.button19.TabIndex = 46;
-            this.button19.Text = "Add To Payment";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(30, 223);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(36, 13);
-            this.label25.TabIndex = 47;
-            this.label25.Text = "Date :";
-            // 
-            // txtPaymentDate
-            // 
-            this.txtPaymentDate.Location = new System.Drawing.Point(72, 220);
-            this.txtPaymentDate.Name = "txtPaymentDate";
-            this.txtPaymentDate.Size = new System.Drawing.Size(207, 20);
-            this.txtPaymentDate.TabIndex = 48;
-            // 
-            // cmbPaymentBroker
-            // 
-            this.cmbPaymentBroker.FormattingEnabled = true;
-            this.cmbPaymentBroker.Items.AddRange(new object[] {
-            "آگاه",
-            "تدبیرگران"});
-            this.cmbPaymentBroker.Location = new System.Drawing.Point(72, 246);
-            this.cmbPaymentBroker.Name = "cmbPaymentBroker";
-            this.cmbPaymentBroker.Size = new System.Drawing.Size(207, 21);
-            this.cmbPaymentBroker.TabIndex = 50;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(18, 249);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(44, 13);
-            this.label26.TabIndex = 49;
-            this.label26.Text = "Broker :";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(0, 276);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(66, 13);
-            this.label27.TabIndex = 52;
-            this.label27.Text = "Description :";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // txtPaymentDesc
-            // 
-            this.txtPaymentDesc.Location = new System.Drawing.Point(72, 273);
-            this.txtPaymentDesc.Name = "txtPaymentDesc";
-            this.txtPaymentDesc.Size = new System.Drawing.Size(207, 20);
-            this.txtPaymentDesc.TabIndex = 51;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(11, 18);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(44, 13);
-            this.label28.TabIndex = 10;
-            this.label28.Text = "Owner :";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cmbTradingStatusOwners
-            // 
-            this.cmbTradingStatusOwners.FormattingEnabled = true;
-            this.cmbTradingStatusOwners.Items.AddRange(new object[] {
-            "خودم",
-            "ثمانه",
-            "حاج علیرضا",
-            "مامان",
-            "محمدطاها"});
-            this.cmbTradingStatusOwners.Location = new System.Drawing.Point(88, 15);
-            this.cmbTradingStatusOwners.Name = "cmbTradingStatusOwners";
-            this.cmbTradingStatusOwners.Size = new System.Drawing.Size(207, 21);
-            this.cmbTradingStatusOwners.TabIndex = 11;
-            // 
-            // dgTradingStatus
-            // 
-            this.dgTradingStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgTradingStatus.AutoGenerateColumns = false;
-            this.dgTradingStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgTradingStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.reportDateDataGridViewTextBoxColumn,
-            this.basketIdDataGridViewTextBoxColumn,
-            this.ownerNameDataGridViewTextBoxColumn1,
-            this.namadDescDataGridViewTextBoxColumn,
-            this.namadNameDataGridViewTextBoxColumn,
-            this.tradingDateDataGridViewTextBoxColumn,
-            this.countOfPortionDataGridViewTextBoxColumn,
-            this.remainedPortionDataGridViewTextBoxColumn,
-            this.realCostDataGridViewTextBoxColumn,
-            this.avverageCostDataGridViewTextBoxColumn,
-            this.totalCostDataGridViewTextBoxColumn,
-            this.toDayCostDataGridViewTextBoxColumn,
-            this.benefitAmountDataGridViewTextBoxColumn,
-            this.benefitPercentDataGridViewTextBoxColumn,
-            this.totalMonyeAmountDataGridViewTextBoxColumn,
-            this.firstOfferDataGridViewCheckBoxColumn,
-            this.buyAmountDataGridViewTextBoxColumn,
-            this.shopAmountDataGridViewTextBoxColumn});
-            this.dgTradingStatus.DataSource = this.tradingStatusBindingSource;
-            this.dgTradingStatus.Location = new System.Drawing.Point(6, 55);
-            this.dgTradingStatus.Name = "dgTradingStatus";
-            this.dgTradingStatus.Size = new System.Drawing.Size(1441, 609);
-            this.dgTradingStatus.TabIndex = 12;
-            // 
             // ownerNameDataGridViewTextBoxColumn
             // 
             this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
@@ -1478,6 +1490,10 @@
             // paymentStatusBindingSource
             // 
             this.paymentStatusBindingSource.DataSource = typeof(ChartGenerator.PaymentStatus);
+            // 
+            // tradingStatusBindingSource
+            // 
+            this.tradingStatusBindingSource.DataSource = typeof(ChartGenerator.TradingStatus);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -1566,15 +1582,17 @@
             // 
             this.namadStatusBindingSource.DataSource = typeof(ChartGenerator.NamadStatus);
             // 
-            // tradingStatusBindingSource
-            // 
-            this.tradingStatusBindingSource.DataSource = typeof(ChartGenerator.TradingStatus);
-            // 
             // reportDateDataGridViewTextBoxColumn
             // 
             this.reportDateDataGridViewTextBoxColumn.DataPropertyName = "ReportDate";
             this.reportDateDataGridViewTextBoxColumn.HeaderText = "ReportDate";
             this.reportDateDataGridViewTextBoxColumn.Name = "reportDateDataGridViewTextBoxColumn";
+            // 
+            // BrokerName
+            // 
+            this.BrokerName.DataPropertyName = "BrokerName";
+            this.BrokerName.HeaderText = "BrokerName";
+            this.BrokerName.Name = "BrokerName";
             // 
             // basketIdDataGridViewTextBoxColumn
             // 
@@ -1678,16 +1696,6 @@
             this.shopAmountDataGridViewTextBoxColumn.HeaderText = "ShopAmount";
             this.shopAmountDataGridViewTextBoxColumn.Name = "shopAmountDataGridViewTextBoxColumn";
             // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(301, 13);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(207, 23);
-            this.button20.TabIndex = 41;
-            this.button20.Text = "Referesh List";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1702,8 +1710,16 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1719,17 +1735,9 @@
             this.pnChartRelControls.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1864,7 +1872,9 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox cmbTradingStatusOwners;
         private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.BindingSource tradingStatusBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn reportDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrokerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn basketIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn namadDescDataGridViewTextBoxColumn;
@@ -1882,7 +1892,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn firstOfferDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn buyAmountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shopAmountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource tradingStatusBindingSource;
     }
 }
 

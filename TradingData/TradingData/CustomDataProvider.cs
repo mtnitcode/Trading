@@ -9,19 +9,7 @@ using System.Threading.Tasks;
 
 namespace TradingData
 {
-    public class TradingStatus
-    {
-        public TradingStatus() { }
 
-        public string ReportDate { get; set; }
-        public string OwnerName { get; set; }
-        public string TradingDate { get; set; }
-        public string NamadName { get; set; }
-        public int CountOfPortion { get; set; }
-        public long RealCost { get; set; }
-        public long RemainedPortion { get; set; }
-
-    }
     public class CustomDataProvider
     {
 
@@ -76,29 +64,34 @@ namespace TradingData
         public static List<TradingStatus> GetTradingsForMembers(string sOwnerName)
         {
 
-            string sqlQuery = @"select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-') ReportDate, b.id BasketId, b.OwnerName , nmd.Name NamadDesc , nmd.namad NamadName ,
-                                b.TradingDate  , b.CountOfPortion 
-                                ,case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end RemainedPortion
-                                , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,b.AvverageCost),1), '.00','') AvverageCost, REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,b.RealCost),1), '.00','') RealCost
-                                ,case when bshStatus.ShopCount is not null then  case when b.CountOfPortion-bshStatus.ShopCount > 0 then  REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,b.RealCost*(b.CountOfPortion-bshStatus.ShopCount)),1), '.00','') 
-                                 when b.CountOfPortion-bshStatus.ShopCount = 0 then  REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,b.RealCost*(b.CountOfPortion)),1), '.00','')  end  
-	                                  when bshStatus.ShopCount is null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,b.RealCost*(b.CountOfPortion)),1), '.00','') end TotalCost
-                                , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,nh.PayaniGheymat),1), '.00','') ToDayCost ,
-                                case when b.CountOfPortion-bshStatus.ShopCount = 0 then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,(b.RealCost*b.CountOfPortion - nh.PayaniGheymat * (b.CountOfPortion) )),1), '.00','') 
-	                                 when b.CountOfPortion-bshStatus.ShopCount > 0 then   REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,(nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount) - b.RealCost*(b.CountOfPortion-bshStatus.ShopCount) )),1), '.00','')
-	                                 when bshStatus.ShopCount is null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,(nh.PayaniGheymat - b.RealCost) * (b.CountOfPortion)),1), '.00','') end BenefitAmount ,
-                                case when bshStatus.ShopCount is not null then (ROUND( (convert(float, nh.PayaniGheymat) / b.RealCost)-1 , 5 ))*100 
-	                                 when bshStatus.ShopCount is null then (ROUND( (convert(float, nh.PayaniGheymat) / b.RealCost)-1 , 5 ))*100 end BenefitPercent , 
-                                case when bshStatus.ShopCount is not null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount)),1), '.00','') 
-	                                 when bshStatus.ShopCount is null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,nh.PayaniGheymat * (b.CountOfPortion)),1), '.00','') end TotalMonyeAmount 
-                                , b.FirstOffer ,
-                                REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,nh.ShopHajm),1), '.00','') ShopAmount , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,nh.BuyHajm),1), '.00','') BuyAmount
+            string sqlQuery = @"select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET())),'-','/') , '/' ,'-') ReportDate, b.id BasketId, b.OwnerName , nmd.Name NamadDesc , nmd.namad NamadName ,
+                                b.TradingDate  
+                                , b.CountOfPortion 
+                                , b.FirstOffer
+                                , nh.ShopHajm ShopAmount 
+                                , nh.BuyHajm BuyAmount
+                                , b.AvverageCost
+                                , b.RealCost
+                                , convert(int ,  nh.PayaniGheymat) ToDayCost 
+                                ,case when bshStatus.ShopCount is not null then convert(int, b.CountOfPortion-bshStatus.ShopCount) when bshStatus.ShopCount is null then convert ( int , b.CountOfPortion) end RemainedPortion 
+                                ,case when bshStatus.ShopCount is not null then  case when b.CountOfPortion-bshStatus.ShopCount > 0 then convert(int , b.RealCost*(b.CountOfPortion-bshStatus.ShopCount))
+                                 when b.CountOfPortion-bshStatus.ShopCount = 0 then convert(int ,  b.RealCost*(b.CountOfPortion)) end  
+	                             when bshStatus.ShopCount is null then convert(int , b.RealCost*(b.CountOfPortion)) end TotalCost
+                                ,case when b.CountOfPortion-bshStatus.ShopCount = 0 then b.RealCost*b.CountOfPortion - nh.PayaniGheymat * (b.CountOfPortion) 
+	                                 when b.CountOfPortion-bshStatus.ShopCount > 0 then  nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount) - b.RealCost*(b.CountOfPortion-bshStatus.ShopCount)
+	                                 when bshStatus.ShopCount is null then (nh.PayaniGheymat - b.RealCost) * (b.CountOfPortion) end BenefitAmount 
+                                ,case when bshStatus.ShopCount is not null then  nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount) 
+	                                 when bshStatus.ShopCount is null then nh.PayaniGheymat * (b.CountOfPortion) end TotalMonyeAmount 
+                                ,case when bshStatus.ShopCount is not null then convert(float,(ROUND( (convert(float, nh.PayaniGheymat) / b.RealCost)-1 , 5 ))*100 )
+	                                 when bshStatus.ShopCount is null then convert(float , (ROUND( (convert(float, nh.PayaniGheymat) / b.RealCost)-1 , 5 ))*100 ) end BenefitPercent 
+                                ,b.BrokerName
                                 from Namad nmd
                                 inner join Basket b on b.Namad = nmd.Namad
                                 inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = nmd.ID
                                 left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id
                                 inner join NamadHistory nh on nh.ID = nhStatus.maxID";
 
+            //                                 ,
             var queryResult = null as List<TradingStatus>;
             using (var dbn = new TradingContext())
             {

@@ -20,5 +20,6 @@ namespace TradingData
         public long id { get; set; }
         public string Description { get; set; }
         public string BrokerName { get; set; }
+        public string TransactionType { get; set; }
     }
 }

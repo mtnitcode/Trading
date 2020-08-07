@@ -29,8 +29,8 @@ namespace TradingData
         public virtual DbSet<Namad> Namads { get; set; }
         public virtual DbSet<Industry> Industries { get; set; }
         public virtual DbSet<NamadNotify> NamadNotifies { get; set; }
-        public virtual DbSet<BasketShopping> BasketShoppings { get; set; }
         public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<BasketShopping> BasketShoppings { get; set; }
     }
 }

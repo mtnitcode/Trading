@@ -30,7 +30,7 @@
           <Property Name="BasketID" Type="bigint" Nullable="false" />
           <Property Name="ShoppingDate" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="ShopCount" Type="int" Nullable="false" />
-          <Property Name="ShoppingCost" Type="bigint" Nullable="false" />
+          <Property Name="ShoppingCost" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Industry">
@@ -102,6 +102,7 @@
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="TradingModelStoreContainer">
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
@@ -148,9 +149,9 @@
           <EntitySet Name="Namads" EntityType="TradingModel.Namad" />
           <EntitySet Name="Industries" EntityType="TradingModel.Industry" />
           <EntitySet Name="NamadNotifies" EntityType="TradingModel.NamadNotify" />
-          <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
           <EntitySet Name="Baskets" EntityType="TradingModel.Basket" />
           <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
+          <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
         </EntityContainer>
         <EntityType Name="Namad">
           <Key>
@@ -184,17 +185,6 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NamadId" Type="Int64" Nullable="false" />
         </EntityType>
-        <EntityType Name="BasketShopping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BasketID" Type="Int64" Nullable="false" />
-          <Property Name="ShoppingDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ShopCount" Type="Int32" Nullable="false" />
-          <Property Name="ShoppingCost" Type="Int64" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Basket">
           <Key>
             <PropertyRef Name="id" />
@@ -222,6 +212,18 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BasketShopping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasketID" Type="Int64" Nullable="false" />
+          <Property Name="ShoppingDate" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ShopCount" Type="Int32" Nullable="false" />
+          <Property Name="ShoppingCost" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -292,18 +294,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BasketShoppings">
-            <EntityTypeMapping TypeName="TradingModel.BasketShopping">
-              <MappingFragment StoreEntitySet="BasketShopping">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ShoppingCost" ColumnName="ShoppingCost" />
-                <ScalarProperty Name="ShopCount" ColumnName="ShopCount" />
-                <ScalarProperty Name="ShoppingDate" ColumnName="ShoppingDate" />
-                <ScalarProperty Name="BasketID" ColumnName="BasketID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Baskets">
             <EntityTypeMapping TypeName="TradingModel.Basket">
               <MappingFragment StoreEntitySet="Basket">
@@ -325,12 +315,25 @@
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="TradingModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
                 <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasketShoppings">
+            <EntityTypeMapping TypeName="TradingModel.BasketShopping">
+              <MappingFragment StoreEntitySet="BasketShopping">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShoppingCost" ColumnName="ShoppingCost" />
+                <ScalarProperty Name="ShopCount" ColumnName="ShopCount" />
+                <ScalarProperty Name="ShoppingDate" ColumnName="ShoppingDate" />
+                <ScalarProperty Name="BasketID" ColumnName="BasketID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

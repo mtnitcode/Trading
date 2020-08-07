@@ -22,7 +22,7 @@ namespace ChartGenerator
         public int AvverageCost { get; set; }
         public int RealCost { get; set; }
         public int CountOfPortion { get; set; }
-        public bool FirstOffer { get; set; }
+        public bool? FirstOffer { get; set; }
         public int RemainedPortion { get; set; }
         public int TotalCost { get; set; }
         public int ToDayCost { get; set; }
@@ -82,5 +82,7 @@ namespace ChartGenerator
         public string OwnerName { get; set; }
         public string TotalPayment { get; set; }
         public string RemainedAmount { get; set; }
+        public string PaymentDate { get; set; }
+        public string PaymentType { get; set; }
     }
 }

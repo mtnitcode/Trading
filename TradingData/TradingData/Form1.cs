@@ -900,6 +900,12 @@ namespace TradingData
                             }
 
                             n.benefitAvverateInMonth += ch.BenefitChange;
+                            if (ch.LastCost > 0 && n.LastCost == 0)
+                            {
+                                n.LastCost = ch.LastCost;
+                                n.BuyQueue = ch.BuyQueue;
+                                n.ShopQueue = ch.ShopQueue;
+                            }
                         }
 
                     if (myTradingStatus != null)
@@ -920,7 +926,10 @@ namespace TradingData
                             n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
                             n.CountOfPortion = sumCount;
                             n.LastTradingDate = bs[bs.Count - 1].TradingDate;
+                            n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
                         }
+
+
 
                     }
                     namadStatuses.Add (s ,  n);
@@ -940,14 +949,17 @@ namespace TradingData
                             ChangeStatus ch2 = (ChangeStatus)d2[d2.Count - 1];
 
                             n.benefitAvverateInDay = ch2.BenefitChange;
-                            n.LastCost = ch2.LastCost;
-                            if(n.LastCost !=0)
-                                n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
-                            else
-                                n.MyAvveragebenefitPercent = 0;
 
-                            n.BuyQueue =  (float) Math.Round( ((double)ch2.BuyQueue / 1000000) , 2);
-                            n.ShopQueue = (float) Math.Round( ((double)ch2.ShopQueue / 1000000) , 2);
+                            if (ch2.LastCost != 0)
+                            {
+                                n.LastCost = ch2.LastCost;
+                                n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
+                            }
+                            if(ch2.BuyQueue > 0)
+                                n.BuyQueue =  (float) Math.Round( ((double)ch2.BuyQueue / 1000000) , 2);
+
+                            if(ch2.ShopQueue > 0)
+                                n.ShopQueue = (float) Math.Round( ((double)ch2.ShopQueue / 1000000) , 2);
                             
                             if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
                             if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
@@ -988,9 +1000,15 @@ namespace TradingData
             }
             catch (Exception ex)
             {
+                this.BeginInvoke(
+                            new Action(() =>
+                            {
+                                this.timer1.Enabled = true;
+                            }
+                            ));
 
                 LogError(ex);
-            ShowHistoryFinished = true;
+                ShowHistoryFinished = true;
 
             }
         }
@@ -1366,7 +1384,7 @@ namespace TradingData
 
                         outVal = (OrderedDictionary)_NamadDiagramDateHistory[n.Namad1];
                         if(outVal[sdate] == null)
-                            outVal.Insert(outVal.Count , sdate , new ChangeStatus { BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
+                            outVal.Insert(outVal.Count , sdate , new ChangeStatus { LastCost = (int)h.PayaniGheymat ,  BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
 
                         while (outVal.Count > 30)
                         {
@@ -1376,7 +1394,7 @@ namespace TradingData
                     else
                     {
                         OrderedDictionary Val = new OrderedDictionary();
-                        Val.Insert(0, sdate, new ChangeStatus { BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
+                        Val.Insert(0, sdate, new ChangeStatus { LastCost = (int)h.PayaniGheymat, BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
                         _NamadDiagramDateHistory.Add(n.Namad1, Val);
                     }
                 }
@@ -1582,7 +1600,9 @@ namespace TradingData
 
         private void button17_Click(object sender, EventArgs e)
         {
-            this.timer1.Enabled = true;
+            if (this.timer1.Enabled == false) return;
+
+            this.timer1.Enabled = false;
 
             InitialMonthNamadHistory();
 
@@ -1630,6 +1650,14 @@ namespace TradingData
 
                 this.paymentStatusBindingSource.DataSource = ststuses;
             }
+
+            List<PaymentStatus> ststuses1 = CustomDataProvider.GetPaymentStatusDetail();
+            //namadStatuses2 = OrderGrid(_namadStatuses);
+            if (ststuses1 != null)
+            {
+
+                this.paymentStatusBindingSource1.DataSource = ststuses1;
+            }
         }
 
         private void button19_Click(object sender, EventArgs e)
@@ -1642,7 +1670,8 @@ namespace TradingData
                      Amount = long.Parse(this.txtPaymentAmount.Text),
                       PaymentDate = this.txtPaymentDate.Text,
                        BrokerName = this.cmbBroker.Text,
-                        Description = this.txtPaymentDesc.Text
+                        Description = this.txtPaymentDesc.Text,
+                         TransactionType = this.cmbTransactionType.Text
                 };
 
                 dbn1.Payments.Add(bsk);
@@ -1663,6 +1692,31 @@ namespace TradingData
 
                 this.tradingStatusBindingSource.DataSource = ststuses;
             }
+            List<TradingStatus> ststuses1 = CustomDataProvider.GetBasketTotalStatus();
+            //namadStatuses2 = OrderGrid(_namadStatuses);
+            if (ststuses1 != null)
+            {
+
+                this.tradingStatusBindingSource1.DataSource = ststuses1;
+            }
+        }
+
+        private void dgTradingStatus_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            List<TradingStatus> namadStatuses2 = null;
+            if (this.dgTradingStatus.Columns[e.ColumnIndex].HeaderText == "OwnerName")
+            {
+                namadStatuses2 = ((List<TradingStatus>)this.tradingStatusBindingSource.DataSource).OrderBy(n => n.OwnerName).ThenBy(n => n.TradingDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+            if (this.dgTradingStatus.Columns[e.ColumnIndex].HeaderText == "NamadName")
+            {
+                namadStatuses2 = ((List<TradingStatus>)this.tradingStatusBindingSource.DataSource).OrderBy(n => n.NamadName).ThenBy(n => n.TradingDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+
+
         }
     }
 }

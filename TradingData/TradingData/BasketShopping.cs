@@ -18,7 +18,7 @@ namespace TradingData
         public long BasketID { get; set; }
         public string ShoppingDate { get; set; }
         public int ShopCount { get; set; }
-        public long ShoppingCost { get; set; }
+        public int ShoppingCost { get; set; }
         public string Description { get; set; }
     }
 }

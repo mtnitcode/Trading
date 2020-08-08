@@ -688,7 +688,11 @@ namespace TradingData
 
             foreach (Basket n in bsk)
             {
-                this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
+                if (n.CountOfPortion > 0)
+                {
+                    this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
+                    AddToWahtchList(n.Namad);
+                }
             }
 
 
@@ -928,12 +932,20 @@ namespace TradingData
                             n.LastTradingDate = bs[bs.Count - 1].TradingDate;
                             n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
                         }
-
-
-
                     }
-                    namadStatuses.Add (s ,  n);
 
+                    this.BeginInvoke(
+                            new Action(() =>
+                            {
+                                if (n.benefitAvverageInLast2Week + n.benefitAvverageInLastWeek < int.Parse(this.cmbBalanceOnDullness.Text.Replace(" ", "").Replace("%", "")))
+                                    n.StatusDesc += "Dullness ";
+
+                                if (n.MyAvveragebenefitPercent < -1* int.Parse(this.cmbBalanceInLoss.Text.Replace(" ", "").Replace("%", "")))
+                                    n.StatusDesc += "Loss ";
+                            }
+                            ));
+
+                    namadStatuses.Add (s ,  n);
                 }
 
                 if (GetLastNamadStatus())
@@ -1535,6 +1547,10 @@ namespace TradingData
                     if (float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value.ToString()))
                         e.CellStyle.BackColor = Color.PaleVioletRed;
 
+                if (e.ColumnIndex == 15 && e.Value != null  )
+                    if (((string)e.Value).IndexOf("Dullness")>=0 || ((string)e.Value).IndexOf("Loss") >= 0)
+                        e.CellStyle.BackColor = Color.PaleVioletRed;
+
 
             }
             catch (Exception ex)
@@ -1584,13 +1600,19 @@ namespace TradingData
 
         private void button15_Click(object sender, EventArgs e)
         {
+            AddToWahtchList(this.cmbWatchList.Text);
+
+        }
+
+        void AddToWahtchList(string namad)
+        {
             List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
 
-            watchList.Add(this.cmbWatchList.Text);
+            if(!watchList.Contains(namad))
+                watchList.Add(namad);
 
             File.WriteAllLines(Application.StartupPath + "\\watchList.txt", watchList.ToArray());
         }
-
 
         private void button16_Click(object sender, EventArgs e)
         {

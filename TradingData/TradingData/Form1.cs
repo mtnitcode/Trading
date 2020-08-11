@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,8 +25,21 @@ namespace TradingData
         {
             InitializeComponent();
         }
-
+        
+        OpenFileDialog _fd = new OpenFileDialog();
+        DataTable _dtErrors = new DataTable();
+        //Dictionary<string, Image> imagesList = new Dictionary<string, Image>();
+        List<NamadStatus> _namadStatuses = new List<NamadStatus>();
+        List<NamadStatus> _allNamadStatuses = new List<NamadStatus>();
+        static int _orderByAll = 0;
+        static int _orderBy = 0;
         FolderBrowserDialog _fb = new FolderBrowserDialog();
+        OrderedDictionary _NamadDiagramHistory = new OrderedDictionary(); 
+        OrderedDictionary _NamadDiagramDateHistory = new OrderedDictionary();
+        OrderedDictionary _LastNamadStatus = new OrderedDictionary();
+        List<float> _TotalBenefit = new List<float>();
+        List<float> _TotalLoss = new List<float>();
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -420,7 +434,6 @@ namespace TradingData
 
             }
         }
-        OpenFileDialog _fd = new OpenFileDialog();
         private void button10_Click(object sender, EventArgs e)
         {
             if(_fd.ShowDialog() == DialogResult.OK)
@@ -659,7 +672,8 @@ namespace TradingData
             InitialMonthNamadHistory();
 
 
-            this.dataGridView1.RowTemplate.Height = 60;
+            this.dataGridView1.RowTemplate.Height = 57;
+            this.dgAllStatus.RowTemplate.Height = 57;
 
             using (var db = new TradingContext())
             {
@@ -700,7 +714,6 @@ namespace TradingData
         }
 
 
-        DataTable _dtErrors = new DataTable();
         private void InitialErrorLogs()
         {
 
@@ -795,9 +808,6 @@ namespace TradingData
 
         }
 
-        //Dictionary<string, Image> imagesList = new Dictionary<string, Image>();
-        List<NamadStatus> _namadStatuses = new List<NamadStatus>();
-        static int _orderBy = 0;
 
         void ShowChart()
         {
@@ -879,9 +889,10 @@ namespace TradingData
                 OrderedDictionary  namadStatuses = new  OrderedDictionary();
                 List<Basket> myTradingStatus = CustomDataProvider.GetMyPortionStatus();
 
-                List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
-                foreach (string s in watchList)// var dictIndex = 0 ; dictIndex < _NamadDiagramHistory.Count - 1; dictIndex++)
+                foreach (string s in _NamadDiagramDateHistory.Keys)
                 {
+                    if (Regex.IsMatch(s , @"[0-9]$")) continue;
+
                     NamadStatus n = new NamadStatus { Name = s, TodayImage = null, MonthImage = null };
 
                     OrderedDictionary d = (OrderedDictionary)_NamadDiagramDateHistory[s];
@@ -950,7 +961,7 @@ namespace TradingData
 
                 if (GetLastNamadStatus())
                 {
-                    foreach (string s in _NamadDiagramHistory.Keys)// var dictIndex = 0 ; dictIndex < _NamadDiagramHistory.Count - 1; dictIndex++)
+                    foreach (string s in _NamadDiagramHistory.Keys)
                     {
 
                         var n = (NamadStatus)namadStatuses[s];
@@ -976,30 +987,45 @@ namespace TradingData
                             if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
                             if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
                         }
-
-
                     }
-
-
                 }
 
-                List<NamadStatus> nslist = new List<NamadStatus>();
-                foreach (NamadStatus ns in namadStatuses.Values)
-                    nslist.Add(ns);
+                List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
 
+                List<NamadStatus> nslist = new List<NamadStatus>();
+                List<NamadStatus> nslistAll = new List<NamadStatus>();
+                foreach (NamadStatus ns in namadStatuses.Values)
+                {
+                    nslistAll.Add(ns);
+                    if (watchList.Contains(ns.Name))
+                    {
+                        nslist.Add(ns);
+                    }
+                    
+                }
+                List<NamadStatus> namadStatusesAll = null;
                 List<NamadStatus> namadStatuses2 = null;
-                namadStatuses2 = OrderGrid(nslist);
+                namadStatuses2 = OrderGrid(nslist , Form1._orderBy);
+                namadStatusesAll = OrderGrid(nslistAll , Form1._orderByAll);
                 if (namadStatuses2 == null) namadStatuses2 = nslist;
                 lock (_namadStatuses)   // lock on the list
                 {
                     _namadStatuses.Clear();
                     _namadStatuses = namadStatuses2;
+
+                }
+                lock (_allNamadStatuses)   // lock on the list
+                {
+                    _allNamadStatuses.Clear();
+                    _allNamadStatuses = namadStatusesAll;
+
                 }
 
                 this.BeginInvoke(
                             new Action(() =>
                             {
                                 this.namadStatusBindingSource.DataSource = _namadStatuses;
+                                this.AllNamadsbindingSource.DataSource = _allNamadStatuses;
                                 this.timer1.Enabled = true;
                             }
                             ));
@@ -1025,26 +1051,26 @@ namespace TradingData
             }
         }
 
-        private static List<NamadStatus> OrderGrid(List<NamadStatus> namadStatuses )
+        private static List<NamadStatus> OrderGrid(List<NamadStatus> namadStatuses , int orderBy)
         {
             List<NamadStatus> namadStatuses2 = null;
-            if (Form1._orderBy == 5)
+            if (orderBy == 5)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverageInLastWeek).ToList();
             }
-            if (Form1._orderBy == 6)
+            if (orderBy == 6)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
             }
-            if (Form1._orderBy == 7)
+            if (orderBy == 7)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
             }
-            if (Form1._orderBy == 10)
+            if (orderBy == 10)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ToList();
             }
-            if (Form1._orderBy == 0)
+            if (orderBy == 0)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.Name).ToList();
             }
@@ -1052,12 +1078,6 @@ namespace TradingData
             return namadStatuses2;
         }
 
-        OrderedDictionary _NamadDiagramHistory = new OrderedDictionary() ;//  <string, SortedDictionary<int, ChangeStatus>> _NamadDiagramHistory = new SortedDictionary<string, SortedDictionary<int, ChangeStatus>>();
-        OrderedDictionary _NamadDiagramDateHistory = new OrderedDictionary();// SortedDictionary<string, SortedDictionary<int, ChangeStatus>>();
-        OrderedDictionary LastNamadStatus = new OrderedDictionary();// SortedDictionary<string, SortedDictionary<long, NamadHistory>>();
-
-        List<float> _TotalBenefit = new List<float>();
-        List<float>  _TotalLoss = new List<float>();
 
         private bool GetLastNamadStatus()
         {
@@ -1086,126 +1106,10 @@ namespace TradingData
                         string stime = DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00");
 
                         var InsertCollection = ProcessLastNamadStatus( sLines, stime , out sTotal);
-                        LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
+                        _LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
 
-                        /*
-                        //using (var db = new TradingContext())
-                        {
-                            SortedDictionary<long, NamadHistory> InsertCollection = new SortedDictionary<long, NamadHistory>();
-
-                            SortedDictionary<long, string> NamadNames = new SortedDictionary<long, string>();
-
-                            int lineNumber = 1;
-                            foreach (string l in lines)
-                            {
-                                if (lineNumber == 1)
-                                {
-                                    lineNumber++;
-                                    continue;
-                                }
-                                lineNumber++;
-                                string[] namadInfo = l.Split(',');
-                                long tseID = long.Parse(namadInfo[0]);
-
-                                if (namadInfo.Length >= 23)
-                                {
-                                    string s = namadInfo[2];
-                                    s = s.Replace('ی', 'ي');
-                                    s = s.Replace('ک', 'ك');
-
-                                    NamadNames.Add(tseID, s);
-
-                                    NamadHistory nh = new NamadHistory
-                                    {
-                                        AkharinGheymat = long.Parse(namadInfo[7]),
-                                        AkharinDarsad = Math.Round((Math.Round((float.Parse(namadInfo[7]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5),
-                                        Arzesh = long.Parse(namadInfo[10]),
-                                        BishtarinGheymat = long.Parse(namadInfo[12]),
-                                        Dirooz = long.Parse(namadInfo[13]),
-                                        Hajm = long.Parse(namadInfo[9]),
-                                        AvvalinGheymat = long.Parse(namadInfo[5]),
-                                        KamtarinGheymat = long.Parse(namadInfo[11]),
-                                        NamadId = 0,
-                                        PayaniGheymat = long.Parse(namadInfo[6]),
-                                        Tedad = long.Parse(namadInfo[8]),
-                                        TradingDate = this.txtDate.Text.Replace('/', '-'),
-                                        PayaniTaghyeer = long.Parse(namadInfo[6]) - long.Parse(namadInfo[13]),
-                                        PayaniDarsad = Math.Round((Math.Round((float.Parse(namadInfo[6]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5)
-                                    };
-
-                                    InsertCollection.Add(tseID, nh);
-                                    sTotal += l.Replace(",", ";") + "\r\n";
-
-                                }
-                                else
-                                {
-                                    long tTseID = long.Parse(namadInfo[0]);
-                                    NamadHistory outNamadh = new NamadHistory();
-                                    if (InsertCollection.TryGetValue(tTseID, out outNamadh))
-                                    {
-                                        if (outNamadh.BuyTedad == null)
-                                        {
-                                            int ival = 0;
-                                            outNamadh.BuyTedad = int.Parse(namadInfo[3]);
-                                            outNamadh.ShopTedad = int.Parse(namadInfo[2]);
-                                            outNamadh.BuyCost = long.Parse(namadInfo[4]);
-                                            outNamadh.ShopCost = long.Parse(namadInfo[5]);
-                                            outNamadh.BuyHajm = long.Parse(namadInfo[6]);
-                                            if (int.TryParse(namadInfo[7], out ival)) outNamadh.ShopHajm = long.Parse(namadInfo[7]);
-                                            else outNamadh.ShopHajm = 0;
-                                        }
-                                    }
-                                    sTotal += l.Replace(",", ";") + "\r\n";
-                                }
-
-                            }
-                            List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
-
-                            foreach (KeyValuePair<long, NamadHistory> h in InsertCollection)
-                            {
-
-                                string namadName = "";
-
-                                if (NamadNames.TryGetValue(h.Key, out namadName))
-                                {
-
-                                    if (!watchList.Contains(namadName)) continue;
-
-                                    OrderedDictionary outVal = null;
-
-                                    if (namadName != "")
-                                    {
-                                        if (_NamadDiagramHistory[namadName] != null)
-                                        {
-
-                                            outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
-
-                                            outVal.Insert(outVal.Count, stime, new ChangeStatus { BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
-                                            while (outVal.Count > 30)
-                                            {
-                                                outVal.RemoveAt(0);
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            OrderedDictionary Val = new OrderedDictionary();
-                                            Val.Insert(0 , stime , new ChangeStatus { BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
-
-                                            _NamadDiagramHistory.Add(namadName, Val);
-                                        }
-                                    }
-                                }
-                            }
-
-                            LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
-
-                        }
-*/
                         File.WriteAllText(string.Format("{0}\\History\\NamadHistory-{1}.history", Application.StartupPath, DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00") + "-" + DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00")), sTotal);
 
-                        //                    Byte[] info = new UTF8Encoding(true).GetBytes(sTotal);
-                        //                    output.Write(info, (int)output.Length-1, info.Length);
                     }
 
                 }
@@ -1237,7 +1141,7 @@ namespace TradingData
                     string sTotal = "";
                     var InsertCollection = ProcessLastNamadStatus(sLines, stime , out sTotal);
                     string fname = Path.GetFileName(filename);
-                    LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
+                    _LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
                     fileCount++;
 
                 }
@@ -1320,7 +1224,6 @@ namespace TradingData
 
             }
 
-            List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
 
             foreach (KeyValuePair<long, NamadHistory> h in InsertCollection)
             {
@@ -1329,8 +1232,6 @@ namespace TradingData
 
                 if (NamadNames.TryGetValue(h.Key, out namadName))
                 {
-                    if (!watchList.Contains(namadName)) continue;
-
                     OrderedDictionary outVal = null;
 
                     if (namadName != "")
@@ -1375,8 +1276,6 @@ namespace TradingData
         private void GetNamadHistoryByDate(string sdate)
         {
 
-            List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
-
             using (var dbn = new TradingContext())
             {
                 List<Namad> namads = dbn.Namads.ToList();
@@ -1387,7 +1286,6 @@ namespace TradingData
                 {
 
                     var n = namads.Find(f => f.ID == h.NamadId);
-                    if (!watchList.Contains(n.Namad1)) continue;
 
                     OrderedDictionary outVal = null;
 
@@ -1416,140 +1314,11 @@ namespace TradingData
         {
             try
             {
-                if (e.RowIndex == -1) return;
-                if (e.ColumnIndex == 1)
-                {
 
-                    if (e.RowIndex >= 0 && _namadStatuses.Count > 0 && _NamadDiagramHistory[_namadStatuses[e.RowIndex].Name] != null)
-                    {
-                        OrderedDictionary val = (OrderedDictionary)_NamadDiagramHistory[_namadStatuses[e.RowIndex].Name];
-                        if (((DataGridViewImageCell)this.dataGridView1.Rows[e.RowIndex].Cells[1]).Value == null)
-                        {
+                DataGridView datagrid = this.dataGridView1;
+                List<NamadStatus> nsList = _namadStatuses;
+                PaintGridCell(e, nsList, datagrid);
 
-                            using (DiagramGenerator dg = new DiagramGenerator())
-                            {
-                                //for (int i = 0; i < 10; i++)
-                                {
-
-                                    Image img = null;
-                                    try
-                                    {
-                                        img = dg.GenerateHistoryImage(val);
-                                        if (img != null)
-                                            ((DataGridViewImageCell)this.dataGridView1.Rows[e.RowIndex].Cells[1]).Value = img;
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-
-                                        LogError(ex);
-                                    }
-                                }
-                            }
-                        }
-
-                        //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
-                    }
-
-                }
-
-                if (e.ColumnIndex == 2)
-                {
-                    if (e.RowIndex >= 0 && _namadStatuses.Count > 0 && _NamadDiagramDateHistory[_namadStatuses[e.RowIndex].Name] != null)
-                    {
-                        OrderedDictionary val = (OrderedDictionary)_NamadDiagramDateHistory[_namadStatuses[e.RowIndex].Name];
-
-                        if (((DataGridViewImageCell)this.dataGridView1.Rows[e.RowIndex].Cells[2]).Value == null)
-                        {
-
-                            using (DiagramGenerator dg = new DiagramGenerator())
-                            {
-                                //for (int i = 0; i < 10; i++)
-                                {
-
-                                    Image img = null;
-                                    try
-                                    {
-                                        img = dg.GenerateHistoryImage(val);
-                                        if (img != null)
-                                            ((DataGridViewImageCell)this.dataGridView1.Rows[e.RowIndex].Cells[2]).Value = img;
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-
-                                        LogError(ex);
-                                    }
-                                }
-                            }
-                        }
-
-                        //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
-                    }
-
-                }
-
-                if (e.ColumnIndex == 3 && e.Value != null)
-                {
-                    if ((float)e.Value > 10)
-                        e.CellStyle.BackColor = Color.Green;
-                    if ((float)e.Value > 0 && (float)e.Value <= 10)
-                        e.CellStyle.BackColor = Color.GreenYellow;
-                    if ((float)e.Value < -10)
-                        e.CellStyle.BackColor = Color.Red;
-                    if ((float)e.Value < 0 && (float)e.Value >= -10)
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                }
-                if (e.ColumnIndex == 5 && e.Value != null)
-                {
-                    if ((float)e.Value > 10)
-                        e.CellStyle.BackColor = Color.Green;
-                    if ((float)e.Value > 0 && (float)e.Value <= 10)
-                        e.CellStyle.BackColor = Color.GreenYellow;
-                    if ((float)e.Value < -10)
-                        e.CellStyle.BackColor = Color.Red;
-                    if ((float)e.Value < 0 && (float)e.Value >= -10)
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                }
-                if (e.ColumnIndex == 4 && e.Value != null)
-                {
-                    if ((float)e.Value > 10)
-                        e.CellStyle.BackColor = Color.Green;
-                    if ((float)e.Value > 0 && (float)e.Value <= 10)
-                        e.CellStyle.BackColor = Color.GreenYellow;
-                    if ((float)e.Value < -10)
-                        e.CellStyle.BackColor = Color.Red;
-                    if ((float)e.Value < 0 && (float)e.Value >= -10)
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                }
-                if (e.ColumnIndex == 6 && e.Value != null)
-                {
-                    if ((float)e.Value > 2.5)
-                        e.CellStyle.BackColor = Color.Green;
-                    if ((float)e.Value > 0 && (float)e.Value <= 2.5)
-                        e.CellStyle.BackColor = Color.GreenYellow;
-                    if ((float)e.Value < -2.5)
-                        e.CellStyle.BackColor = Color.Red;
-                    if ((float)e.Value < 0 && (float)e.Value > -2.5)
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                }
-                if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[8]).Value != null)
-                    if (int.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[8]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[9]).Value.ToString()))
-                        e.CellStyle.BackColor = Color.OrangeRed;
-                    else
-                        e.CellStyle.BackColor = Color.GreenYellow;
-
-                if (e.ColumnIndex == 12 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value != null)
-                    if (float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value.ToString()))
-                        e.CellStyle.BackColor = Color.LightSeaGreen;
-
-                if (e.ColumnIndex == 13 && e.Value != null && ((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value != null)
-                    if (float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[12]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)this.dataGridView1.Rows[e.RowIndex].Cells[13]).Value.ToString()))
-                        e.CellStyle.BackColor = Color.PaleVioletRed;
-
-                if (e.ColumnIndex == 15 && e.Value != null  )
-                    if (((string)e.Value).IndexOf("Dullness")>=0 || ((string)e.Value).IndexOf("Loss") >= 0)
-                        e.CellStyle.BackColor = Color.PaleVioletRed;
 
 
             }
@@ -1560,24 +1329,152 @@ namespace TradingData
             }
         }
 
-        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+
+        private void PaintGridCell(DataGridViewCellPaintingEventArgs e , List<NamadStatus> nsList , DataGridView datagrid)
         {
+            if (e.RowIndex == -1) return;
+            if (e.ColumnIndex == 1)
+            {
+
+                if (e.RowIndex >= 0 && e.RowIndex < nsList.Count && nsList[e.RowIndex] != null && nsList.Count > 0 && _NamadDiagramHistory[nsList[e.RowIndex].Name] != null)
+                {
+                    OrderedDictionary val = (OrderedDictionary)_NamadDiagramHistory[nsList[e.RowIndex].Name];
+                    if (((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[1]).Value == null)
+                    {
+
+                        using (DiagramGenerator dg = new DiagramGenerator())
+                        {
+                            //for (int i = 0; i < 10; i++)
+                            {
+
+                                Image img = null;
+                                try
+                                {
+                                    img = dg.GenerateHistoryImage(val);
+                                    if (img != null)
+                                        ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[1]).Value = img;
+
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    LogError(ex);
+                                }
+                            }
+                        }
+                    }
+
+                    //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
+                }
+
+            }
+
+            if (e.ColumnIndex == 2)
+            {
+                if (e.RowIndex >= 0 && e.RowIndex < nsList.Count && nsList[e.RowIndex] != null && nsList.Count > 0 && _NamadDiagramDateHistory[nsList[e.RowIndex].Name] != null)
+                {
+                    OrderedDictionary val = (OrderedDictionary)_NamadDiagramDateHistory[nsList[e.RowIndex].Name];
+
+                    if (((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[2]).Value == null)
+                    {
+
+                        using (DiagramGenerator dg = new DiagramGenerator())
+                        {
+                            //for (int i = 0; i < 10; i++)
+                            {
+
+                                Image img = null;
+                                try
+                                {
+                                    img = dg.GenerateHistoryImage(val);
+                                    if (img != null)
+                                        ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[2]).Value = img;
+
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    LogError(ex);
+                                }
+                            }
+                        }
+                    }
+
+                    //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
+                }
+
+            }
+
+            if (e.ColumnIndex == 3 && e.Value != null)
+            {
+                if ((float)e.Value > 10)
+                    e.CellStyle.BackColor = Color.Green;
+                if ((float)e.Value > 0 && (float)e.Value <= 10)
+                    e.CellStyle.BackColor = Color.GreenYellow;
+                if ((float)e.Value < -10)
+                    e.CellStyle.BackColor = Color.Red;
+                if ((float)e.Value < 0 && (float)e.Value >= -10)
+                    e.CellStyle.BackColor = Color.OrangeRed;
+            }
+            if (e.ColumnIndex == 5 && e.Value != null)
+            {
+                if ((float)e.Value > 10)
+                    e.CellStyle.BackColor = Color.Green;
+                if ((float)e.Value > 0 && (float)e.Value <= 10)
+                    e.CellStyle.BackColor = Color.GreenYellow;
+                if ((float)e.Value < -10)
+                    e.CellStyle.BackColor = Color.Red;
+                if ((float)e.Value < 0 && (float)e.Value >= -10)
+                    e.CellStyle.BackColor = Color.OrangeRed;
+            }
+            if (e.ColumnIndex == 4 && e.Value != null)
+            {
+                if ((float)e.Value > 10)
+                    e.CellStyle.BackColor = Color.Green;
+                if ((float)e.Value > 0 && (float)e.Value <= 10)
+                    e.CellStyle.BackColor = Color.GreenYellow;
+                if ((float)e.Value < -10)
+                    e.CellStyle.BackColor = Color.Red;
+                if ((float)e.Value < 0 && (float)e.Value >= -10)
+                    e.CellStyle.BackColor = Color.OrangeRed;
+            }
+            if (e.ColumnIndex == 6 && e.Value != null)
+            {
+                if ((float)e.Value > 2.5)
+                    e.CellStyle.BackColor = Color.Green;
+                if ((float)e.Value > 0 && (float)e.Value <= 2.5)
+                    e.CellStyle.BackColor = Color.GreenYellow;
+                if ((float)e.Value < -2.5)
+                    e.CellStyle.BackColor = Color.Red;
+                if ((float)e.Value < 0 && (float)e.Value > -2.5)
+                    e.CellStyle.BackColor = Color.OrangeRed;
+            }
+            if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[8]).Value != null)
+                if (int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[8]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[9]).Value.ToString()))
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                else
+                    e.CellStyle.BackColor = Color.GreenYellow;
+
+            if (e.ColumnIndex == 12 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value != null)
+                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+                    e.CellStyle.BackColor = Color.LightSeaGreen;
+
+            if (e.ColumnIndex == 13 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value != null)
+                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+                    e.CellStyle.BackColor = Color.PaleVioletRed;
+
+            if (e.ColumnIndex == 15 && e.Value != null)
+                if (((string)e.Value).IndexOf("Dullness") >= 0 || ((string)e.Value).IndexOf("Loss") >= 0)
+                    e.CellStyle.BackColor = Color.PaleVioletRed;
 
         }
 
-        private void dataGridView1_CellValueNeeded(object sender, DataGridViewCellValueEventArgs e)
-        {
-           
-        }
 
-        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
+
+
 
         private void deleteFromWatchListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             string selectednamad = this.dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
 
             List<string> watchList = File.ReadAllLines(Application.StartupPath + "\\watchList.txt").ToList();
@@ -1594,8 +1491,6 @@ namespace TradingData
             }
 
             File.WriteAllLines(Application.StartupPath + "\\watchList.txt" , newList.ToArray());
-
-            
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -1650,7 +1545,7 @@ namespace TradingData
             Form1._orderBy = e.ColumnIndex;
 
             List<NamadStatus> namadStatuses2 = null;
-            namadStatuses2 = OrderGrid(_namadStatuses);
+            namadStatuses2 = OrderGrid(_namadStatuses, Form1._orderBy);
             if (namadStatuses2 != null)
             {
                 lock (_namadStatuses)   // lock on the list
@@ -1666,7 +1561,6 @@ namespace TradingData
         private void button18_Click(object sender, EventArgs e)
         {
             List<PaymentStatus> ststuses = CustomDataProvider.GetPaymentStatus();
-            //namadStatuses2 = OrderGrid(_namadStatuses);
             if (ststuses != null)
             {
 
@@ -1674,7 +1568,6 @@ namespace TradingData
             }
 
             List<PaymentStatus> ststuses1 = CustomDataProvider.GetPaymentStatusDetail();
-            //namadStatuses2 = OrderGrid(_namadStatuses);
             if (ststuses1 != null)
             {
 
@@ -1708,14 +1601,12 @@ namespace TradingData
         private void button20_Click(object sender, EventArgs e)
         {
             List<TradingStatus> ststuses = CustomDataProvider.GetTradingsForMembers(this.cmbTradingStatusOwners.Text);
-            //namadStatuses2 = OrderGrid(_namadStatuses);
             if (ststuses != null)
             {
 
                 this.tradingStatusBindingSource.DataSource = ststuses;
             }
             List<TradingStatus> ststuses1 = CustomDataProvider.GetBasketTotalStatus();
-            //namadStatuses2 = OrderGrid(_namadStatuses);
             if (ststuses1 != null)
             {
 
@@ -1738,6 +1629,45 @@ namespace TradingData
                 this.tradingStatusBindingSource.DataSource = namadStatuses2;
             }
 
+
+        }
+
+        private void dgAllStatus_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            try
+            {
+
+                DataGridView datagrid = this.dgAllStatus;
+                List<NamadStatus> nsList = _allNamadStatuses;
+                PaintGridCell(e, nsList, datagrid);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                LogError(ex);
+            }
+
+        }
+
+        private void dgAllStatus_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            Form1._orderByAll = e.ColumnIndex;
+
+            List<NamadStatus> namadStatuses2 = null;
+            namadStatuses2 = OrderGrid(_allNamadStatuses, Form1._orderByAll);
+            if (namadStatuses2 != null)
+            {
+                lock (_allNamadStatuses)   // lock on the list
+                {
+                    _allNamadStatuses.Clear();
+                    _allNamadStatuses = namadStatuses2;
+                }
+
+                this.AllNamadsbindingSource.DataSource = _allNamadStatuses;
+            }
 
         }
     }

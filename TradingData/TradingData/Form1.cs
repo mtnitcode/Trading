@@ -965,27 +965,29 @@ namespace TradingData
                     {
 
                         var n = (NamadStatus)namadStatuses[s];
-
-                        OrderedDictionary d2 = (OrderedDictionary)_NamadDiagramHistory[s];
-                        if (d2 != null)
+                        if (n != null)
                         {
-                            ChangeStatus ch2 = (ChangeStatus)d2[d2.Count - 1];
-
-                            n.benefitAvverateInDay = ch2.BenefitChange;
-
-                            if (ch2.LastCost != 0)
+                            OrderedDictionary d2 = (OrderedDictionary)_NamadDiagramHistory[s];
+                            if (d2 != null)
                             {
-                                n.LastCost = ch2.LastCost;
-                                n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
-                            }
-                            if(ch2.BuyQueue > 0)
-                                n.BuyQueue =  (float) Math.Round( ((double)ch2.BuyQueue / 1000000) , 2);
+                                ChangeStatus ch2 = (ChangeStatus)d2[d2.Count - 1];
 
-                            if(ch2.ShopQueue > 0)
-                                n.ShopQueue = (float) Math.Round( ((double)ch2.ShopQueue / 1000000) , 2);
-                            
-                            if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
-                            if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
+                                n.benefitAvverateInDay = ch2.BenefitChange;
+
+                                if (ch2.LastCost != 0)
+                                {
+                                    n.LastCost = ch2.LastCost;
+                                    n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
+                                }
+                                if (ch2.BuyQueue > 0)
+                                    n.BuyQueue = (float)Math.Round(((double)ch2.BuyQueue / 1000000), 2);
+
+                                if (ch2.ShopQueue > 0)
+                                    n.ShopQueue = (float)Math.Round(((double)ch2.ShopQueue / 1000000), 2);
+
+                                if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
+                                if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
+                            }
                         }
                     }
                 }

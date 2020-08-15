@@ -901,6 +901,10 @@ namespace TradingData
                         {
 
                             ChangeStatus ch = (ChangeStatus)d[i];
+                            if (i > d.Count - 2)
+                            {
+                                n.benefitAvverateInLast2Days += ch.BenefitChange;
+                            }
                             if (i > d.Count - 5)
                             {
                                 n.benefitAvverageInLastWeek += ch.BenefitChange;
@@ -963,7 +967,6 @@ namespace TradingData
                 {
                     foreach (string s in _NamadDiagramHistory.Keys)
                     {
-
                         var n = (NamadStatus)namadStatuses[s];
                         if (n != null)
                         {
@@ -1062,13 +1065,17 @@ namespace TradingData
             }
             if (orderBy == 6)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInLast2Days).ToList();
             }
             if (orderBy == 7)
             {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
+            }
+            if (orderBy == 8)
+            {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
             }
-            if (orderBy == 10)
+            if (orderBy == 11)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ToList();
             }
@@ -1440,7 +1447,7 @@ namespace TradingData
                 if ((float)e.Value < 0 && (float)e.Value >= -10)
                     e.CellStyle.BackColor = Color.OrangeRed;
             }
-            if (e.ColumnIndex == 6 && e.Value != null)
+            if (e.ColumnIndex == 7 && e.ColumnIndex == 6 && e.Value != null)
             {
                 if ((float)e.Value > 2.5)
                     e.CellStyle.BackColor = Color.Green;
@@ -1451,21 +1458,21 @@ namespace TradingData
                 if ((float)e.Value < 0 && (float)e.Value > -2.5)
                     e.CellStyle.BackColor = Color.OrangeRed;
             }
-            if (e.ColumnIndex == 10 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[8]).Value != null)
-                if (int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[8]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[9]).Value.ToString()))
+            if (e.ColumnIndex == 11 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[9]).Value != null)
+                if (int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[9]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[10]).Value.ToString()))
                     e.CellStyle.BackColor = Color.OrangeRed;
                 else
                     e.CellStyle.BackColor = Color.GreenYellow;
 
-            if (e.ColumnIndex == 12 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value != null)
-                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+            if (e.ColumnIndex == 13 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[14]).Value != null)
+                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[14]).Value.ToString()))
                     e.CellStyle.BackColor = Color.LightSeaGreen;
 
-            if (e.ColumnIndex == 13 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value != null)
-                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[12]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()))
+            if (e.ColumnIndex == 14 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value != null)
+                if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[13]).Value.ToString()) < float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[14]).Value.ToString()))
                     e.CellStyle.BackColor = Color.PaleVioletRed;
 
-            if (e.ColumnIndex == 15 && e.Value != null)
+            if (e.ColumnIndex == 16 && e.Value != null)
                 if (((string)e.Value).IndexOf("Dullness") >= 0 || ((string)e.Value).IndexOf("Loss") >= 0)
                     e.CellStyle.BackColor = Color.PaleVioletRed;
 

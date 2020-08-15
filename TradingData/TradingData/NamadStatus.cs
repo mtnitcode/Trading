@@ -47,6 +47,7 @@ namespace ChartGenerator
         public string Industry { get; set; }
         public Image TodayImage { get; set; }
         public Image MonthImage { get; set; }
+        public float benefitAvverateInLast2Days { get; set; }
         public float benefitAvverateInDay { get; set; }
         public float benefitAvverateInMonth { get; set; }
         public float benefitAvverageInLastWeek { get; set; }

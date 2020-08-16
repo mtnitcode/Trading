@@ -1051,7 +1051,6 @@ namespace TradingData
 
                 LogError(ex);
                 ShowHistoryFinished = true;
-
             }
         }
 
@@ -1085,7 +1084,6 @@ namespace TradingData
 
             return namadStatuses2;
         }
-
 
         private bool GetLastNamadStatus()
         {
@@ -1446,7 +1444,7 @@ namespace TradingData
                 if ((float)e.Value < 0 && (float)e.Value >= -10)
                     e.CellStyle.BackColor = Color.OrangeRed;
             }
-            if (e.ColumnIndex == 7 && e.ColumnIndex == 6 && e.Value != null)
+            if ((e.ColumnIndex == 7 || e.ColumnIndex == 6) && e.Value != null)
             {
                 if ((float)e.Value > 2.5)
                     e.CellStyle.BackColor = Color.Green;

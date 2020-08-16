@@ -899,7 +899,6 @@ namespace TradingData
                     if (d != null)
                         for (int i = d.Count - 1; i >= 0; i--)
                         {
-
                             ChangeStatus ch = (ChangeStatus)d[i];
                             if (i > d.Count - 2)
                             {

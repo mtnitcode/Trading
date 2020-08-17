@@ -479,7 +479,7 @@
             this.groupBox4.Size = new System.Drawing.Size(1200, 306);
             this.groupBox4.TabIndex = 42;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = " Payment Status ";
+            this.groupBox4.Text = "Transactions";
             // 
             // cmbTransactionType
             // 
@@ -515,8 +515,9 @@
             this.dataGridView5.DataSource = this.paymentStatusBindingSource1;
             this.dataGridView5.Location = new System.Drawing.Point(12, 19);
             this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(561, 248);
+            this.dataGridView5.Size = new System.Drawing.Size(583, 273);
             this.dataGridView5.TabIndex = 53;
+            this.dataGridView5.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView5_ColumnHeaderMouseClick);
             // 
             // ownerNameDataGridViewTextBoxColumn2
             // 
@@ -608,9 +609,9 @@
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(976, 271);
+            this.button19.Location = new System.Drawing.Point(1060, 271);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(207, 23);
+            this.button19.Size = new System.Drawing.Size(123, 23);
             this.button19.TabIndex = 46;
             this.button19.Text = "Add To Payment";
             this.button19.UseVisualStyleBackColor = true;
@@ -658,11 +659,11 @@
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(366, 276);
+            this.button18.Location = new System.Drawing.Point(907, 271);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(207, 23);
+            this.button18.Size = new System.Drawing.Size(147, 23);
             this.button18.TabIndex = 40;
-            this.button18.Text = "Referesh";
+            this.button18.Text = "Referesh List";
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
@@ -675,9 +676,9 @@
             this.totalPaymentDataGridViewTextBoxColumn,
             this.remainedAmountDataGridViewTextBoxColumn});
             this.dataGridView3.DataSource = this.paymentStatusBindingSource;
-            this.dataGridView3.Location = new System.Drawing.Point(634, 19);
+            this.dataGridView3.Location = new System.Drawing.Point(611, 19);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(550, 148);
+            this.dataGridView3.Size = new System.Drawing.Size(573, 148);
             this.dataGridView3.TabIndex = 41;
             // 
             // ownerNameDataGridViewTextBoxColumn
@@ -1371,6 +1372,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.button15);
             this.splitContainer1.Panel2.Controls.Add(this.cmbWatchList);
             this.splitContainer1.Panel2.Controls.Add(this.label18);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(1543, 666);
             this.splitContainer1.SplitterDistance = 1133;
             this.splitContainer1.TabIndex = 4;
@@ -1758,9 +1760,9 @@
             this.groupBox1.Controls.Add(this.cmbBalanceThresholdAmount);
             this.groupBox1.Controls.Add(this.cmbBalanceOnDullness);
             this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Location = new System.Drawing.Point(16, 444);
+            this.groupBox1.Location = new System.Drawing.Point(18, 321);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 150);
+            this.groupBox1.Size = new System.Drawing.Size(367, 107);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Alarm Threshold Configs ";
@@ -1784,7 +1786,7 @@
             "90",
             "105",
             "120"});
-            this.cmbBalanceDullnessDays.Location = new System.Drawing.Point(250, 78);
+            this.cmbBalanceDullnessDays.Location = new System.Drawing.Point(253, 50);
             this.cmbBalanceDullnessDays.Name = "cmbBalanceDullnessDays";
             this.cmbBalanceDullnessDays.Size = new System.Drawing.Size(63, 21);
             this.cmbBalanceDullnessDays.TabIndex = 51;
@@ -1794,7 +1796,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(204, 79);
+            this.label17.Location = new System.Drawing.Point(207, 51);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(40, 15);
             this.label17.TabIndex = 52;
@@ -1806,9 +1808,10 @@
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(30, 21);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(93, 15);
+            this.label19.Size = new System.Drawing.Size(91, 15);
             this.label19.TabIndex = 44;
-            this.label19.Text = "Rate In Benefit :";
+            this.label19.Text = "Benefit Range :";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // cmbBalanceInBenefit
             // 
@@ -1862,7 +1865,7 @@
             "90 %",
             "95 %",
             "100 %"});
-            this.cmbBalanceInLoss.Location = new System.Drawing.Point(129, 47);
+            this.cmbBalanceInLoss.Location = new System.Drawing.Point(287, 19);
             this.cmbBalanceInLoss.Name = "cmbBalanceInLoss";
             this.cmbBalanceInLoss.Size = new System.Drawing.Size(63, 21);
             this.cmbBalanceInLoss.TabIndex = 45;
@@ -1872,21 +1875,21 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(26, 109);
+            this.label22.Location = new System.Drawing.Point(26, 76);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(95, 15);
+            this.label22.Size = new System.Drawing.Size(90, 15);
             this.label22.TabIndex = 50;
-            this.label22.Text = "Queue Amount :";
+            this.label22.Text = "Queue Range :";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(40, 49);
+            this.label20.Location = new System.Drawing.Point(198, 21);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(81, 15);
+            this.label20.Size = new System.Drawing.Size(79, 15);
             this.label20.TabIndex = 46;
-            this.label20.Text = "Rate In Loss :";
+            this.label20.Text = "Loss Range :";
             // 
             // cmbBalanceThresholdAmount
             // 
@@ -1908,7 +1911,7 @@
             "15.0 M",
             "20.0 M",
             "> 20.0 M"});
-            this.cmbBalanceThresholdAmount.Location = new System.Drawing.Point(130, 108);
+            this.cmbBalanceThresholdAmount.Location = new System.Drawing.Point(130, 75);
             this.cmbBalanceThresholdAmount.Name = "cmbBalanceThresholdAmount";
             this.cmbBalanceThresholdAmount.Size = new System.Drawing.Size(62, 21);
             this.cmbBalanceThresholdAmount.TabIndex = 49;
@@ -1937,7 +1940,7 @@
             "90 %",
             "95 %",
             "100 %"});
-            this.cmbBalanceOnDullness.Location = new System.Drawing.Point(129, 77);
+            this.cmbBalanceOnDullness.Location = new System.Drawing.Point(129, 49);
             this.cmbBalanceOnDullness.Name = "cmbBalanceOnDullness";
             this.cmbBalanceOnDullness.Size = new System.Drawing.Size(63, 21);
             this.cmbBalanceOnDullness.TabIndex = 47;
@@ -1947,11 +1950,11 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(12, 78);
+            this.label21.Location = new System.Drawing.Point(15, 50);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(109, 15);
+            this.label21.Size = new System.Drawing.Size(101, 15);
             this.label21.TabIndex = 48;
-            this.label21.Text = "Rate On Dullness :";
+            this.label21.Text = "Dullness Range :";
             // 
             // pnChartContainer
             // 
@@ -1964,64 +1967,70 @@
             this.pnChartContainer.Controls.Add(this.cboChartBackColor);
             this.pnChartContainer.Controls.Add(this.pnChartRelControls);
             this.pnChartContainer.Controls.Add(this.pnChart);
-            this.pnChartContainer.Location = new System.Drawing.Point(16, 96);
+            this.pnChartContainer.Location = new System.Drawing.Point(18, 72);
             this.pnChartContainer.Name = "pnChartContainer";
-            this.pnChartContainer.Size = new System.Drawing.Size(367, 330);
+            this.pnChartContainer.Size = new System.Drawing.Size(367, 243);
             this.pnChartContainer.TabIndex = 42;
             // 
             // lblWindowColor
             // 
             this.lblWindowColor.AutoSize = true;
             this.lblWindowColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWindowColor.Location = new System.Drawing.Point(73, 292);
+            this.lblWindowColor.Location = new System.Drawing.Point(34, 290);
             this.lblWindowColor.Name = "lblWindowColor";
             this.lblWindowColor.Size = new System.Drawing.Size(83, 15);
             this.lblWindowColor.TabIndex = 13;
             this.lblWindowColor.Text = "Window Color";
+            this.lblWindowColor.Visible = false;
             // 
             // cboWindowsColors
             // 
             this.cboWindowsColors.FormattingEnabled = true;
-            this.cboWindowsColors.Location = new System.Drawing.Point(162, 292);
+            this.cboWindowsColors.Location = new System.Drawing.Point(123, 290);
             this.cboWindowsColors.Name = "cboWindowsColors";
             this.cboWindowsColors.Size = new System.Drawing.Size(121, 21);
             this.cboWindowsColors.TabIndex = 12;
+            this.cboWindowsColors.Visible = false;
             // 
             // cboChartTypes
             // 
             this.cboChartTypes.FormattingEnabled = true;
-            this.cboChartTypes.Location = new System.Drawing.Point(162, 265);
+            this.cboChartTypes.Location = new System.Drawing.Point(123, 263);
             this.cboChartTypes.Name = "cboChartTypes";
             this.cboChartTypes.Size = new System.Drawing.Size(121, 21);
             this.cboChartTypes.TabIndex = 11;
+            this.cboChartTypes.Visible = false;
             // 
             // lblChartType
             // 
             this.lblChartType.AutoSize = true;
             this.lblChartType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChartType.Location = new System.Drawing.Point(91, 269);
+            this.lblChartType.Location = new System.Drawing.Point(52, 267);
             this.lblChartType.Name = "lblChartType";
             this.lblChartType.Size = new System.Drawing.Size(65, 15);
             this.lblChartType.TabIndex = 10;
             this.lblChartType.Text = "Chart Type";
+            this.lblChartType.Visible = false;
             // 
             // lblChartBackColor
             // 
             this.lblChartBackColor.AutoSize = true;
             this.lblChartBackColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChartBackColor.Location = new System.Drawing.Point(61, 242);
+            this.lblChartBackColor.Location = new System.Drawing.Point(22, 242);
             this.lblChartBackColor.Name = "lblChartBackColor";
             this.lblChartBackColor.Size = new System.Drawing.Size(95, 15);
             this.lblChartBackColor.TabIndex = 6;
             this.lblChartBackColor.Text = "Chart BackColor";
+            this.lblChartBackColor.Visible = false;
             // 
             // cboChartBackColor
             // 
             this.cboChartBackColor.FormattingEnabled = true;
-            this.cboChartBackColor.Location = new System.Drawing.Point(162, 236);
+            this.cboChartBackColor.Location = new System.Drawing.Point(123, 236);
             this.cboChartBackColor.Name = "cboChartBackColor";
             this.cboChartBackColor.Size = new System.Drawing.Size(121, 21);
             this.cboChartBackColor.TabIndex = 5;
+            this.cboChartBackColor.Visible = false;
             // 
             // pnChartRelControls
             // 
@@ -2045,12 +2054,12 @@
             this.pnChart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnChart.Location = new System.Drawing.Point(10, 15);
             this.pnChart.Name = "pnChart";
-            this.pnChart.Size = new System.Drawing.Size(339, 209);
+            this.pnChart.Size = new System.Drawing.Size(339, 215);
             this.pnChart.TabIndex = 0;
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(16, 55);
+            this.button17.Location = new System.Drawing.Point(16, 43);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(180, 23);
             this.button17.TabIndex = 41;
@@ -2060,7 +2069,7 @@
             // 
             // button16
             // 
-            this.button16.Location = new System.Drawing.Point(202, 55);
+            this.button16.Location = new System.Drawing.Point(202, 43);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(181, 23);
             this.button16.TabIndex = 40;

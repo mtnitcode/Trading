@@ -1009,8 +1009,8 @@ namespace TradingData
                 }
                 List<NamadStatus> namadStatusesAll = null;
                 List<NamadStatus> namadStatuses2 = null;
-                namadStatuses2 = OrderGrid(nslist , Form1._orderBy);
-                namadStatusesAll = OrderGrid(nslistAll , Form1._orderByAll);
+                namadStatuses2 = OrdertOnlineTradingGrid(nslist , Form1._orderBy);
+                namadStatusesAll = OrdertOnlineTradingGrid(nslistAll , Form1._orderByAll);
                 if (namadStatuses2 == null) namadStatuses2 = nslist;
                 lock (_namadStatuses)   // lock on the list
                 {
@@ -1054,7 +1054,7 @@ namespace TradingData
             }
         }
 
-        private static List<NamadStatus> OrderGrid(List<NamadStatus> namadStatuses , int orderBy)
+        private static List<NamadStatus> OrdertOnlineTradingGrid(List<NamadStatus> namadStatuses , int orderBy)
         {
             List<NamadStatus> namadStatuses2 = null;
             if (orderBy == 5)
@@ -1551,7 +1551,7 @@ namespace TradingData
             Form1._orderBy = e.ColumnIndex;
 
             List<NamadStatus> namadStatuses2 = null;
-            namadStatuses2 = OrderGrid(_namadStatuses, Form1._orderBy);
+            namadStatuses2 = OrdertOnlineTradingGrid(_namadStatuses, Form1._orderBy);
             if (namadStatuses2 != null)
             {
                 lock (_namadStatuses)   // lock on the list
@@ -1663,7 +1663,7 @@ namespace TradingData
             Form1._orderByAll = e.ColumnIndex;
 
             List<NamadStatus> namadStatuses2 = null;
-            namadStatuses2 = OrderGrid(_allNamadStatuses, Form1._orderByAll);
+            namadStatuses2 = OrdertOnlineTradingGrid(_allNamadStatuses, Form1._orderByAll);
             if (namadStatuses2 != null)
             {
                 lock (_allNamadStatuses)   // lock on the list
@@ -1674,6 +1674,41 @@ namespace TradingData
 
                 this.AllNamadsbindingSource.DataSource = _allNamadStatuses;
             }
+
+        }
+
+        private void dataGridView5_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+
+            
+            List<PaymentStatus> namadStatuses2 = null;
+            if (this.dataGridView5.Columns[e.ColumnIndex].HeaderText == "OwnerName")
+            {
+                namadStatuses2 = ((List<PaymentStatus>)this.paymentStatusBindingSource1.DataSource).OrderBy(n => n.OwnerName).ThenBy(n => n.PaymentDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+            if (this.dataGridView5.Columns[e.ColumnIndex].HeaderText == "PaymentDate")
+            {
+                namadStatuses2 = ((List<PaymentStatus>)this.paymentStatusBindingSource1.DataSource).OrderBy(n => n.PaymentDate).ThenBy(n => n.PaymentType).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+
+            if (this.dataGridView5.Columns[e.ColumnIndex].HeaderText == "PaymentType")
+            {
+                namadStatuses2 = ((List<PaymentStatus>)this.paymentStatusBindingSource1.DataSource).OrderBy(n => n.PaymentType).ThenBy(n => n.PaymentDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

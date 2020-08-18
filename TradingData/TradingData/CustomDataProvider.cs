@@ -79,7 +79,7 @@ namespace TradingData
                                 ,case when bshStatus.ShopCount is not null then  case when b.CountOfPortion-bshStatus.ShopCount > 0 then convert(int , b.RealCost*(b.CountOfPortion-bshStatus.ShopCount))
                                  when b.CountOfPortion-bshStatus.ShopCount = 0 then convert(int ,  b.RealCost*(b.CountOfPortion)) end  
 	                             when bshStatus.ShopCount is null then convert(int , b.RealCost*(b.CountOfPortion)) end TotalCost
-                                ,case when b.CountOfPortion-bshStatus.ShopCount = 0 then b.RealCost*b.CountOfPortion - nh.PayaniGheymat * (b.CountOfPortion) 
+                                ,case when b.CountOfPortion-bshStatus.ShopCount = 0 then nh.PayaniGheymat*b.CountOfPortion - b.RealCost * (b.CountOfPortion) 
 	                                 when b.CountOfPortion-bshStatus.ShopCount > 0 then  nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount) - b.RealCost*(b.CountOfPortion-bshStatus.ShopCount)
 	                                 when bshStatus.ShopCount is null then (nh.PayaniGheymat - b.RealCost) * (b.CountOfPortion) end BenefitAmount 
                                 ,case when bshStatus.ShopCount is not null then  nh.PayaniGheymat * (b.CountOfPortion-bshStatus.ShopCount) 

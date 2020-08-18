@@ -715,6 +715,15 @@ namespace TradingData
             }
 
 
+            //
+            PersianDate pd = new PersianDate(DateTime.Now);
+
+            this.txtDate.Text = pd.ToString("d");
+            this.txtBuyDate.Text = pd.ToString("d");
+            this.txtShopDate.Text = pd.ToString("d");
+
+            //
+
 
         }
 

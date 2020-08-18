@@ -49,6 +49,14 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Sbn.Controls.FDate.Resources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Sbn.Controls.FDate.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Sbn.Controls.FDate.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Sbn.Controls.FDate.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Specialized, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Specialized.4.3.0\lib\net46\System.Collections.Specialized.dll</HintPath>
@@ -155,6 +163,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libs\Sbn.Controls.FDate.Resources.dll" />
+    <Content Include="Libs\Sbn.Controls.FDate.Utils.dll" />
     <Content Include="NamadHistory.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NamadHistory.edmx</DependentUpon>

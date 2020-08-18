@@ -1,6 +1,7 @@
 ﻿using ChartGenerator;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Sbn.Controls.FDate.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -140,7 +141,7 @@ namespace TradingData
                                     continue;
                                 }
                                 lineNumber++;
-                                string[] namadInfo = l.Split(',');
+                                string[] namadInfo = l.Replace('@' , ',').Split(',');
 
                                 if (namadInfo.Length >= 23)
                                 {
@@ -648,7 +649,11 @@ namespace TradingData
         {
             try
             {
-                this.txtBuyRealCost.Text = ((int)(long.Parse(this.txtTotalCost.Text) / int.Parse(this.txtBuyCont.Text))).ToString();
+                if (rdTotalOnCount.Checked)
+                    this.txtBuyRealCost.Text = ((int)(long.Parse(this.txtTotalCost.Text) / int.Parse(this.txtBuyCont.Text))).ToString();
+                if (rdTOnReal.Checked)
+                    this.txtBuyCont.Text = ((int)(long.Parse(this.txtTotalCost.Text) / int.Parse(this.txtBuyRealCost.Text))).ToString();
+
             }
             catch (Exception ex)
             {
@@ -786,7 +791,8 @@ namespace TradingData
         {
             try
             {
-                this.txtTotalCost.Text = ((int)(long.Parse(this.txtBuyRealCost.Text) * int.Parse(this.txtBuyCont.Text))).ToString();
+                if(rdTotalOnCount.Checked)
+                    this.txtTotalCost.Text = ((int)(long.Parse(this.txtBuyRealCost.Text) * int.Parse(this.txtBuyCont.Text))).ToString();
             }
             catch (Exception ex)
             {
@@ -1270,12 +1276,15 @@ namespace TradingData
 
             _NamadDiagramDateHistory.Clear();
 
-            for (int i = 4; i<=5; i++)
+
+            for (int i = -30; i<=0 ; i++)
             {
-                for (int j = 1; j <= 31; j++)
-                {
-                    GetNamadHistoryByDate("1399-" + i.ToString("##00") + "-" + j.ToString("##00"));
-                }
+                var last = DateTime.Now.AddDays(i);
+                PersianDate pd = new PersianDate(last);
+
+                GetNamadHistoryByDate( pd.Year + "-" + pd.Month.ToString("##00") + "-" + pd.Day.ToString("##00"));
+
+
             }
         }
 

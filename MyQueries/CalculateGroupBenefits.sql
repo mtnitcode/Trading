@@ -31,8 +31,8 @@ where basketHistory.countOfPortion >0 and basketHistory.GroupId is not null
 order by basketHistory.basketDate,  basketHistory.Namad , basketHistory.historyDate
 
 
--- محاسبه سود روزانه
-select basketHistory.historyDate , sum(basketHistory.PayaniDarsad) from (
+-- ************** محاسبه سود روزانه ****************
+select basketHistory.historyDate , round( avg(basketHistory.PayaniDarsad) , 5) from (
 select b.TradingDate basketDate , nh.TradingDate historyDate,b.Namad , n.ID namadid ,  nh.PayaniDarsad , b.GroupId
 , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end countOfPortion
 from NamadHistory nh inner join Namad n on n.ID = nh.NamadId
@@ -45,10 +45,10 @@ order by basketHistory.historyDate
 
 
 
--- daily benefit with names and total inversments
+--********** daily benefit with names and total inversments ************
 select baskethistory.* , basketOwners.Name 
 from (
-select basketHistory.historyDate , sum(basketHistory.PayaniDarsad) payaniDarsad , (select sum(amount) from Payments where PaymentDate <=basketHistory.historyDate) amount from (
+select basketHistory.historyDate , round( avg(basketHistory.PayaniDarsad) , 5) payaniDarsad , (select sum(amount) from Payments where PaymentDate <=basketHistory.historyDate) amount from (
 select b.TradingDate basketDate , nh.TradingDate historyDate,b.Namad , n.ID namadid ,  nh.PayaniDarsad , b.GroupId
 , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end countOfPortion
 from NamadHistory nh inner join Namad n on n.ID = nh.NamadId
@@ -59,26 +59,6 @@ where basketHistory.countOfPortion >0 and basketHistory.GroupId is not null
 group by basketHistory.historyDate) as baskethistory
 , (select name from BasketOwner) basketOwners
 order by basketOwners.Name , basketHistory.historyDate
-
--- daily benefit with names and total inversments
-select * , bskOwners.amount*bskOwners.avgPayaniDarsad*0.01 totalBenefitInDay,  cast(bskOwners.OwnerAmount as float)/cast( bskOwners.amount as float) invPercent ,
- round( (bskOwners.amount*bskOwners.avgPayaniDarsad*0.01) *  (cast(bskOwners.OwnerAmount as float)/cast( bskOwners.amount as float)) , 3) personalBenefitInDay from (
-select baskethistory.* , basketOwners.Name ,  (select sum(amount) from Payments where PaymentDate <=basketHistory.historyDate and OwnerName = basketOwners.Name) OwnerAmount 
-from (
-select basketHistory.historyDate , sum(basketHistory.PayaniDarsad) avgPayaniDarsad , (select sum(amount) from Payments where PaymentDate <=basketHistory.historyDate) amount 
-from (
-select b.TradingDate basketDate , nh.TradingDate historyDate,b.Namad , n.ID namadid ,  nh.PayaniDarsad , b.GroupId
-, case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end countOfPortion
-from NamadHistory nh inner join Namad n on n.ID = nh.NamadId
-inner join Basket b on b.Namad = n.Namad 
-left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id
-where nh.TradingDate > b.TradingDate ) as basketHistory
-where basketHistory.countOfPortion > 0 and basketHistory.GroupId is not null
-group by basketHistory.historyDate) as baskethistory
-, (select name from BasketOwner) basketOwners) as bskOwners where bskOwners.OwnerAmount is not null
-order by bskOwners.Name , bskOwners.historyDate
-
-
 
 
 select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-') 'تاریخ گزارش', b.id 'کد خرید', b.OwnerName 'صاحب سهم', nmd.Name 'نام کامل' , nmd.namad  'نام نماد' ,
@@ -121,3 +101,18 @@ inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) n
 inner join NamadHistory nh on nh.ID = nhStatus.maxID
 left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id 
 order by b.TradingDate
+
+
+select totalMoney.OwnerName , sum(totalMoney.TotalMoney) from (
+select OwnerName , b.TradingDate , n.Namad , RealCost , nh.PayaniGheymat , 
+	 case when bshStatus.ShopCount is not null then  
+		case when b.CountOfPortion-bshStatus.ShopCount > 0 then  b.RealCost*(b.CountOfPortion-bshStatus.ShopCount) 
+		when b.CountOfPortion-bshStatus.ShopCount = 0 then 0  end  
+	 when bshStatus.ShopCount is null then b.RealCost*(b.CountOfPortion) end TotalMoney
+from Basket  b
+inner join Namad n on n.Namad = b.Namad
+inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = n.ID
+inner join NamadHistory nh on nh.ID = nhStatus.maxID
+left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id ) as totalMoney
+group by totalMoney.OwnerName
+order by OwnerName

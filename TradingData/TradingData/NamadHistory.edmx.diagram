@@ -6,12 +6,15 @@
     <edmx:Diagrams>
       <Diagram DiagramId="9e4d6419d9cf49568f577fa488c2fd81" Name="Diagram1">
         <EntityTypeShape EntityType="TradingModel.NamadHistory" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TradingModel.Namad" Width="1.5" PointX="7.75" PointY="3.125" />
-        <EntityTypeShape EntityType="TradingModel.Industry" Width="1.5" PointX="5.25" PointY="4" />
-        <EntityTypeShape EntityType="TradingModel.NamadNotify" Width="1.5" PointX="0.875" PointY="5" />
-        <EntityTypeShape EntityType="TradingModel.Basket" Width="1.5" PointX="7.375" PointY="7.75" />
-        <EntityTypeShape EntityType="TradingModel.Payment" Width="1.5" PointX="9.375" PointY="7.75" />
-        <EntityTypeShape EntityType="TradingModel.BasketShopping" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="TradingModel.Namad" Width="1.5" PointX="6.5" PointY="0.875" />
+        <EntityTypeShape EntityType="TradingModel.Industry" Width="1.5" PointX="4.625" PointY="0.875" />
+        <EntityTypeShape EntityType="TradingModel.NamadNotify" Width="1.5" PointX="1.25" PointY="0.875" />
+        <EntityTypeShape EntityType="TradingModel.Basket" Width="1.5" PointX="2.875" PointY="6.625" />
+        <EntityTypeShape EntityType="TradingModel.Payment" Width="1.5" PointX="4.75" PointY="6.625" />
+        <EntityTypeShape EntityType="TradingModel.BasketShopping" Width="1.5" PointX="0.875" PointY="6.625" />
+        <EntityTypeShape EntityType="TradingModel.BasketGroup" Width="1.5" PointX="8.25" PointY="6.625" />
+        <EntityTypeShape EntityType="TradingModel.BasketOwner" Width="1.5" PointX="6.625" PointY="6.625" />
+        <EntityTypeShape EntityType="TradingModel.MasterTransaction" Width="1.5" PointX="8.25" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

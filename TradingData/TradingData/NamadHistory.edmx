@@ -22,6 +22,21 @@
           <Property Name="GroupId" Type="bigint" />
           <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="BasketGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BasketOwner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="GroupId" Type="int" />
+        </EntityType>
         <EntityType Name="BasketShopping">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,6 +54,20 @@
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityType" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ActivityDate" Type="varchar" MaxLength="10" />
+          <Property Name="Debtor" Type="bigint" />
+          <Property Name="Creditor" Type="bigint" />
+          <Property Name="Remaind" Type="bigint" />
+          <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Namad">
           <Key>
@@ -106,8 +135,11 @@
         </EntityType>
         <EntityContainer Name="TradingModelStoreContainer">
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasketGroup" EntityType="Self.BasketGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasketOwner" EntityType="Self.BasketOwner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BasketShopping" EntityType="Self.BasketShopping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Industry" EntityType="Self.Industry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterTransaction" EntityType="Self.MasterTransaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Namad" EntityType="Self.Namad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NamadHistory" EntityType="Self.NamadHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NamadNotify" EntityType="Self.NamadNotify" Schema="dbo" store:Type="Tables" />
@@ -152,6 +184,9 @@
           <EntitySet Name="Baskets" EntityType="TradingModel.Basket" />
           <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
           <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
+          <EntitySet Name="BasketGroups" EntityType="TradingModel.BasketGroup" />
+          <EntitySet Name="BasketOwners" EntityType="TradingModel.BasketOwner" />
+          <EntitySet Name="MasterTransactions" EntityType="TradingModel.MasterTransaction" />
         </EntityContainer>
         <EntityType Name="Namad">
           <Key>
@@ -224,6 +259,35 @@
           <Property Name="ShopCount" Type="Int32" Nullable="false" />
           <Property Name="ShoppingCost" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BasketGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BasketOwner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MasterTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Debtor" Type="Int64" />
+          <Property Name="Creditor" Type="Int64" />
+          <Property Name="Remaind" Type="Int64" />
+          <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -333,6 +397,38 @@
                 <ScalarProperty Name="ShopCount" ColumnName="ShopCount" />
                 <ScalarProperty Name="ShoppingDate" ColumnName="ShoppingDate" />
                 <ScalarProperty Name="BasketID" ColumnName="BasketID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasketGroups">
+            <EntityTypeMapping TypeName="TradingModel.BasketGroup">
+              <MappingFragment StoreEntitySet="BasketGroup">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasketOwners">
+            <EntityTypeMapping TypeName="TradingModel.BasketOwner">
+              <MappingFragment StoreEntitySet="BasketOwner">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterTransactions">
+            <EntityTypeMapping TypeName="TradingModel.MasterTransaction">
+              <MappingFragment StoreEntitySet="MasterTransaction">
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
+                <ScalarProperty Name="Remaind" ColumnName="Remaind" />
+                <ScalarProperty Name="Creditor" ColumnName="Creditor" />
+                <ScalarProperty Name="Debtor" ColumnName="Debtor" />
+                <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ActivityType" ColumnName="ActivityType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

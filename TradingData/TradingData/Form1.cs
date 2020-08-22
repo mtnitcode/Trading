@@ -632,16 +632,14 @@ namespace TradingData
 
         private void button13_Click(object sender, EventArgs e)
         {
-
             using (var dbn1 = new TradingContext())
             {
                 Basket bsk = new Basket {BrokerName = this.cmbBroker.Text,  Description = this.txtDesc.Text, AvverageCost = int.Parse(this.txtBuyAvvCost.Text)  , RealCost = int.Parse(this.txtBuyRealCost.Text) , CountOfPortion = int.Parse(this.txtBuyCont.Text)
-                , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text };
+                , GroupId = ((BasketGroup)this.cmbInvestmentType.SelectedItem).Id , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text };
 
                 dbn1.Baskets.Add(bsk);
                 dbn1.SaveChanges();
                 MessageBox.Show("Insersion Completed");
-
             }
         }
 
@@ -714,6 +712,18 @@ namespace TradingData
                 }
             }
 
+            using (var db = new TradingContext())
+            {
+                var groups = db.BasketGroups.ToList();
+
+                var nmds = groups.OrderBy(x => x.Name).ToList();
+                this.cmbBasketGroup.DisplayMember = "Name";
+                this.cmbBasketGroup.ValueMember = "Id";
+                this.cmbBasketGroup.DataSource = groups;
+
+                //var dbrow = db.Database.SqlQuery("select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-')" , null);
+
+            }
 
             //
             PersianDate pd = new PersianDate(DateTime.Now);
@@ -721,7 +731,7 @@ namespace TradingData
             this.txtDate.Text = pd.ToString("d");
             this.txtBuyDate.Text = pd.ToString("d");
             this.txtShopDate.Text = pd.ToString("d");
-
+            this.txtPaymentDate.Text = pd.ToString("d");
             //
 
 
@@ -1726,6 +1736,11 @@ namespace TradingData
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbBasketIds_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }

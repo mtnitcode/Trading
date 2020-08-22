@@ -80,6 +80,12 @@
     <Compile Include="Basket.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>
+    <Compile Include="BasketGroup.cs">
+      <DependentUpon>NamadHistory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BasketOwner.cs">
+      <DependentUpon>NamadHistory.tt</DependentUpon>
+    </Compile>
     <Compile Include="BasketShopping.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>
@@ -91,6 +97,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Industry.cs">
+      <DependentUpon>NamadHistory.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterTransaction.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>
     <Compile Include="Namad.cs">

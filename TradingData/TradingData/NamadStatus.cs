@@ -37,12 +37,10 @@ namespace ChartGenerator
 
     public class NamadStatus
     {
-
         public NamadStatus()
         {
 
         }
-
         public string Name { get; set; }
         public string Industry { get; set; }
         public Image TodayImage { get; set; }
@@ -61,7 +59,6 @@ namespace ChartGenerator
         public float BuyQueue { get; set; }
         public float ShopQueue { get; set; }
         public string LastTradingDate { get; set; }
-
         public string StatusDesc{get;set;}
     }
 

@@ -37,7 +37,7 @@ namespace TradingData
         FolderBrowserDialog _fb = new FolderBrowserDialog();
         OrderedDictionary _NamadDiagramHistory = new OrderedDictionary(); 
         OrderedDictionary _NamadDiagramDateHistory = new OrderedDictionary();
-        OrderedDictionary _LastNamadStatus = new OrderedDictionary();
+        //OrderedDictionary _LastNamadStatus = new OrderedDictionary();
         List<float> _TotalBenefit = new List<float>();
         List<float> _TotalLoss = new List<float>();
 
@@ -1136,19 +1136,16 @@ namespace TradingData
                         string sTotal = "";
                         string stime = DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00");
 
-                        var InsertCollection = ProcessLastNamadStatus( sLines, stime , out sTotal);
-                        _LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
+                        var InsertCollection = ProcessLastNamadStatus (sLines, stime , out sTotal);
+                        //_LastNamadStatus.Add(DateTime.Now.ToString(), InsertCollection);
 
                         File.WriteAllText(string.Format("{0}\\History\\NamadHistory-{1}.history", Application.StartupPath, DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00") + "-" + DateTime.Now.Hour.ToString("##00") + "" + DateTime.Now.Minute.ToString("##00") + "" + DateTime.Now.Second.ToString("##00")), sTotal);
-
                     }
-
                 }
                 return true;
             }
             catch (Exception ex)
             {
-
                 LogError(ex);
                 return false;
             }
@@ -1159,12 +1156,17 @@ namespace TradingData
             if (DateTime.Now < new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 35, 0))
                 return ;
 
-            List<string> files = Directory.GetFiles(Application.StartupPath+"\\History").ToList().OrderByDescending(x=>x).ToList();
+            List<string> files = Directory.GetFiles(Application.StartupPath+"\\History").ToList().OrderBy(x=>x).ToList().FindAll(x=> x.Contains(".history"));
 
             int fileCount = 0;
-            foreach(string filename in files)
+            int topIndex = 0;
+            if (files.Count >= 30) topIndex = 30;
+            else topIndex = files.Count;
+
+            for(int i = files.Count-topIndex; i < files.Count; i++ )
             {
-                if(Path.GetExtension(filename) == ".history" && filename.Contains(DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00")))
+                string filename = files[i];
+                if (Path.GetExtension(filename) == ".history" && filename.Contains(DateTime.Now.Year + "" + DateTime.Now.Month.ToString("##00") + "" + DateTime.Now.Day.ToString("##00")))
                 {
                     string[] sLines = File.ReadAllLines(filename);
                     string stime = Path.GetFileNameWithoutExtension(filename).Split('-')[2];
@@ -1172,7 +1174,7 @@ namespace TradingData
                     string sTotal = "";
                     var InsertCollection = ProcessLastNamadStatus(sLines, stime , out sTotal);
                     string fname = Path.GetFileName(filename);
-                    _LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
+                    //_LastNamadStatus.Add(fname.Split('-')[2], InsertCollection);
                     fileCount++;
 
                 }
@@ -1378,6 +1380,7 @@ namespace TradingData
                 if (e.RowIndex >= 0 && e.RowIndex < nsList.Count && nsList[e.RowIndex] != null && nsList.Count > 0 && _NamadDiagramHistory[nsList[e.RowIndex].Name] != null)
                 {
                     OrderedDictionary val = (OrderedDictionary)_NamadDiagramHistory[nsList[e.RowIndex].Name];
+
                     if (((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[1]).Value == null)
                     {
 
@@ -1389,6 +1392,8 @@ namespace TradingData
                                 Image img = null;
                                 try
                                 {
+                                    
+
                                     img = dg.GenerateHistoryImage(val);
                                     if (img != null)
                                         ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[1]).Value = img;

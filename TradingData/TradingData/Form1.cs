@@ -1272,6 +1272,11 @@ namespace TradingData
                             outVal = (OrderedDictionary)_NamadDiagramHistory[namadName];
 
                             outVal.Insert(outVal.Count, stime, new ChangeStatus {  LastCost = (int)h.Value.PayaniGheymat, BenefitChange = (float)h.Value.PayaniDarsad, ShopQueue = (long)h.Value.ShopHajm, BuyQueue = (long)h.Value.BuyHajm });
+
+                            while (outVal.Count > 30)
+                            {
+                                outVal.RemoveAt(0);
+                            }
                         }
                         else
                         {

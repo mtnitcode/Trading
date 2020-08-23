@@ -635,7 +635,7 @@ namespace TradingData
             using (var dbn1 = new TradingContext())
             {
                 Basket bsk = new Basket {BrokerName = this.cmbBroker.Text,  Description = this.txtDesc.Text, AvverageCost = int.Parse(this.txtBuyAvvCost.Text)  , RealCost = int.Parse(this.txtBuyRealCost.Text) , CountOfPortion = int.Parse(this.txtBuyCont.Text)
-                , GroupId = ((BasketGroup)this.cmbInvestmentType.SelectedItem).Id , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text };
+                , GroupId = (this.cmbBasketGroup.SelectedItem == null ? 0 :((BasketGroup)this.cmbBasketGroup.SelectedItem).Id) , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text };
 
                 dbn1.Baskets.Add(bsk);
                 dbn1.SaveChanges();

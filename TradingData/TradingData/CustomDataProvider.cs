@@ -16,18 +16,18 @@ namespace TradingData
         public static List<Basket> GetMyPortionStatus()
         {
             string sqlQuery = @"select * from (
-                            select b.id , b.OwnerName , b.namad ,
-                            b.TradingDate  
-                            , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end CountOfPortion
-                            ,b.AvverageCost, b.RealCost
-                            , b.FirstOffer , b.investmenttype , b.Description , b.GroupId , b.BrokerName 
-                            from Namad nmd
-                            inner join Basket b on b.Namad = nmd.Namad
-                            inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = nmd.ID
-                            left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id
-                            inner join NamadHistory nh on nh.ID = nhStatus.maxID) as portions
-							where portions.CountOfPortion > 0
-                            order by OwnerName , TradingDate";
+                select b.id , b.OwnerName , b.namad ,
+                b.TradingDate  , bshStatus.ShopDate
+                , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end CountOfPortion
+                ,b.AvverageCost, b.RealCost
+                , b.FirstOffer , b.investmenttype , b.Description , b.GroupId , b.BrokerName 
+                from Namad nmd
+                inner join Basket b on b.Namad = nmd.Namad
+                inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = nmd.ID
+                left outer join (select BasketID , max(ShoppingDate) ShopDate , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id
+                inner join NamadHistory nh on nh.ID = nhStatus.maxID) as portions
+	            where portions.CountOfPortion > 0
+                order by OwnerName , TradingDate";
 
             var queryResult = null as List<Basket>;
             using (var dbn = new TradingContext())

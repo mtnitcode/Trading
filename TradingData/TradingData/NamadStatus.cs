@@ -60,6 +60,8 @@ namespace ChartGenerator
         public float ShopQueue { get; set; }
         public string LastTradingDate { get; set; }
         public string StatusDesc{get;set;}
+        public int BenefitCategory { get; set; }
+
     }
 
     public class Basket

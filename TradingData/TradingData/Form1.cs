@@ -940,7 +940,24 @@ namespace TradingData
                             {
                                 n.benefitAvverageInLast3Week += ch.BenefitChange;
                             }
-
+                            //
+                            if (n.benefitAvverageInLastWeek <= 0 && n.benefitAvverageInLast2Week <= 0 && n.benefitAvverageInLast3Week <= 0)
+                                n.BenefitCategory = 0;
+                            if (n.benefitAvverageInLastWeek <= 0 && n.benefitAvverageInLast2Week <= 0 && n.benefitAvverageInLast3Week > 0)
+                                n.BenefitCategory = 1;
+                            if (n.benefitAvverageInLastWeek <= 0 && n.benefitAvverageInLast2Week > 0 && n.benefitAvverageInLast3Week <= 0)
+                                n.BenefitCategory = 2;
+                            if (n.benefitAvverageInLastWeek <= 0 && n.benefitAvverageInLast2Week > 0 && n.benefitAvverageInLast3Week > 0)
+                                n.BenefitCategory = 3;
+                            if (n.benefitAvverageInLastWeek > 0 && n.benefitAvverageInLast2Week <= 0 && n.benefitAvverageInLast3Week <= 0)
+                                n.BenefitCategory = 4;
+                            if (n.benefitAvverageInLastWeek > 0 && n.benefitAvverageInLast2Week <= 0 && n.benefitAvverageInLast3Week > 0)
+                                n.BenefitCategory = 5;
+                            if (n.benefitAvverageInLastWeek > 0 && n.benefitAvverageInLast2Week > 0 && n.benefitAvverageInLast3Week <= 0)
+                                n.BenefitCategory = 6;
+                            if (n.benefitAvverageInLastWeek > 0 && n.benefitAvverageInLast2Week > 0 && n.benefitAvverageInLast3Week > 0)
+                                n.BenefitCategory = 7;
+                            //
                             n.benefitAvverateInMonth += ch.BenefitChange;
                             if (ch.LastCost > 0 && n.LastCost == 0)
                             {
@@ -1100,6 +1117,10 @@ namespace TradingData
             if (orderBy == 11)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
+            }
+            if (orderBy == 12)
+            {
+                namadStatuses2 = namadStatuses.OrderBy(n => n.BenefitCategory).ThenBy(n => n.benefitAvverageInLast3Week).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverateInLast2Days).ToList();
             }
             if (orderBy == 0)
             {

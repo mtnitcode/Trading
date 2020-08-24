@@ -236,11 +236,11 @@ select @SumOfDivisionOnDays=sumOfdivisionOndays from sumOfdivisionOndays;
 
 --02
 select tPayments.OwnerName , tPayments.OwnerPayment ,
-case when tWithdrawMoney.OwnerWithdraw is null then 0 when tWithdrawMoney.OwnerWithdraw is not null then tWithdrawMoney.OwnerWithdraw end ,
+case when tWithdrawMoney.OwnerWithdraw is null then 0 when tWithdrawMoney.OwnerWithdraw is not null then tWithdrawMoney.OwnerWithdraw end OwnerWithdraw ,
 tMoney.TotalRealCost , tMoney.TotalMoney , tPaymentDuration.avgDays 
 , round( (( cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays , 5) divisionOnAvgDays ,
 case when tWithdrawMoney.OwnerWithdraw is null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5)
-	when tWithdrawMoney.OwnerWithdraw is not null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5) + tWithdrawMoney.OwnerWithdraw  end 
+	when tWithdrawMoney.OwnerWithdraw is not null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5) + tWithdrawMoney.OwnerWithdraw  end FinalStatus
 
  from 
 (select duration.OwnerName, avg(duration.dys) avgDays from 

@@ -840,8 +840,8 @@ namespace TradingData
                 dtBenefitComparison.Columns.Add("Benefit", typeof(int));
                 dtBenefitComparison.Columns.Add("Loss", typeof(int));
 
-                int bs = (int)_TotalBenefit.Sum() / _TotalBenefit.Count;
-                int ls = (int)_TotalLoss.Sum() / _TotalLoss.Count;
+                int bs = (int)_TotalBenefit.Sum();/// _TotalBenefit.Count;
+                int ls = (int)_TotalLoss.Sum();/// _TotalLoss.Count;
 
                 object[] benefs = { bs, ls };
                 var row1 = dtBenefitComparison.NewRow().ItemArray = benefs;
@@ -1011,8 +1011,8 @@ namespace TradingData
                                 if (ch2.ShopQueue > 0)
                                     n.ShopQueue = (float)Math.Round(((double)ch2.ShopQueue / 1000000), 2);
 
-                                if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay);
-                                if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay);
+                                if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay*n.CountOfPortion*n.LastCost/100);
+                                if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay * n.CountOfPortion * n.LastCost /100);
                             }
                         }
                     }

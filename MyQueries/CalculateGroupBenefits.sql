@@ -240,7 +240,8 @@ case when tWithdrawMoney.OwnerWithdraw is null then 0 when tWithdrawMoney.OwnerW
 tMoney.TotalRealCost , tMoney.TotalMoney , tPaymentDuration.avgDays 
 , round( (( cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays , 5) divisionOnAvgDays ,
 case when tWithdrawMoney.OwnerWithdraw is null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5)
-	when tWithdrawMoney.OwnerWithdraw is not null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5) + tWithdrawMoney.OwnerWithdraw  end FinalStatus
+	when tWithdrawMoney.OwnerWithdraw is not null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5) + tWithdrawMoney.OwnerWithdraw  end FinalStatus,
+	tDebtors.Debtors
 
  from 
 (select duration.OwnerName, avg(duration.dys) avgDays from 
@@ -270,9 +271,18 @@ case when tWithdrawMoney.OwnerWithdraw is null then round( (((cast( tPayments.Ow
 	group by totalMoney.OwnerName) tMoney
 	left outer join 
 	(select p.OwnerName , sum(Amount) OwnerWithdraw  from Payments p 
-	where p.TransactionType=N'برداشت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tWithdrawMoney on tMoney.OwnerName = tWithdrawMoney.OwnerName
+	where p.TransactionType=N'برداشت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tWithdrawMoney on tMoney.OwnerName = tWithdrawMoney.OwnerName,
 
-where tPayments.OwnerName = tPaymentDuration.OwnerName and tMoney.OwnerName = tPayments.OwnerName ;
+(select bsk.OwnerName , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(bsk.cost)),1), '.00','') Debtors from
+(select ownername , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket group by OwnerName 
+union
+select b.OwnerName , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName  
+union
+select p.OwnerName , sum(Amount) cost , N'پرداخت' ttype from Payments p group by p.OwnerName 
+) bsk
+group by bsk.OwnerName) tDebtors
+
+where tPayments.OwnerName = tPaymentDuration.OwnerName and tMoney.OwnerName = tPayments.OwnerName  and tDebtors.OwnerName = tPayments.OwnerName ;
 
 
 --01
@@ -372,3 +382,29 @@ inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) n
 inner join NamadHistory nh on nh.ID = nhStatus.maxID
 left outer join (select BasketID , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id where b.GroupId = 1) as totalMoney
 group by totalMoney.OwnerName
+
+
+--
+select bsk.OwnerName , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(bsk.cost)),1), '.00','') 'بدهکار/بستانکار' from
+(select ownername , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket group by OwnerName 
+union
+select b.OwnerName , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName  
+union
+select p.OwnerName , sum(Amount) cost , N'پرداخت' ttype from Payments p group by p.OwnerName 
+) bsk
+group by bsk.OwnerName
+
+
+select * from (
+    select b.id , b.OwnerName , b.namad ,
+    b.TradingDate  , bshStatus.ShopDate
+    , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end CountOfPortion
+    ,b.AvverageCost, b.RealCost
+    , b.FirstOffer , b.investmenttype , b.Description , b.GroupId , b.BrokerName 
+    from Namad nmd
+    inner join Basket b on b.Namad = nmd.Namad
+    inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = nmd.ID
+    left outer join (select BasketID , max(ShoppingDate) ShopDate , sum(ShopCount) ShopCount , AVG(ShoppingCost) ShopAvgCost from BasketShopping group by BasketID) bshStatus on bshStatus.BasketID = b.id
+    inner join NamadHistory nh on nh.ID = nhStatus.maxID) as portions
+	where portions.CountOfPortion > 0
+    order by OwnerName , TradingDate

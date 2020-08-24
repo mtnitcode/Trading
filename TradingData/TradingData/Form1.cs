@@ -830,9 +830,7 @@ namespace TradingData
             //            object obj = new { Token = Methods._token, FromState = s };
 
             bigStackThread.Start("");
-
         }
-
 
         void ShowChart()
         {
@@ -858,6 +856,7 @@ namespace TradingData
                 }
             }
         }
+
         private Chart GetChart(DataTable dt)
         {
             Chart chart = null;
@@ -1084,23 +1083,23 @@ namespace TradingData
             List<NamadStatus> namadStatuses2 = null;
             if (orderBy == 5)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverageInLastWeek).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
             if (orderBy == 6)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInLast2Days).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
             if (orderBy == 7)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInDay).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
             if (orderBy == 8)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
             if (orderBy == 11)
             {
-                namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ToList();
+                namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
             if (orderBy == 0)
             {

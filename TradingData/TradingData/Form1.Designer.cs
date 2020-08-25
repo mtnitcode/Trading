@@ -214,15 +214,16 @@
             this.benefitAvverateInLast2Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.benefitAvverateInMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MoneyAndBenefitImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BenefitCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CountOfPortion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuyQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShopQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BenefitCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.industryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1268,15 +1269,16 @@
             this.benefitAvverateInLast2Days,
             this.benefitAvverateInDayDataGridViewTextBoxColumn,
             this.benefitAvverateInMonthDataGridViewTextBoxColumn,
+            this.MoneyAndBenefitImage,
             this.lastCostDataGridViewTextBoxColumn,
             this.myAvverageBuyCostDataGridViewTextBoxColumn,
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn,
-            this.BenefitCategory,
             this.CountOfPortion,
             this.BuyQueue,
             this.ShopQueue,
             this.TrDate,
             this.StatusDesc,
+            this.BenefitCategory,
             this.industryDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.DataSource = this.namadStatusBindingSource;
@@ -2077,14 +2079,14 @@
             // todayImageDataGridViewImageColumn
             // 
             this.todayImageDataGridViewImageColumn.DataPropertyName = "TodayImage";
-            this.todayImageDataGridViewImageColumn.HeaderText = "TodayImage";
+            this.todayImageDataGridViewImageColumn.HeaderText = "Today";
             this.todayImageDataGridViewImageColumn.Name = "todayImageDataGridViewImageColumn";
             this.todayImageDataGridViewImageColumn.Width = 150;
             // 
             // monthImageDataGridViewImageColumn
             // 
             this.monthImageDataGridViewImageColumn.DataPropertyName = "MonthImage";
-            this.monthImageDataGridViewImageColumn.HeaderText = "MonthImage";
+            this.monthImageDataGridViewImageColumn.HeaderText = "Month";
             this.monthImageDataGridViewImageColumn.Name = "monthImageDataGridViewImageColumn";
             this.monthImageDataGridViewImageColumn.Width = 150;
             // 
@@ -2130,6 +2132,13 @@
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.Name = "benefitAvverateInMonthDataGridViewTextBoxColumn";
             this.benefitAvverateInMonthDataGridViewTextBoxColumn.Width = 50;
             // 
+            // MoneyAndBenefitImage
+            // 
+            this.MoneyAndBenefitImage.DataPropertyName = "MoneyAndBenefitImage";
+            this.MoneyAndBenefitImage.HeaderText = "MoneyAndBenefit";
+            this.MoneyAndBenefitImage.Name = "MoneyAndBenefitImage";
+            this.MoneyAndBenefitImage.Width = 150;
+            // 
             // lastCostDataGridViewTextBoxColumn
             // 
             this.lastCostDataGridViewTextBoxColumn.DataPropertyName = "LastCost";
@@ -2150,13 +2159,6 @@
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyBenf";
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
             this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // BenefitCategory
-            // 
-            this.BenefitCategory.DataPropertyName = "BenefitCategory";
-            this.BenefitCategory.HeaderText = "Order";
-            this.BenefitCategory.Name = "BenefitCategory";
-            this.BenefitCategory.Width = 30;
             // 
             // CountOfPortion
             // 
@@ -2191,6 +2193,13 @@
             this.StatusDesc.DataPropertyName = "StatusDesc";
             this.StatusDesc.HeaderText = "StatusDesc";
             this.StatusDesc.Name = "StatusDesc";
+            // 
+            // BenefitCategory
+            // 
+            this.BenefitCategory.DataPropertyName = "BenefitCategory";
+            this.BenefitCategory.HeaderText = "Order";
+            this.BenefitCategory.Name = "BenefitCategory";
+            this.BenefitCategory.Width = 30;
             // 
             // industryDataGridViewTextBoxColumn
             // 
@@ -2445,15 +2454,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInLast2Days;
         private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInDayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInMonthDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewImageColumn MoneyAndBenefitImage;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvverageBuyCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvveragebenefitPercentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BenefitCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn CountOfPortion;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShopQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn StatusDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BenefitCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn industryDataGridViewTextBoxColumn;
     }
 }

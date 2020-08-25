@@ -45,6 +45,7 @@ namespace ChartGenerator
         public string Industry { get; set; }
         public Image TodayImage { get; set; }
         public Image MonthImage { get; set; }
+        public Image MoneyAndBenefitImage { get; set; }
         public float benefitAvverateInLast2Days { get; set; }
         public float benefitAvverateInDay { get; set; }
         public float benefitAvverateInMonth { get; set; }
@@ -54,6 +55,7 @@ namespace ChartGenerator
         public Basket BasketInfo { get; set; }
         public float MyAvveragebenefitPercent { get; set; }
         public long MyAvverageBuyCost { get; set; }
+        public long TotalCostOfPortion { get; set; }
         public int LastCost { get; set; }
         public int CountOfPortion { get; set; }
         public float BuyQueue { get; set; }

@@ -121,6 +121,31 @@ namespace ChartGenerator
             return img;
         }
 
+
+        public Image GenerateBenefitImage(BenefitStatus data)
+        {
+            Image img;
+            using (Bitmap bmp = new Bitmap(ImageWidth, ImageHeight))
+            {
+                Pen pen = new Pen(Color.Gray);
+                Pen penR = new Pen(Color.Red);
+                penR.Width = 5;
+                Pen penG = new Pen(Color.Green);
+                penG.Width = 5;
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.Clear(Color.White);
+
+                }
+
+                DrawBenefit(data, bmp);
+
+                img = Image.FromHbitmap(bmp.GetHbitmap());
+            }
+
+            return img;
+        }
+
         private double RandomNumberBetween(double minValue, double maxValue)
         {
             var next = random.NextDouble();
@@ -144,6 +169,48 @@ namespace ChartGenerator
 
             }
             return _NamadStatus;
+        }
+
+        private void DrawBenefit(BenefitStatus benefitStatus, Bitmap bmp)
+        {
+            Pen penB = new Pen(Color.Black);
+            Pen penGr = new Pen(Color.Gray);
+            Pen penG = new Pen(Color.GreenYellow);
+            Pen penGD = new Pen(Color.Green);
+            Pen penR = new Pen(Color.Orange);
+            Pen penRD = new Pen(Color.Red);
+
+            SolidBrush bB = new SolidBrush(Color.Black);
+            SolidBrush bGray = new SolidBrush(Color.Gray);
+            SolidBrush bdGray = new SolidBrush(Color.DarkGray);
+            SolidBrush bG = new SolidBrush(Color.LightGreen);
+            SolidBrush bGD = new SolidBrush(Color.DarkSeaGreen);
+            SolidBrush bR = new SolidBrush(Color.OrangeRed);
+            SolidBrush bRD = new SolidBrush(Color.Red);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                // g.Clear(Color.White);
+
+
+                g.FillRectangle(bdGray, new Rectangle(0,5 , ImageWidth, ImageHeight/3));
+
+                int portionOfPortfo = (int)((benefitStatus.CountOfPortion * benefitStatus.LastCost) * ImageWidth / benefitStatus.TotalPortfoCost);
+
+
+
+
+                g.FillRectangle(bGray, new Rectangle(0,6 , portionOfPortfo , (ImageHeight/3)-1));
+
+                //float benefitAvverage = sumofBenefit / NamadStatus.Count;
+
+                //RectangleF rectf = new RectangleF(100, 2, 50, 25);
+                //g.SmoothingMode = SmoothingMode.AntiAlias;
+                //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                //g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                //g.DrawString(benefitAvverage.ToString("#.##0.00"), new Font("Tahoma", 8), Brushes.Black, rectf);
+
+            }
         }
 
         private void DrawChanges(OrderedDictionary NamadStatus, Bitmap bmp)
@@ -221,6 +288,16 @@ namespace ChartGenerator
         public long ShopQueue;
         public int LastCost;
     }
+
+    public struct BenefitStatus
+    {
+        public int LastCost;
+        public int BuyCost;
+        public int CountOfPortion;
+        public long TotalPortfoCost;
+        public long TotalPortfoBenefit;
+    }
+
 
     public struct Line
     {

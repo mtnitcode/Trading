@@ -1133,6 +1133,7 @@ namespace TradingData
 
         private static List<NamadStatus> OrdertOnlineTradingGrid(List<NamadStatus> namadStatuses , int orderBy)
         {
+
             List<NamadStatus> namadStatuses2 = null;
             if (orderBy == 5)
             {
@@ -1150,11 +1151,11 @@ namespace TradingData
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
-            if (orderBy == 11)
+            if (orderBy == 12)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
-            if (orderBy == 12)
+            if (orderBy == 18)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.BenefitCategory).ThenBy(n => n.benefitAvverageInLast3Week).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverateInLast2Days).ToList();
             }

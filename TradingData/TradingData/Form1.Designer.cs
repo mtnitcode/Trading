@@ -215,9 +215,9 @@
             this.benefitAvverateInDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.benefitAvverateInMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MoneyAndBenefitImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myAvverageBuyCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CountOfPortion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuyQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShopQueue = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1270,9 +1270,9 @@
             this.benefitAvverateInDayDataGridViewTextBoxColumn,
             this.benefitAvverateInMonthDataGridViewTextBoxColumn,
             this.MoneyAndBenefitImage,
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn,
             this.lastCostDataGridViewTextBoxColumn,
             this.myAvverageBuyCostDataGridViewTextBoxColumn,
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn,
             this.CountOfPortion,
             this.BuyQueue,
             this.ShopQueue,
@@ -2139,6 +2139,13 @@
             this.MoneyAndBenefitImage.Name = "MoneyAndBenefitImage";
             this.MoneyAndBenefitImage.Width = 150;
             // 
+            // myAvveragebenefitPercentDataGridViewTextBoxColumn
+            // 
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.DataPropertyName = "MyAvveragebenefitPercent";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyBenf";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
+            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Width = 50;
+            // 
             // lastCostDataGridViewTextBoxColumn
             // 
             this.lastCostDataGridViewTextBoxColumn.DataPropertyName = "LastCost";
@@ -2152,13 +2159,6 @@
             this.myAvverageBuyCostDataGridViewTextBoxColumn.HeaderText = "BuyCost";
             this.myAvverageBuyCostDataGridViewTextBoxColumn.Name = "myAvverageBuyCostDataGridViewTextBoxColumn";
             this.myAvverageBuyCostDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // myAvveragebenefitPercentDataGridViewTextBoxColumn
-            // 
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.DataPropertyName = "MyAvveragebenefitPercent";
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.HeaderText = "MyBenf";
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Name = "myAvveragebenefitPercentDataGridViewTextBoxColumn";
-            this.myAvveragebenefitPercentDataGridViewTextBoxColumn.Width = 50;
             // 
             // CountOfPortion
             // 
@@ -2455,9 +2455,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInDayDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn benefitAvverateInMonthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn MoneyAndBenefitImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn myAvveragebenefitPercentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastCostDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn myAvverageBuyCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn myAvveragebenefitPercentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CountOfPortion;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyQueue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShopQueue;

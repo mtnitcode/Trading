@@ -1151,7 +1151,7 @@ namespace TradingData
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.benefitAvverateInMonth).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }
-            if (orderBy == 12)
+            if (orderBy == 10)
             {
                 namadStatuses2 = namadStatuses.OrderBy(n => n.MyAvveragebenefitPercent).ThenBy(n => n.benefitAvverateInLast2Days).ThenBy(n => n.benefitAvverageInLastWeek).ThenBy(n => n.benefitAvverageInLast2Week).ThenBy(n => n.benefitAvverageInLast3Week).ToList();
             }

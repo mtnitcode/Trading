@@ -12,6 +12,8 @@ namespace TradingData
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TradingContext : DbContext
     {
@@ -35,5 +37,14 @@ namespace TradingData
         public virtual DbSet<BasketGroup> BasketGroups { get; set; }
         public virtual DbSet<BasketOwner> BasketOwners { get; set; }
         public virtual DbSet<MasterTransaction> MasterTransactions { get; set; }
+    
+        public virtual ObjectResult<procCalculateMemberBenefits_Result> procCalculateMemberBenefits(Nullable<int> groupId)
+        {
+            var groupIdParameter = groupId.HasValue ?
+                new ObjectParameter("GroupId", groupId) :
+                new ObjectParameter("GroupId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procCalculateMemberBenefits_Result>("procCalculateMemberBenefits", groupIdParameter);
+        }
     }
 }

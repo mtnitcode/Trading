@@ -81,6 +81,7 @@ namespace ChartGenerator
     {
         public PaymentStatus()
         {
+
         }
 
         public string OwnerName { get; set; }

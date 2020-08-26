@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace TradingData
 
     public class CustomDataProvider
     {
+
+
+
 
         public static List<Basket> GetMyPortionStatus()
         {
@@ -41,8 +45,26 @@ namespace TradingData
         }
 
 
-        public static List<PaymentStatus> GetPaymentStatus()
+        public static List<PaymentStatus> GetPaymentStatus(int GroupId)
         {
+            var queryResult = null as List<PaymentStatus>;
+
+            using (var ctx = new TradingContext())
+            {
+                var idParam = new SqlParameter
+                {
+                    ParameterName = "GroupId",
+                    Value = GroupId
+                };
+                //Get student name of string type
+                queryResult = ctx.Database.SqlQuery<PaymentStatus>("exec procCalculateMemberBenefits @GroupId ", idParam).ToList<PaymentStatus>();
+
+                //Or can call SP by following way
+                //var courseList = ctx.Courses.SqlQuery("exec GetCoursesByStudentId @StudentId ", idParam).ToList<Course>();
+
+            }
+
+            /*
             string sqlQuery = @"select bsk.OwnerName , (select REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(amount)),1), '.00','') from Payments where OwnerName = bsk.OwnerName) TotalPayment
                                 , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(bsk.cost)),1), '.00','') RemainedAmount from
                                 (select ownername , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket group by OwnerName 
@@ -59,6 +81,7 @@ namespace TradingData
                 queryResult = dbn.Database.SqlQuery<PaymentStatus>(sqlQuery).ToList();
 
             }
+            */
             return queryResult;
 
         }

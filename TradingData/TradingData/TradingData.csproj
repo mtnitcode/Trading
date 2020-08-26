@@ -130,6 +130,9 @@
     <Compile Include="Payment.cs">
       <DependentUpon>NamadHistory.tt</DependentUpon>
     </Compile>
+    <Compile Include="procCalculateMemberBenefits_Result.cs">
+      <DependentUpon>NamadHistory.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowsCharting.cs" />

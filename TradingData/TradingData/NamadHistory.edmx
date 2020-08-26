@@ -133,6 +133,9 @@
           <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
           <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Function Name="procCalculateMemberBenefits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="TradingModelStoreContainer">
           <EntitySet Name="Basket" EntityType="Self.Basket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BasketGroup" EntityType="Self.BasketGroup" Schema="dbo" store:Type="Tables" />
@@ -187,6 +190,9 @@
           <EntitySet Name="BasketGroups" EntityType="TradingModel.BasketGroup" />
           <EntitySet Name="BasketOwners" EntityType="TradingModel.BasketOwner" />
           <EntitySet Name="MasterTransactions" EntityType="TradingModel.MasterTransaction" />
+          <FunctionImport Name="procCalculateMemberBenefits" ReturnType="Collection(TradingModel.procCalculateMemberBenefits_Result)">
+            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Namad">
           <Key>
@@ -289,6 +295,17 @@
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="procCalculateMemberBenefits_Result">
+          <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="OwnerPayment" Nullable="true" />
+          <Property Type="Int64" Name="OwnerWithdraw" Nullable="true" />
+          <Property Type="Int32" Name="TotalRealCost" Nullable="true" />
+          <Property Type="Int64" Name="TotalMoney" Nullable="true" />
+          <Property Type="Int32" Name="avgDays" Nullable="true" />
+          <Property Type="Double" Name="divisionOnAvgDays" Nullable="true" />
+          <Property Type="Double" Name="FinalStatus" Nullable="true" />
+          <Property Type="String" Name="Debtors" Nullable="true" MaxLength="8000" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -433,6 +450,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="procCalculateMemberBenefits" FunctionName="TradingModel.Store.procCalculateMemberBenefits">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TradingModel.procCalculateMemberBenefits_Result">
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerPayment" ColumnName="OwnerPayment" />
+                <ScalarProperty Name="OwnerWithdraw" ColumnName="OwnerWithdraw" />
+                <ScalarProperty Name="TotalRealCost" ColumnName="TotalRealCost" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="avgDays" ColumnName="avgDays" />
+                <ScalarProperty Name="divisionOnAvgDays" ColumnName="divisionOnAvgDays" />
+                <ScalarProperty Name="FinalStatus" ColumnName="FinalStatus" />
+                <ScalarProperty Name="Debtors" ColumnName="Debtors" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

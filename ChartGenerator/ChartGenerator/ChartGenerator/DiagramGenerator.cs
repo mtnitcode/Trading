@@ -206,9 +206,9 @@ namespace ChartGenerator
 
                     g.FillRectangle(bGray, new Rectangle(0, 8, (int)portionOfPortfo, (ImageHeight / 3) - 6));
 
-                    long ben = (long)benefitStatus.CountOfPortion * (benefitStatus.LastCost - benefitStatus.BuyCost) * ImageWidth;
+                    long ben = (long) (benefitStatus.LastCost - benefitStatus.BuyCost) * ImageWidth;
 
-                    float benOfPortfo = (ben / benefitStatus.TotalPortfoBenefit);
+                    float benOfPortfo = (ben / benefitStatus.BuyCost);
 
                     if(benOfPortfo > 0)
                         g.FillRectangle(bGDark, new Rectangle(0, (ImageHeight / 3) + 10, (int)benOfPortfo, (ImageHeight / 3) - 10));
@@ -216,14 +216,30 @@ namespace ChartGenerator
                         g.FillRectangle(bR, new Rectangle(0, (ImageHeight / 3) + 10, (int)Math.Abs(benOfPortfo), (ImageHeight / 3) - 10));
 
 
+                    double benef = Math.Round( (double)(benefitStatus.LastCost - benefitStatus.BuyCost) / benefitStatus.BuyCost , 3) * 100;
+
+                    RectangleF rectf = new Rectangle(ImageWidth/2, (ImageHeight / 3) + 5, ImageWidth/2, ImageHeight / 3);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                    if(benef < 0)
+                        g.DrawString(benef.ToString(), new Font("Tahoma", 8 , FontStyle.Bold), Brushes.DarkRed, rectf);
+                    else
+                        g.DrawString(benef.ToString(), new Font("Tahoma", 8 , FontStyle.Bold), Brushes.DarkGreen, rectf);
+
+                    double money = Math.Round( (double) benefitStatus.CountOfPortion * benefitStatus.LastCost / benefitStatus.TotalPortfoCost , 3) * 100;
+                    RectangleF rectf2 = new Rectangle(ImageWidth/2, 5, ImageWidth/2, ImageHeight / 3);
+
+                    g.DrawString(money.ToString() + " %", new Font("Tahoma", 8, FontStyle.Bold), Brushes.Black, rectf2);
+
+
+
+
+
                 }
                 //float benefitAvverage = sumofBenefit / NamadStatus.Count;
 
-                //RectangleF rectf = new RectangleF(100, 2, 50, 25);
-                //g.SmoothingMode = SmoothingMode.AntiAlias;
-                //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                //g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                //g.DrawString(benefitAvverage.ToString("#.##0.00"), new Font("Tahoma", 8), Brushes.Black, rectf);
 
             }
         }

@@ -185,6 +185,7 @@ namespace ChartGenerator
             SolidBrush bdGray = new SolidBrush(Color.DarkGray);
             SolidBrush bG = new SolidBrush(Color.LightGreen);
             SolidBrush bGD = new SolidBrush(Color.DarkSeaGreen);
+            SolidBrush bGDark = new SolidBrush(Color.DarkGreen);
             SolidBrush bR = new SolidBrush(Color.OrangeRed);
             SolidBrush bRD = new SolidBrush(Color.Red);
 
@@ -194,14 +195,28 @@ namespace ChartGenerator
 
 
                 g.FillRectangle(bdGray, new Rectangle(0,5 , ImageWidth, ImageHeight/3));
-
-                int portionOfPortfo = (int)((benefitStatus.CountOfPortion * benefitStatus.LastCost) * ImageWidth / benefitStatus.TotalPortfoCost);
-
+                g.FillRectangle(bG, new Rectangle(0,(ImageHeight / 3) + 5 , ImageWidth, ImageHeight / 3));
 
 
+                if (benefitStatus.TotalPortfoCost > 0)
+                {
+                    long res = (long)benefitStatus.CountOfPortion * benefitStatus.LastCost * ImageWidth;
 
-                g.FillRectangle(bGray, new Rectangle(0,6 , portionOfPortfo , (ImageHeight/3)-1));
+                    float portionOfPortfo = (res / benefitStatus.TotalPortfoCost);
 
+                    g.FillRectangle(bGray, new Rectangle(0, 8, (int)portionOfPortfo, (ImageHeight / 3) - 6));
+
+                    long ben = (long)benefitStatus.CountOfPortion * (benefitStatus.LastCost - benefitStatus.BuyCost) * ImageWidth;
+
+                    float benOfPortfo = (ben / benefitStatus.TotalPortfoBenefit);
+
+                    if(benOfPortfo > 0)
+                        g.FillRectangle(bGDark, new Rectangle(0, (ImageHeight / 3) + 10, (int)benOfPortfo, (ImageHeight / 3) - 10));
+                    else
+                        g.FillRectangle(bR, new Rectangle(0, (ImageHeight / 3) + 10, (int)Math.Abs(benOfPortfo), (ImageHeight / 3) - 10));
+
+
+                }
                 //float benefitAvverage = sumofBenefit / NamadStatus.Count;
 
                 //RectangleF rectf = new RectangleF(100, 2, 50, 25);
@@ -291,6 +306,8 @@ namespace ChartGenerator
 
     public struct BenefitStatus
     {
+
+
         public int LastCost;
         public int BuyCost;
         public int CountOfPortion;

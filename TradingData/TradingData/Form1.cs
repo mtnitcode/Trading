@@ -913,6 +913,7 @@ namespace TradingData
                 ShowHistoryFinished = false;
                 OrderedDictionary  namadStatuses = new  OrderedDictionary();
                 List<Basket> myTradingStatus = CustomDataProvider.GetMyPortionStatus();
+                _NamadBenefitDiagram.Clear();
                 long PortfoCost = 0;
                 long PortfoBenefit = 0;
 
@@ -991,7 +992,11 @@ namespace TradingData
                             n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
 
                             PortfoCost += n.CountOfPortion * n.LastCost;
-                            PortfoBenefit += (n.CountOfPortion * n.LastCost) - (n.CountOfPortion * n.MyAvverageBuyCost);
+                            PortfoBenefit +=  ((long) n.CountOfPortion * (n.LastCost) - n.MyAvverageBuyCost);
+
+                            BenefitStatus val = new BenefitStatus { BuyCost = (int)n.MyAvverageBuyCost, CountOfPortion = n.CountOfPortion, LastCost = n.LastCost };
+                            _NamadBenefitDiagram.Insert(_NamadBenefitDiagram.Count, s, val);
+
                         }
                     }
 
@@ -1004,13 +1009,27 @@ namespace TradingData
                                 if (n.MyAvveragebenefitPercent < -1* int.Parse(this.cmbBalanceInLoss.Text.Replace(" ", "").Replace("%", "")))
                                     n.StatusDesc += "Loss ";
                             }
-                            ));
+                     ));
 
                     namadStatuses.Add (s ,  n);
 
-                    BenefitStatus val = new BenefitStatus {  BuyCost = (int)n.MyAvverageBuyCost, CountOfPortion = n.CountOfPortion, LastCost = n.LastCost, TotalPortfoCost = PortfoCost , TotalPortfoBenefit = PortfoBenefit };
-                    _NamadBenefitDiagram.Insert(_NamadBenefitDiagram.Count, s, val);
                 }
+
+                for (int i = 0; i<  _NamadBenefitDiagram.Count; i++)
+                {
+
+                    var bn = (BenefitStatus)_NamadBenefitDiagram[i];
+
+                    BenefitStatus b = new BenefitStatus();
+                    b.BuyCost = bn.BuyCost;
+                    b.CountOfPortion = bn.CountOfPortion;
+                    b.LastCost = bn.LastCost;
+                    b.TotalPortfoCost = PortfoCost;
+                    b.TotalPortfoBenefit = PortfoBenefit;
+                    _NamadBenefitDiagram[i] = b;
+
+                }
+
 
                 if (GetLastNamadStatus())
                 {
@@ -1041,8 +1060,12 @@ namespace TradingData
                                 if (n.benefitAvverateInDay < 0) _TotalLoss.Add(n.benefitAvverateInDay*n.CountOfPortion*n.LastCost/100);
                                 if (n.benefitAvverateInDay > 0) _TotalBenefit.Add(n.benefitAvverateInDay * n.CountOfPortion * n.LastCost /100);
 
-                                var bn = (BenefitStatus)_NamadBenefitDiagram[s];
-                                bn.LastCost = ch2.LastCost;
+                                if (_NamadBenefitDiagram.Contains(s))
+                                {
+                                    var bn = (BenefitStatus)_NamadBenefitDiagram[s];
+
+                                    bn.LastCost = ch2.LastCost;
+                                }
                             }
                         }
                     }
@@ -1548,6 +1571,10 @@ namespace TradingData
                                 Image img = null;
                                 try
                                 {
+                                    if (nsList[e.RowIndex].Name == "شستا")
+                                    {
+
+                                    }
                                     img = dg.GenerateBenefitImage(val);
                                     if (img != null)
                                         ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[9]).Value = img;
@@ -1568,7 +1595,7 @@ namespace TradingData
             }
 
             // benefit
-            if (e.ColumnIndex == 12 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[9]).Value != null)
+            if (e.ColumnIndex == 12 && e.Value != null )
                 if (int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[10]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[11]).Value.ToString()))
                     e.CellStyle.BackColor = Color.OrangeRed;
                 else

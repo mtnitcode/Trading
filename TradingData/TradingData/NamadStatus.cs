@@ -90,4 +90,24 @@ namespace ChartGenerator
         public string PaymentDate { get; set; }
         public string PaymentType { get; set; }
     }
+
+    public class PortfoStatus
+    {
+        public PortfoStatus()
+        {
+
+        }
+
+        public string OwnerName { get; set; }
+        public string TotalPayment { get; set; }
+        public string TotalTradingValue { get; set; }
+        public string TotalMoney { get; set; }
+        public string FinalBenefitValue { get; set; }
+        public string TotalWithdraw { get; set; }
+        public string RemainedAmount { get; set; }
+        public string AvverageDays { get; set; }
+        public float PortionOfDays { get; set; }
+    }
+
+
 }

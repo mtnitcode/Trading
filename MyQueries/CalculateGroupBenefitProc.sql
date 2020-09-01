@@ -1,7 +1,7 @@
 ﻿USE [Trading]
 GO
 
-/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 8/30/2020 1:28:52 PM ******/
+/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/1/2020 2:25:19 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -32,11 +32,11 @@ with totalBenefit as
 (select sum(TotalMoney.TotalMoney)-sum(totalPeyment.totalPayment) TotalBenefit from 
 (select bsk.OwnerName  , (select sum(amount)
 from Payments where OwnerName = bsk.OwnerName and OwnerName in (select Name from BasketOwner where GroupId = @GroupId)) totalPayment from
-(select ownername , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket where GroupId = @GroupId group by OwnerName 
+(select ownername , sum(CountOfPortion*RealCost*-1) cost  from basket where GroupId = @GroupId group by OwnerName 
 union
-select b.OwnerName , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID where b.GroupId = @GroupId group by b.OwnerName  
+select b.OwnerName , sum(ShopCount*ShoppingCost) cost from BasketShopping bs inner join Basket b on b.id = bs.BasketID where b.GroupId = @GroupId group by b.OwnerName  
 union
-select p.OwnerName , sum(Amount) cost , N'پرداخت' ttype from Payments p where p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName 
+select p.OwnerName , sum(Amount) cost from Payments p where p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName 
 ) bsk 
 group by bsk.OwnerName) as totalPeyment
 inner join 
@@ -73,7 +73,7 @@ select tPayments.OwnerName , tPayments.OwnerPayment, tPaymentDuration.avgDays , 
 (select  ownerPay.tdate ,  ownerPay.OwnerName , (select count(distinct tradingdate) from NamadHistory where TradingDate >= ownerPay.tdate) dys
 from (select p.OwnerName , p.PaymentDate tdate from Payments p) ownerPay) as duration  
 group by duration.OwnerName) as tPaymentDuration,
-(select p.OwnerName , sum(Amount) OwnerPayment  from Payments p where p.TransactionType=N'پرداخت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments
+(select p.OwnerName , sum(Amount) OwnerPayment  from Payments p where p.TransactionType in (N'پرداخت' , N'برداشت') and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments
 where tPayments.OwnerName = tPaymentDuration.OwnerName ) as finalClac1 ,
 
 (select totalMoney.OwnerName , sum(totalMoney.TotalMoney) TotalMoney , sum(TRealCost) TotalRealCost from 
@@ -137,11 +137,11 @@ case when tWithdrawMoney.OwnerWithdraw is null then round( (((cast( tPayments.Ow
 	where p.TransactionType=N'برداشت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tWithdrawMoney on tMoney.OwnerName = tWithdrawMoney.OwnerName,
 
 (select bsk.OwnerName , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(bsk.cost)),1), '.00','') Debtors from
-(select ownername , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket group by OwnerName 
+(select ownername , sum(CountOfPortion*RealCost*-1) cost from basket group by OwnerName 
 union
-select b.OwnerName , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName  
+select b.OwnerName , sum(ShopCount*ShoppingCost) cost from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName  
 union
-select p.OwnerName , sum(Amount) cost , N'پرداخت' ttype from Payments p group by p.OwnerName 
+select p.OwnerName , sum(Amount) cost  from Payments p group by p.OwnerName 
 ) bsk
 group by bsk.OwnerName) tDebtors
 

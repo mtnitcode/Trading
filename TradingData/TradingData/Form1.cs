@@ -911,6 +911,9 @@ namespace TradingData
             try
             {
                 ShowHistoryFinished = false;
+                _TotalBenefit.Clear();
+                _TotalLoss.Clear();
+
                 OrderedDictionary  namadStatuses = new  OrderedDictionary();
                 List<Basket> myTradingStatus = CustomDataProvider.GetMyPortionStatus();
                 _NamadBenefitDiagram.Clear();
@@ -1707,7 +1710,7 @@ namespace TradingData
 
         private void button18_Click(object sender, EventArgs e)
         {
-            List<PaymentStatus> ststuses = CustomDataProvider.GetPaymentStatus();
+            List<PaymentStatus> ststuses = CustomDataProvider.GetPaymentStatus(1);
             if (ststuses != null)
             {
 

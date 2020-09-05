@@ -1560,52 +1560,62 @@ namespace TradingData
             // benefitImage
             if (e.ColumnIndex == 9)
             {
-                if (e.RowIndex >= 0 && e.RowIndex < nsList.Count && nsList[e.RowIndex] != null && nsList.Count > 0 && _NamadDiagramDateHistory[nsList[e.RowIndex].Name] != null)
+                try
                 {
-                    BenefitStatus val = (BenefitStatus)_NamadBenefitDiagram[nsList[e.RowIndex].Name];
-
-                    if (((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[9]).Value == null)
+                    if (e.RowIndex >= 0 && e.RowIndex < nsList.Count && nsList[e.RowIndex] != null && nsList.Count > 0 && _NamadBenefitDiagram.Contains(nsList[e.RowIndex].Name) &&  _NamadDiagramDateHistory[nsList[e.RowIndex].Name] != null)
                     {
+                        BenefitStatus val = (BenefitStatus)_NamadBenefitDiagram[nsList[e.RowIndex].Name];
 
-                        using (DiagramGenerator dg = new DiagramGenerator())
+                        if (((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[e.ColumnIndex]).Value == null)
                         {
-                            //for (int i = 0; i < 10; i++)
-                            {
 
-                                Image img = null;
-                                try
+                            using (DiagramGenerator dg = new DiagramGenerator())
+                            {
+                                //for (int i = 0; i < 10; i++)
                                 {
-                                    if (nsList[e.RowIndex].Name == "شستا")
+
+                                    Image img = null;
+                                    try
                                     {
+                                        if (nsList[e.RowIndex].Name == "شستا")
+                                        {
+
+                                        }
+                                        img = dg.GenerateBenefitImage(val);
+                                        if (img != null)
+                                            ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[9]).Value = img;
 
                                     }
-                                    img = dg.GenerateBenefitImage(val);
-                                    if (img != null)
-                                        ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[9]).Value = img;
+                                    catch (Exception ex)
+                                    {
 
-                                }
-                                catch (Exception ex)
-                                {
-
-                                    LogError(ex);
+                                        LogError(ex);
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
+                        //    KeyValuePair<string, Dictionary<int, ChangeStatus>> s in NamadDiagramHistory
+                    }
+                }
+                catch(Exception ex)
+                {
+
                 }
 
             }
 
             // benefit
-            if (e.ColumnIndex == 12 && e.Value != null )
-                if (int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[10]).Value.ToString()) < int.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[11]).Value.ToString()))
-                    e.CellStyle.BackColor = Color.OrangeRed;
-                else
-                    e.CellStyle.BackColor = Color.GreenYellow;
+            if (e.ColumnIndex == 10)
+            {
+                if (((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[10]).Value != null && e.Value != null)
+                    if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[e.ColumnIndex]).Value.ToString()) < 0)
+                        e.CellStyle.BackColor = Color.OrangeRed;
+                    else
+                        e.CellStyle.BackColor = Color.GreenYellow;
+            }
 
-            if (e.ColumnIndex == 14 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[14]).Value != null)
+            if (e.ColumnIndex == 14 && e.Value != null && ((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[e.ColumnIndex]).Value != null)
                 if (float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[e.ColumnIndex]).Value.ToString()) > float.Parse(((DataGridViewTextBoxCell)datagrid.Rows[e.RowIndex].Cells[e.ColumnIndex+1]).Value.ToString()))
                     e.CellStyle.BackColor = Color.LightSeaGreen;
 

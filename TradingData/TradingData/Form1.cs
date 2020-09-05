@@ -110,6 +110,17 @@ namespace TradingData
             //http://www.tsetmc.com/tsev2/data/marketwatchdata.aspx?HEven=0&RefId=0
             //http://www.tsetmc.com/tsev2/data/MarketWatchInit.aspx?h=0&r=0
 
+            using (var db = new TradingContext())
+            {
+                var dat = this.txtDate.Text.Replace('/', '-');
+                NamadHistory namad = db.NamadHistories.Where(n => n.TradingDate == dat).FirstOrDefault();
+                if (namad != null)
+                {
+                    MessageBox.Show("this Date has already been feched!!");
+                    return;
+                }
+            }
+
             if (_fb.ShowDialog() == DialogResult.OK)
             {
 
@@ -722,6 +733,12 @@ namespace TradingData
                 this.cmbBasketGroup.ValueMember = "Id";
                 this.cmbBasketGroup.DataSource = groups;
 
+                var owners = db.BasketOwners.ToList();
+                var owns = owners.OrderBy(x => x.Name).ToList();
+                this.cmdBuyOwner.DisplayMember = "Name";
+                this.cmdBuyOwner.ValueMember = "Id";
+                this.cmdBuyOwner.DataSource = owns;
+
                 //var dbrow = db.Database.SqlQuery("select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-')" , null);
 
             }
@@ -804,7 +821,7 @@ namespace TradingData
 
         private void txtBuyRealCost_TextChanged(object sender, EventArgs e)
         {
-
+            this.txtBuyAvvCost.Text = this.txtBuyRealCost.Text;
         }
 
         private void txtBuyCont_TextChanged(object sender, EventArgs e)

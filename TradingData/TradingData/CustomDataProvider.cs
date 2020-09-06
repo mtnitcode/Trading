@@ -45,19 +45,20 @@ namespace TradingData
         }
 
 
-        public static List<PaymentStatus> GetPaymentStatus(int GroupId)
+        public static List<PortfoStatus> GetPaymentStatus(int GroupId)
         {
-            var queryResult = null as List<PaymentStatus>;
+            var queryResult = null as List<PortfoStatus>;
 
             using (var ctx = new TradingContext())
             {
+                ctx.Database.CommandTimeout = 180;
                 var idParam = new SqlParameter
                 {
                     ParameterName = "GroupId",
                     Value = GroupId
                 };
                 //Get student name of string type
-                queryResult = ctx.Database.SqlQuery<PaymentStatus>("exec procCalculateMemberBenefits @GroupId ", idParam).ToList<PaymentStatus>();
+                queryResult = ctx.Database.SqlQuery<PortfoStatus>("exec procCalculateMemberBenefits @GroupId ", idParam).ToList<PortfoStatus>();
 
                 //Or can call SP by following way
                 //var courseList = ctx.Courses.SqlQuery("exec GetCoursesByStudentId @StudentId ", idParam).ToList<Course>();

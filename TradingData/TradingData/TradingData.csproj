@@ -159,6 +159,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ChartGenerator.NamadStatus.datasource" />
     <None Include="Properties\DataSources\ChartGenerator.PaymentStatus.datasource" />
+    <None Include="Properties\DataSources\ChartGenerator.PortfoStatus.datasource" />
     <None Include="Properties\DataSources\ChartGenerator.TradingStatus.datasource" />
     <None Include="Properties\DataSources\Payment.datasource" />
     <None Include="Properties\Settings.settings">

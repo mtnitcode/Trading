@@ -99,14 +99,15 @@ namespace ChartGenerator
         }
 
         public string OwnerName { get; set; }
-        public string TotalPayment { get; set; }
-        public string TotalTradingValue { get; set; }
-        public string TotalMoney { get; set; }
-        public string FinalBenefitValue { get; set; }
-        public string TotalWithdraw { get; set; }
-        public string RemainedAmount { get; set; }
-        public string AvverageDays { get; set; }
-        public float PortionOfDays { get; set; }
+        public long OwnerPayment { get; set; }
+        public long TotalRealCost { get; set; }
+        public long TotalMoney { get; set; }
+        public double FinalBenefitValue { get; set; }
+        public long OwnerWithdraw { get; set; }
+        public string Debtors { get; set; }
+        public int AvverageDays { get; set; }
+        public double DivisionOnAvgDays { get; set; }
+
     }
 
 

@@ -44,6 +44,16 @@ namespace TradingData
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (TradingContext db = new TradingContext())
+            {
+                var dat = this.txtDate.Text.Replace('/', '-');
+                NamadHistory namad = db.NamadHistories.Where(n => n.TradingDate == dat).FirstOrDefault();
+                if (namad != null)
+                {
+                    MessageBox.Show("this Date has already been feched!!");
+                    //return;
+                }
+            }
 
             if (_fb.ShowDialog() == DialogResult.OK)
             {
@@ -53,6 +63,8 @@ namespace TradingData
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 // Get the stream associated with the response.
+                InsertNamadHistoryFromStream(response);
+
                 Stream receiveStream = response.GetResponseStream();
 
                 // Pipes the stream to a higher level stream reader with the required encoding format. 
@@ -110,7 +122,7 @@ namespace TradingData
             //http://www.tsetmc.com/tsev2/data/marketwatchdata.aspx?HEven=0&RefId=0
             //http://www.tsetmc.com/tsev2/data/MarketWatchInit.aspx?h=0&r=0
 
-            using (var db = new TradingContext())
+            using (TradingContext db = new TradingContext())
             {
                 var dat = this.txtDate.Text.Replace('/', '-');
                 NamadHistory namad = db.NamadHistories.Where(n => n.TradingDate == dat).FirstOrDefault();
@@ -129,137 +141,140 @@ namespace TradingData
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-                // Pipes the stream to a higher level stream reader with the required encoding format. 
-                //StreamReader readStream = new StreamReader(receiveStream);
-                using (Stream dataStream = response.GetResponseStream())
+                InsertNamadHistoryFromStream(response);
+
+            }
+        }
+
+        private void InsertNamadHistoryFromStream(HttpWebResponse response)
+        {
+            using (Stream dataStream = response.GetResponseStream())
+            {
+                using (Stream output = File.OpenWrite(string.Format("{0}\\NamadIDs-{1}.txt", _fb.SelectedPath, this.txtDate.Text.Replace('/', '-'))))
                 {
-                    using (Stream output = File.OpenWrite(string.Format("{0}\\NamadIDs-{1}.txt", _fb.SelectedPath, this.txtDate.Text.Replace('/', '-'))))
+                    StreamReader reader = new StreamReader(dataStream);
+                    string responseFromServer = reader.ReadToEnd();
+
+                    string[] lines = responseFromServer.Split(';');
+
+                    string sTotal = "";
+                    using (var db = new TradingContext())
                     {
-                        StreamReader reader = new StreamReader(dataStream);
-                        string responseFromServer = reader.ReadToEnd();
-
-                        string[] lines = responseFromServer.Split(';');
-
-                        string sTotal = "";
-                        using (var db = new TradingContext())
+                        Dictionary<long, NamadHistory> InsertCollection = new Dictionary<long, NamadHistory>();
+                        int lineNumber = 1;
+                        foreach (string l in lines)
                         {
-                            Dictionary<long, NamadHistory> InsertCollection = new Dictionary<long, NamadHistory>();
-                            int lineNumber = 1;
-                            foreach (string l in lines)
+                            if (lineNumber == 1)
                             {
-                                if (lineNumber == 1)
-                                {
-                                    lineNumber++;
-                                    continue;
-                                }
                                 lineNumber++;
-                                string[] namadInfo = l.Replace('@' , ',').Split(',');
+                                continue;
+                            }
+                            lineNumber++;
+                            string[] namadInfo = l.Replace('@', ',').Split(',');
 
-                                if (namadInfo.Length >= 23)
+                            if (namadInfo.Length >= 23)
+                            {
+                                string s = namadInfo[2];
+                                s = s.Replace('ی', 'ي');
+                                s = s.Replace('ک', 'ك');
+
+                                Namad namad = db.Namads.Where(n => n.Namad1 == s).FirstOrDefault();
+                                long namadid = 0;
+                                long tseID = 0;
+                                if (namad == null)
                                 {
-                                    string s = namadInfo[2];
-                                    s = s.Replace('ی', 'ي');
-                                    s = s.Replace('ک', 'ك');
-
-                                    Namad namad = db.Namads.Where(n => n.Namad1 == s).FirstOrDefault();
-                                    long namadid = 0;
-                                    long tseID = 0;
-                                    if (namad == null)
+                                    using (var dbn = new TradingContext())
                                     {
-                                        using (var dbn = new TradingContext())
-                                        {
-                                            Namad newNamad = new Namad { tseID = long.Parse(namadInfo[0] ), GeneralCode = namadInfo[1], Namad1 = s, Name = namadInfo[3]  , IndustryID= int.Parse(namadInfo[18])};
+                                        Namad newNamad = new Namad { tseID = long.Parse(namadInfo[0]), GeneralCode = namadInfo[1], Namad1 = s, Name = namadInfo[3], IndustryID = int.Parse(namadInfo[18]) };
 
-                                            dbn.Namads.Add(newNamad);
-                                            dbn.SaveChanges();
+                                        dbn.Namads.Add(newNamad);
+                                        dbn.SaveChanges();
 
-                                            namadid = newNamad.ID;
-                                            tseID = long.Parse(namadInfo[0]);
-                                        }
+                                        namadid = newNamad.ID;
+                                        tseID = long.Parse(namadInfo[0]);
                                     }
-                                    else if (namad.tseID == null)
+                                }
+                                else if (namad.tseID == null)
+                                {
+                                    using (var dbn = new TradingContext())
                                     {
-                                        using (var dbn = new TradingContext())
-                                        {
-                                            namad.tseID = long.Parse(namadInfo[0]);
-                                            namad.GeneralCode = namadInfo[1];
-                                            tseID = long.Parse(namadInfo[0]);
-
-                                            db.SaveChanges();
-
-                                            namadid = namad.ID;
-
-                                        }
-                                    }
-                                    else
-                                    {
-                                        namadid = namad.ID;
+                                        namad.tseID = long.Parse(namadInfo[0]);
+                                        namad.GeneralCode = namadInfo[1];
                                         tseID = long.Parse(namadInfo[0]);
 
-                                    }
-                                    if (tseID > 0)
-                                    {
-                                        //GetCodalAnnoucements(namadid , tseID , _fb.SelectedPath);
-                                    }
+                                        db.SaveChanges();
 
-                                    NamadHistory nh = new NamadHistory
-                                    {
-                                        AkharinGheymat = long.Parse(namadInfo[7]),
-                                        AkharinDarsad = Math.Round((Math.Round((float.Parse(namadInfo[7]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5),
-                                        Arzesh = long.Parse(namadInfo[10]),
-                                        BishtarinGheymat = long.Parse(namadInfo[12]),
-                                        Dirooz = long.Parse(namadInfo[13]),
-                                        Hajm = long.Parse(namadInfo[9]),
-                                        AvvalinGheymat = long.Parse(namadInfo[5]),
-                                        KamtarinGheymat = long.Parse(namadInfo[11]),
-                                        NamadId = namadid,
-                                        PayaniGheymat = long.Parse(namadInfo[6]),
-                                        Tedad = long.Parse(namadInfo[8]),
-                                        TradingDate = this.txtDate.Text.Replace('/', '-'),
-                                        PayaniTaghyeer = long.Parse(namadInfo[6]) - long.Parse(namadInfo[13]),
-                                        PayaniDarsad = Math.Round( (Math.Round( (float.Parse(namadInfo[6]) / float.Parse(namadInfo[13]) ), 5)-1)*100 , 5)
-                                    };
-                                    InsertCollection.Add(tseID, nh);
-                                    sTotal += l.Replace(",", ";") + "\r\n";
+                                        namadid = namad.ID;
 
+                                    }
                                 }
                                 else
                                 {
-                                    long tTseID = long.Parse(namadInfo[0]);
-                                    NamadHistory outNamadh = new NamadHistory();
-                                    if (InsertCollection.TryGetValue(tTseID, out outNamadh))
-                                    {
-                                        if (outNamadh.BuyTedad == null)
-                                        {
-                                            outNamadh.BuyTedad = int.Parse(namadInfo[3]);
-                                            outNamadh.ShopTedad = int.Parse(namadInfo[2]);
-                                            outNamadh.BuyCost = long.Parse(namadInfo[4]);
-                                            outNamadh.ShopCost = long.Parse(namadInfo[5]);
-                                            outNamadh.BuyHajm = long.Parse(namadInfo[6]);
-                                            outNamadh.ShopHajm = long.Parse(namadInfo[7]);
-                                        }
-                                    }
-                                    sTotal += l.Replace(",", ";") + "\r\n";
+                                    namadid = namad.ID;
+                                    tseID = long.Parse(namadInfo[0]);
+
+                                }
+                                if (tseID > 0)
+                                {
+                                    //GetCodalAnnoucements(namadid , tseID , _fb.SelectedPath);
                                 }
 
+                                NamadHistory nh = new NamadHistory
+                                {
+                                    AkharinGheymat = long.Parse(namadInfo[7]),
+                                    AkharinDarsad = Math.Round((Math.Round((float.Parse(namadInfo[7]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5),
+                                    Arzesh = long.Parse(namadInfo[10]),
+                                    BishtarinGheymat = long.Parse(namadInfo[12]),
+                                    Dirooz = long.Parse(namadInfo[13]),
+                                    Hajm = long.Parse(namadInfo[9]),
+                                    AvvalinGheymat = long.Parse(namadInfo[5]),
+                                    KamtarinGheymat = long.Parse(namadInfo[11]),
+                                    NamadId = namadid,
+                                    PayaniGheymat = long.Parse(namadInfo[6]),
+                                    Tedad = long.Parse(namadInfo[8]),
+                                    TradingDate = this.txtDate.Text.Replace('/', '-'),
+                                    PayaniTaghyeer = long.Parse(namadInfo[6]) - long.Parse(namadInfo[13]),
+                                    PayaniDarsad = Math.Round((Math.Round((float.Parse(namadInfo[6]) / float.Parse(namadInfo[13])), 5) - 1) * 100, 5)
+                                };
+                                InsertCollection.Add(tseID, nh);
+                                sTotal += l.Replace(",", ";") + "\r\n";
+
                             }
-                            foreach (KeyValuePair<long,NamadHistory> entry in InsertCollection)
+                            else
                             {
-                                db.NamadHistories.Add(entry.Value);
-
-                                // do something with entry.Value or entry.Key
+                                long tTseID = long.Parse(namadInfo[0]);
+                                NamadHistory outNamadh = new NamadHistory();
+                                if (InsertCollection.TryGetValue(tTseID, out outNamadh))
+                                {
+                                    if (outNamadh.BuyTedad == null)
+                                    {
+                                        outNamadh.BuyTedad = int.Parse(namadInfo[3]);
+                                        outNamadh.ShopTedad = int.Parse(namadInfo[2]);
+                                        outNamadh.BuyCost = long.Parse(namadInfo[4]);
+                                        outNamadh.ShopCost = long.Parse(namadInfo[5]);
+                                        outNamadh.BuyHajm = long.Parse(namadInfo[6]);
+                                        outNamadh.ShopHajm = long.Parse(namadInfo[7]);
+                                    }
+                                }
+                                sTotal += l.Replace(",", ";") + "\r\n";
                             }
-                            db.SaveChanges();
+
                         }
+                        foreach (KeyValuePair<long, NamadHistory> entry in InsertCollection)
+                        {
+                            db.NamadHistories.Add(entry.Value);
 
-                        Byte[] info = new UTF8Encoding(true).GetBytes(sTotal);
-
-                        output.Write(info,  0 , info.Length);
-
-                        MessageBox.Show("Insersion and making file is finished");
+                            // do something with entry.Value or entry.Key
+                        }
+                        db.SaveChanges();
                     }
-                }
 
+                    Byte[] info = new UTF8Encoding(true).GetBytes(sTotal);
+
+                    output.Write(info, 0, info.Length);
+
+                    MessageBox.Show("Insersion and making file is finished");
+                }
             }
         }
 
@@ -735,9 +750,15 @@ namespace TradingData
 
                 var owners = db.BasketOwners.ToList();
                 var owns = owners.OrderBy(x => x.Name).ToList();
+                this.cmdBuyOwner.Items.Clear();
                 this.cmdBuyOwner.DisplayMember = "Name";
                 this.cmdBuyOwner.ValueMember = "Id";
                 this.cmdBuyOwner.DataSource = owns;
+
+                this.cmbTradingStatusOwners.Items.Clear();
+                this.cmbTradingStatusOwners.DisplayMember = "Name";
+                this.cmbTradingStatusOwners.ValueMember = "Id";
+                this.cmbTradingStatusOwners.DataSource = owns;
 
                 //var dbrow = db.Database.SqlQuery("select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-')" , null);
 
@@ -1594,10 +1615,7 @@ namespace TradingData
                                     Image img = null;
                                     try
                                     {
-                                        if (nsList[e.RowIndex].Name == "شستا")
-                                        {
 
-                                        }
                                         img = dg.GenerateBenefitImage(val);
                                         if (img != null)
                                             ((DataGridViewImageCell)datagrid.Rows[e.RowIndex].Cells[9]).Value = img;
@@ -1737,7 +1755,7 @@ namespace TradingData
 
         private void button18_Click(object sender, EventArgs e)
         {
-            List<PaymentStatus> ststuses = CustomDataProvider.GetPaymentStatus(1);
+            List<PortfoStatus> ststuses = CustomDataProvider.GetPaymentStatus(1);
             if (ststuses != null)
             {
 
@@ -1886,6 +1904,17 @@ namespace TradingData
         private void cmbBasketIds_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgTradingStatus_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+            
+            //if (this.dgTradingStatus.Columns[0].HeaderText == "OwnerName")
+            //{
+            //    namadStatuses2 = ((List<PaymentStatus>)this.paymentStatusBindingSource1.DataSource).OrderBy(n => n.OwnerName).ThenBy(n => n.PaymentDate).ToList();
+            //    this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            //}
         }
     }
 }

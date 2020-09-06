@@ -107,10 +107,14 @@
             this.txtTotalCost = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dgTradingStatus = new System.Windows.Forms.DataGridView();
             this.BrokerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewBuyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewShopListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button20 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
             this.cmbTradingStatusOwners = new System.Windows.Forms.ComboBox();
@@ -167,14 +171,27 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewBuyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewShopListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.dgTradingHistory = new System.Windows.Forms.DataGridView();
+            this.dgFinanceHistory = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OwnerPayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalRealCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OwnerWithdraw = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Debtors = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DivisionOnAvgDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalPaymentDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remainedAmountDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentStatusBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finalBenefitValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avverageDaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.portfoStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.reportDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.basketIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -194,6 +211,19 @@
             this.shopAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buyAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tradingStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ownerNameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tradingDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tradingTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tradingHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ownerNameDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactiontDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalRemainedPaymentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.financeHistoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.namadNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.countOfPortionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toDayCostDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -226,16 +256,14 @@
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AllNamadsbindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.portfoStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ownerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownerPaymentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalRealCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.finalBenefitValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownerWithdrawDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.debtorsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.avverageDaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.divisionOnAvgDaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.dgTotalTradingHistory = new System.Windows.Forms.DataGridView();
+            this.tradingHistoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tradingDateDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countOfPortionDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namadDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tradingTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalValueDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -251,6 +279,7 @@
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.contextMenuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -267,14 +296,24 @@
             this.pnChartRelControls.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.contextMenuStrip2.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTradingHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFinanceHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.portfoStatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradingHistoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financeHistoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllNamadsbindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.portfoStatusBindingSource)).BeginInit();
+            this.tabPage11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTotalTradingHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradingHistoryBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -681,14 +720,14 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ownerNameDataGridViewTextBoxColumn,
-            this.ownerPaymentDataGridViewTextBoxColumn,
-            this.totalRealCostDataGridViewTextBoxColumn,
+            this.OwnerPayment,
+            this.TotalRealCost,
+            this.OwnerWithdraw,
+            this.Debtors,
+            this.DivisionOnAvgDays,
             this.totalMoneyDataGridViewTextBoxColumn,
             this.finalBenefitValueDataGridViewTextBoxColumn,
-            this.ownerWithdrawDataGridViewTextBoxColumn,
-            this.debtorsDataGridViewTextBoxColumn,
-            this.avverageDaysDataGridViewTextBoxColumn,
-            this.divisionOnAvgDaysDataGridViewTextBoxColumn});
+            this.avverageDaysDataGridViewTextBoxColumn});
             this.dataGridView3.DataSource = this.portfoStatusBindingSource;
             this.dataGridView3.Location = new System.Drawing.Point(611, 19);
             this.dataGridView3.Name = "dataGridView3";
@@ -1118,6 +1157,16 @@
             this.tabPage3.Text = "TradingStatus";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(203, 18);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(117, 17);
+            this.checkBox1.TabIndex = 43;
+            this.checkBox1.Text = "Show Existed Only ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1130,7 +1179,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.dgTradingStatus);
+            this.splitContainer2.Panel1.Controls.Add(this.tabControl3);
             // 
             // splitContainer2.Panel2
             // 
@@ -1165,9 +1214,9 @@
             this.BrokerName});
             this.dgTradingStatus.DataSource = this.tradingStatusBindingSource;
             this.dgTradingStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgTradingStatus.Location = new System.Drawing.Point(0, 0);
+            this.dgTradingStatus.Location = new System.Drawing.Point(3, 3);
             this.dgTradingStatus.Name = "dgTradingStatus";
-            this.dgTradingStatus.Size = new System.Drawing.Size(1085, 617);
+            this.dgTradingStatus.Size = new System.Drawing.Size(1071, 585);
             this.dgTradingStatus.TabIndex = 12;
             this.dgTradingStatus.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTradingStatus_CellEndEdit);
             this.dgTradingStatus.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgTradingStatus_ColumnHeaderMouseClick);
@@ -1194,6 +1243,26 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(451, 617);
             this.dataGridView4.TabIndex = 0;
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewBuyListToolStripMenuItem,
+            this.viewShopListToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(151, 48);
+            // 
+            // viewBuyListToolStripMenuItem
+            // 
+            this.viewBuyListToolStripMenuItem.Name = "viewBuyListToolStripMenuItem";
+            this.viewBuyListToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.viewBuyListToolStripMenuItem.Text = "View Buy List";
+            // 
+            // viewShopListToolStripMenuItem
+            // 
+            this.viewShopListToolStripMenuItem.Name = "viewShopListToolStripMenuItem";
+            this.viewShopListToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.viewShopListToolStripMenuItem.Text = "View Shop List";
             // 
             // button20
             // 
@@ -1868,35 +1937,122 @@
             this.timer2.Interval = 300;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // checkBox1
+            // tabControl3
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(203, 18);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(117, 17);
-            this.checkBox1.TabIndex = 43;
-            this.checkBox1.Text = "Show Existed Only ";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.tabControl3.Controls.Add(this.tabPage8);
+            this.tabControl3.Controls.Add(this.tabPage9);
+            this.tabControl3.Controls.Add(this.tabPage10);
+            this.tabControl3.Controls.Add(this.tabPage11);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(1085, 617);
+            this.tabControl3.TabIndex = 13;
             // 
-            // contextMenuStrip2
+            // tabPage8
             // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewBuyListToolStripMenuItem,
-            this.viewShopListToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(151, 48);
+            this.tabPage8.Controls.Add(this.dgTradingStatus);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(1077, 591);
+            this.tabPage8.TabIndex = 0;
+            this.tabPage8.Text = "Basket Status";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // viewBuyListToolStripMenuItem
+            // tabPage9
             // 
-            this.viewBuyListToolStripMenuItem.Name = "viewBuyListToolStripMenuItem";
-            this.viewBuyListToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.viewBuyListToolStripMenuItem.Text = "View Buy List";
+            this.tabPage9.Controls.Add(this.dgTradingHistory);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(1077, 591);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "Trading History";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
-            // viewShopListToolStripMenuItem
+            // tabPage10
             // 
-            this.viewShopListToolStripMenuItem.Name = "viewShopListToolStripMenuItem";
-            this.viewShopListToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.viewShopListToolStripMenuItem.Text = "View Shop List";
+            this.tabPage10.Controls.Add(this.dgFinanceHistory);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(1077, 591);
+            this.tabPage10.TabIndex = 2;
+            this.tabPage10.Text = "Finance Transactions History";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // dgTradingHistory
+            // 
+            this.dgTradingHistory.AutoGenerateColumns = false;
+            this.dgTradingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTradingHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ownerNameDataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn17,
+            this.tradingDateDataGridViewTextBoxColumn1,
+            this.namadDataGridViewTextBoxColumn,
+            this.tradingTypeDataGridViewTextBoxColumn,
+            this.totalValueDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn});
+            this.dgTradingHistory.DataSource = this.tradingHistoryBindingSource;
+            this.dgTradingHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTradingHistory.Location = new System.Drawing.Point(3, 3);
+            this.dgTradingHistory.Name = "dgTradingHistory";
+            this.dgTradingHistory.Size = new System.Drawing.Size(1071, 585);
+            this.dgTradingHistory.TabIndex = 0;
+            // 
+            // dgFinanceHistory
+            // 
+            this.dgFinanceHistory.AutoGenerateColumns = false;
+            this.dgFinanceHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFinanceHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ownerNameDataGridViewTextBoxColumn4,
+            this.transactiontDateDataGridViewTextBoxColumn,
+            this.amountDataGridViewTextBoxColumn,
+            this.transactionTypeDataGridViewTextBoxColumn,
+            this.totalRemainedPaymentDataGridViewTextBoxColumn});
+            this.dgFinanceHistory.DataSource = this.financeHistoryBindingSource;
+            this.dgFinanceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgFinanceHistory.Location = new System.Drawing.Point(0, 0);
+            this.dgFinanceHistory.Name = "dgFinanceHistory";
+            this.dgFinanceHistory.Size = new System.Drawing.Size(1077, 591);
+            this.dgFinanceHistory.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "CountOfPortion";
+            this.dataGridViewTextBoxColumn17.HeaderText = "CountOfPortion";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            // 
+            // OwnerPayment
+            // 
+            this.OwnerPayment.DataPropertyName = "OwnerPayment";
+            this.OwnerPayment.HeaderText = "OwnerPayment";
+            this.OwnerPayment.Name = "OwnerPayment";
+            // 
+            // TotalRealCost
+            // 
+            this.TotalRealCost.DataPropertyName = "TotalRealCost";
+            this.TotalRealCost.HeaderText = "TotalRealCost";
+            this.TotalRealCost.Name = "TotalRealCost";
+            // 
+            // OwnerWithdraw
+            // 
+            this.OwnerWithdraw.DataPropertyName = "OwnerWithdraw";
+            this.OwnerWithdraw.HeaderText = "OwnerWithdraw";
+            this.OwnerWithdraw.Name = "OwnerWithdraw";
+            // 
+            // Debtors
+            // 
+            this.Debtors.DataPropertyName = "Debtors";
+            this.Debtors.HeaderText = "Debtors";
+            this.Debtors.Name = "Debtors";
+            // 
+            // DivisionOnAvgDays
+            // 
+            this.DivisionOnAvgDays.DataPropertyName = "DivisionOnAvgDays";
+            this.DivisionOnAvgDays.HeaderText = "DivisionOnAvgDays";
+            this.DivisionOnAvgDays.Name = "DivisionOnAvgDays";
             // 
             // ownerNameDataGridViewTextBoxColumn2
             // 
@@ -1919,6 +2075,34 @@
             // paymentStatusBindingSource1
             // 
             this.paymentStatusBindingSource1.DataSource = typeof(ChartGenerator.PaymentStatus);
+            // 
+            // ownerNameDataGridViewTextBoxColumn
+            // 
+            this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn.HeaderText = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
+            // 
+            // totalMoneyDataGridViewTextBoxColumn
+            // 
+            this.totalMoneyDataGridViewTextBoxColumn.DataPropertyName = "TotalMoney";
+            this.totalMoneyDataGridViewTextBoxColumn.HeaderText = "TotalMoney";
+            this.totalMoneyDataGridViewTextBoxColumn.Name = "totalMoneyDataGridViewTextBoxColumn";
+            // 
+            // finalBenefitValueDataGridViewTextBoxColumn
+            // 
+            this.finalBenefitValueDataGridViewTextBoxColumn.DataPropertyName = "FinalBenefitValue";
+            this.finalBenefitValueDataGridViewTextBoxColumn.HeaderText = "FinalBenefitValue";
+            this.finalBenefitValueDataGridViewTextBoxColumn.Name = "finalBenefitValueDataGridViewTextBoxColumn";
+            // 
+            // avverageDaysDataGridViewTextBoxColumn
+            // 
+            this.avverageDaysDataGridViewTextBoxColumn.DataPropertyName = "AvverageDays";
+            this.avverageDaysDataGridViewTextBoxColumn.HeaderText = "AvverageDays";
+            this.avverageDaysDataGridViewTextBoxColumn.Name = "avverageDaysDataGridViewTextBoxColumn";
+            // 
+            // portfoStatusBindingSource
+            // 
+            this.portfoStatusBindingSource.DataSource = typeof(ChartGenerator.PortfoStatus);
             // 
             // reportDateDataGridViewTextBoxColumn
             // 
@@ -2045,6 +2229,80 @@
             // tradingStatusBindingSource
             // 
             this.tradingStatusBindingSource.DataSource = typeof(ChartGenerator.TradingStatus);
+            // 
+            // ownerNameDataGridViewTextBoxColumn3
+            // 
+            this.ownerNameDataGridViewTextBoxColumn3.DataPropertyName = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn3.HeaderText = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn3.Name = "ownerNameDataGridViewTextBoxColumn3";
+            // 
+            // tradingDateDataGridViewTextBoxColumn1
+            // 
+            this.tradingDateDataGridViewTextBoxColumn1.DataPropertyName = "TradingDate";
+            this.tradingDateDataGridViewTextBoxColumn1.HeaderText = "TradingDate";
+            this.tradingDateDataGridViewTextBoxColumn1.Name = "tradingDateDataGridViewTextBoxColumn1";
+            // 
+            // namadDataGridViewTextBoxColumn
+            // 
+            this.namadDataGridViewTextBoxColumn.DataPropertyName = "Namad";
+            this.namadDataGridViewTextBoxColumn.HeaderText = "Namad";
+            this.namadDataGridViewTextBoxColumn.Name = "namadDataGridViewTextBoxColumn";
+            // 
+            // tradingTypeDataGridViewTextBoxColumn
+            // 
+            this.tradingTypeDataGridViewTextBoxColumn.DataPropertyName = "TradingType";
+            this.tradingTypeDataGridViewTextBoxColumn.HeaderText = "TradingType";
+            this.tradingTypeDataGridViewTextBoxColumn.Name = "tradingTypeDataGridViewTextBoxColumn";
+            // 
+            // totalValueDataGridViewTextBoxColumn
+            // 
+            this.totalValueDataGridViewTextBoxColumn.DataPropertyName = "TotalValue";
+            this.totalValueDataGridViewTextBoxColumn.HeaderText = "TotalValue";
+            this.totalValueDataGridViewTextBoxColumn.Name = "totalValueDataGridViewTextBoxColumn";
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // tradingHistoryBindingSource
+            // 
+            this.tradingHistoryBindingSource.DataSource = typeof(ChartGenerator.TradingHistory);
+            // 
+            // ownerNameDataGridViewTextBoxColumn4
+            // 
+            this.ownerNameDataGridViewTextBoxColumn4.DataPropertyName = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn4.HeaderText = "OwnerName";
+            this.ownerNameDataGridViewTextBoxColumn4.Name = "ownerNameDataGridViewTextBoxColumn4";
+            // 
+            // transactiontDateDataGridViewTextBoxColumn
+            // 
+            this.transactiontDateDataGridViewTextBoxColumn.DataPropertyName = "TransactiontDate";
+            this.transactiontDateDataGridViewTextBoxColumn.HeaderText = "TransactiontDate";
+            this.transactiontDateDataGridViewTextBoxColumn.Name = "transactiontDateDataGridViewTextBoxColumn";
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // transactionTypeDataGridViewTextBoxColumn
+            // 
+            this.transactionTypeDataGridViewTextBoxColumn.DataPropertyName = "TransactionType";
+            this.transactionTypeDataGridViewTextBoxColumn.HeaderText = "TransactionType";
+            this.transactionTypeDataGridViewTextBoxColumn.Name = "transactionTypeDataGridViewTextBoxColumn";
+            // 
+            // totalRemainedPaymentDataGridViewTextBoxColumn
+            // 
+            this.totalRemainedPaymentDataGridViewTextBoxColumn.DataPropertyName = "TotalRemainedPayment";
+            this.totalRemainedPaymentDataGridViewTextBoxColumn.HeaderText = "TotalRemainedPayment";
+            this.totalRemainedPaymentDataGridViewTextBoxColumn.Name = "totalRemainedPaymentDataGridViewTextBoxColumn";
+            // 
+            // financeHistoryBindingSource
+            // 
+            this.financeHistoryBindingSource.DataSource = typeof(ChartGenerator.FinanceHistory);
             // 
             // namadNameDataGridViewTextBoxColumn1
             // 
@@ -2252,63 +2510,67 @@
             // 
             this.paymentStatusBindingSource.DataSource = typeof(ChartGenerator.PaymentStatus);
             // 
-            // portfoStatusBindingSource
+            // tabPage11
             // 
-            this.portfoStatusBindingSource.DataSource = typeof(ChartGenerator.PortfoStatus);
+            this.tabPage11.Controls.Add(this.dgTotalTradingHistory);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(1077, 591);
+            this.tabPage11.TabIndex = 3;
+            this.tabPage11.Text = "Total Trading History";
+            this.tabPage11.UseVisualStyleBackColor = true;
             // 
-            // ownerNameDataGridViewTextBoxColumn
+            // dgTotalTradingHistory
             // 
-            this.ownerNameDataGridViewTextBoxColumn.DataPropertyName = "OwnerName";
-            this.ownerNameDataGridViewTextBoxColumn.HeaderText = "OwnerName";
-            this.ownerNameDataGridViewTextBoxColumn.Name = "ownerNameDataGridViewTextBoxColumn";
+            this.dgTotalTradingHistory.AutoGenerateColumns = false;
+            this.dgTotalTradingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTotalTradingHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tradingDateDataGridViewTextBoxColumn2,
+            this.countOfPortionDataGridViewTextBoxColumn2,
+            this.namadDataGridViewTextBoxColumn1,
+            this.tradingTypeDataGridViewTextBoxColumn1,
+            this.totalValueDataGridViewTextBoxColumn1});
+            this.dgTotalTradingHistory.DataSource = this.tradingHistoryBindingSource1;
+            this.dgTotalTradingHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTotalTradingHistory.Location = new System.Drawing.Point(3, 3);
+            this.dgTotalTradingHistory.Name = "dgTotalTradingHistory";
+            this.dgTotalTradingHistory.Size = new System.Drawing.Size(1071, 585);
+            this.dgTotalTradingHistory.TabIndex = 0;
             // 
-            // ownerPaymentDataGridViewTextBoxColumn
+            // tradingHistoryBindingSource1
             // 
-            this.ownerPaymentDataGridViewTextBoxColumn.DataPropertyName = "OwnerPayment";
-            this.ownerPaymentDataGridViewTextBoxColumn.HeaderText = "OwnerPayment";
-            this.ownerPaymentDataGridViewTextBoxColumn.Name = "ownerPaymentDataGridViewTextBoxColumn";
+            this.tradingHistoryBindingSource1.DataSource = typeof(ChartGenerator.TradingHistory);
             // 
-            // totalRealCostDataGridViewTextBoxColumn
+            // tradingDateDataGridViewTextBoxColumn2
             // 
-            this.totalRealCostDataGridViewTextBoxColumn.DataPropertyName = "TotalRealCost";
-            this.totalRealCostDataGridViewTextBoxColumn.HeaderText = "TotalRealCost";
-            this.totalRealCostDataGridViewTextBoxColumn.Name = "totalRealCostDataGridViewTextBoxColumn";
+            this.tradingDateDataGridViewTextBoxColumn2.DataPropertyName = "TradingDate";
+            this.tradingDateDataGridViewTextBoxColumn2.HeaderText = "TradingDate";
+            this.tradingDateDataGridViewTextBoxColumn2.Name = "tradingDateDataGridViewTextBoxColumn2";
             // 
-            // totalMoneyDataGridViewTextBoxColumn
+            // countOfPortionDataGridViewTextBoxColumn2
             // 
-            this.totalMoneyDataGridViewTextBoxColumn.DataPropertyName = "TotalMoney";
-            this.totalMoneyDataGridViewTextBoxColumn.HeaderText = "TotalMoney";
-            this.totalMoneyDataGridViewTextBoxColumn.Name = "totalMoneyDataGridViewTextBoxColumn";
+            this.countOfPortionDataGridViewTextBoxColumn2.DataPropertyName = "CountOfPortion";
+            this.countOfPortionDataGridViewTextBoxColumn2.HeaderText = "CountOfPortion";
+            this.countOfPortionDataGridViewTextBoxColumn2.Name = "countOfPortionDataGridViewTextBoxColumn2";
             // 
-            // finalBenefitValueDataGridViewTextBoxColumn
+            // namadDataGridViewTextBoxColumn1
             // 
-            this.finalBenefitValueDataGridViewTextBoxColumn.DataPropertyName = "FinalBenefitValue";
-            this.finalBenefitValueDataGridViewTextBoxColumn.HeaderText = "FinalBenefitValue";
-            this.finalBenefitValueDataGridViewTextBoxColumn.Name = "finalBenefitValueDataGridViewTextBoxColumn";
+            this.namadDataGridViewTextBoxColumn1.DataPropertyName = "Namad";
+            this.namadDataGridViewTextBoxColumn1.HeaderText = "Namad";
+            this.namadDataGridViewTextBoxColumn1.Name = "namadDataGridViewTextBoxColumn1";
             // 
-            // ownerWithdrawDataGridViewTextBoxColumn
+            // tradingTypeDataGridViewTextBoxColumn1
             // 
-            this.ownerWithdrawDataGridViewTextBoxColumn.DataPropertyName = "OwnerWithdraw";
-            this.ownerWithdrawDataGridViewTextBoxColumn.HeaderText = "OwnerWithdraw";
-            this.ownerWithdrawDataGridViewTextBoxColumn.Name = "ownerWithdrawDataGridViewTextBoxColumn";
+            this.tradingTypeDataGridViewTextBoxColumn1.DataPropertyName = "TradingType";
+            this.tradingTypeDataGridViewTextBoxColumn1.HeaderText = "TradingType";
+            this.tradingTypeDataGridViewTextBoxColumn1.Name = "tradingTypeDataGridViewTextBoxColumn1";
             // 
-            // debtorsDataGridViewTextBoxColumn
+            // totalValueDataGridViewTextBoxColumn1
             // 
-            this.debtorsDataGridViewTextBoxColumn.DataPropertyName = "Debtors";
-            this.debtorsDataGridViewTextBoxColumn.HeaderText = "Debtors";
-            this.debtorsDataGridViewTextBoxColumn.Name = "debtorsDataGridViewTextBoxColumn";
-            // 
-            // avverageDaysDataGridViewTextBoxColumn
-            // 
-            this.avverageDaysDataGridViewTextBoxColumn.DataPropertyName = "AvverageDays";
-            this.avverageDaysDataGridViewTextBoxColumn.HeaderText = "AvverageDays";
-            this.avverageDaysDataGridViewTextBoxColumn.Name = "avverageDaysDataGridViewTextBoxColumn";
-            // 
-            // divisionOnAvgDaysDataGridViewTextBoxColumn
-            // 
-            this.divisionOnAvgDaysDataGridViewTextBoxColumn.DataPropertyName = "DivisionOnAvgDays";
-            this.divisionOnAvgDaysDataGridViewTextBoxColumn.HeaderText = "DivisionOnAvgDays";
-            this.divisionOnAvgDaysDataGridViewTextBoxColumn.Name = "divisionOnAvgDaysDataGridViewTextBoxColumn";
+            this.totalValueDataGridViewTextBoxColumn1.DataPropertyName = "TotalValue";
+            this.totalValueDataGridViewTextBoxColumn1.HeaderText = "TotalValue";
+            this.totalValueDataGridViewTextBoxColumn1.Name = "totalValueDataGridViewTextBoxColumn1";
             // 
             // Form1
             // 
@@ -2342,6 +2604,7 @@
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgTradingStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.contextMenuStrip2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -2361,14 +2624,24 @@
             this.pnChartRelControls.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.contextMenuStrip2.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTradingHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFinanceHistory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.portfoStatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradingHistoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.financeHistoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tradingStatusBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.namadStatusBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllNamadsbindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentStatusBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.portfoStatusBindingSource)).EndInit();
+            this.tabPage11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTotalTradingHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradingHistoryBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2571,16 +2844,50 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem viewBuyListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewShopListToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerPaymentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalRealCostDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn finalBenefitValueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerWithdrawDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn debtorsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn avverageDaysDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn divisionOnAvgDaysDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource portfoStatusBindingSource;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.DataGridView dgTradingHistory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource tradingHistoryBindingSource;
+        private System.Windows.Forms.DataGridView dgFinanceHistory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn transactiontDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn transactionTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalRemainedPaymentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource financeHistoryBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tradingDateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tradingTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalValueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ownerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnerPayment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalRealCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnerWithdraw;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Debtors;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DivisionOnAvgDays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalMoneyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finalBenefitValueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avverageDaysDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.DataGridView dgTotalTradingHistory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tradingDateDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countOfPortionDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namadDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tradingTypeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalValueDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.BindingSource tradingHistoryBindingSource1;
     }
 }
 

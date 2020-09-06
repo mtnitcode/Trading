@@ -1759,7 +1759,7 @@ namespace TradingData
             if (ststuses != null)
             {
 
-                this.paymentStatusBindingSource.DataSource = ststuses;
+                this.portfoStatusBindingSource.DataSource = ststuses;
             }
 
             List<PaymentStatus> ststuses1 = CustomDataProvider.GetPaymentStatusDetail();
@@ -1807,6 +1807,29 @@ namespace TradingData
 
                 this.tradingStatusBindingSource1.DataSource = ststuses1;
             }
+
+            List<TradingHistory> trds = CustomDataProvider.GetTradingDetail();
+            if (trds != null)
+            {
+
+                this.tradingHistoryBindingSource.DataSource = trds;
+            }
+
+            List<TradingHistory> trds1 = CustomDataProvider.GetTotalTrading();
+            if (trds1 != null)
+            {
+
+                this.tradingHistoryBindingSource1.DataSource = trds1;
+            }
+
+            List<FinanceHistory> fs = CustomDataProvider.GetFinanceTransactionDetail();
+            if (trds != null)
+            {
+
+                this.financeHistoryBindingSource.DataSource = fs;
+            }
+
+
         }
 
         private void dgTradingStatus_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -132,7 +132,7 @@ namespace TradingData
         public static List<TradingStatus> GetBasketTotalStatus()
         {
 
-            string sqlQuery = @"select trade.NamadName, sum(trade.CountOfPortion) CountOfPortion , trade.ToDayCost, 
+            string sqlQuery = @"select trade.NamadName, sum(trade.RemainedPortion) CountOfPortion , trade.ToDayCost, 
                         sum(trade.TotalMonyeAmount) TotalMonyeAmount from (
                         select replace(REPLACE(dbo.GregorianToPersian(CONVERT (date, SYSDATETIMEOFFSET()) ),'-','/') , '/' ,'-') ReportDate, nmd.Name NamadDesc , nmd.namad  NamadName,
                          b.CountOfPortion 
@@ -183,6 +183,68 @@ namespace TradingData
             }
             return queryResult;
         }
+
+
+        public static List<TradingHistory> GetTradingDetail()
+        {
+            string sqlQuery = @"select b.OwnerName ,b.id id, shoppingdate TradingDate , b.Namad , bs.ShopCount CountOfPortion , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(ShopCount*ShoppingCost)*-1),1), '.00','') TotalValue , N'فروش' TradingType from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName , ShoppingDate ,b.id, b.namad , bs.ShopCount 
+            union
+            select ownername 'خرید/فروش', id id, tradingdate TradingDate , Namad , CountOfPortion, REPLACE(CONVERT(VARCHAR, CONVERT(MONEY, sum(CountOfPortion* RealCost)),1), '.00','') TotalValue  , N'خرید' TradingType from basket group by TradingDate, id, OwnerName, Namad, CountOfPortion
+            order by TradingDate , b.OwnerName , b.Namad";
+
+
+            var queryResult = null as List<TradingHistory>;
+            using (var dbn = new TradingContext())
+            {
+
+                queryResult = dbn.Database.SqlQuery<TradingHistory>(sqlQuery).ToList();
+
+            }
+            return queryResult;
+        }
+        public static List<TradingHistory> GetTotalTrading()
+        {
+            string sqlQuery = @"select TotalTrading.TradingDate , TotalTrading.Namad , sum(TotalTrading.CountOfPortion) CountOfPortion, REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(TotalTrading.TotalValue)),1), '.00','') TotalValue, TotalTrading.TradingType from (
+                            select  b.ownername , b.id , shoppingdate TradingDate , b.Namad , bs.ShopCount CountOfPortion , sum(ShopCount*ShoppingCost)*-1 TotalValue , N'فروش' TradingType from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName , ShoppingDate ,b.id, b.namad , bs.ShopCount 
+                            union
+                            select ownername 'خرید/فروش', id id, tradingdate TradingDate , Namad , CountOfPortion,  sum(CountOfPortion* RealCost) TotalValue  , N'خرید' TradingType from basket group by TradingDate, id, OwnerName, Namad, CountOfPortion
+                            ) TotalTrading
+                            group by TotalTrading.TradingDate , TotalTrading.Namad, TotalTrading.TradingType
+                            order by  TotalTrading.Namad ,TotalTrading.TradingDate ";
+
+
+            var queryResult = null as List<TradingHistory>;
+            using (var dbn = new TradingContext())
+            {
+
+                queryResult = dbn.Database.SqlQuery<TradingHistory>(sqlQuery).ToList();
+
+            }
+            return queryResult;
+        }
+        public static List<FinanceHistory> GetFinanceTransactionDetail()
+        {
+            string sqlQuery = @"select bsk.OwnerName , (select REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(amount)),1), '.00','') from Payments where OwnerName = bsk.OwnerName and PaymentDate <= bsk.tdate) TotalRemainedPayment , bsk.tdate TransactiontDate
+                                , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,bsk.cost),1), '.00','') Amount, bsk.ttype TransactionType from
+                                (select ownername , tradingdate tdate , sum(CountOfPortion*RealCost*-1) cost , N'خرید' ttype from basket group by OwnerName , TradingDate
+                                union
+                                select b.OwnerName , shoppingdate tdate , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName , ShoppingDate
+                                union
+                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'پرداخت' ttype from Payments p group by p.OwnerName , p.PaymentDate
+                                ) bsk
+                                order by bsk.OwnerName , bsk.tdate";
+
+
+            var queryResult = null as List<FinanceHistory>;
+            using (var dbn = new TradingContext())
+            {
+
+                queryResult = dbn.Database.SqlQuery<FinanceHistory>(sqlQuery).ToList();
+
+            }
+            return queryResult;
+        }
+
 
     }
 }

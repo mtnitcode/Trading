@@ -91,6 +91,36 @@ namespace ChartGenerator
         public string PaymentType { get; set; }
     }
 
+    public class FinanceHistory
+    {
+        public FinanceHistory()
+        {
+
+        }
+
+        public string OwnerName { get; set; }
+        public string TransactiontDate { get; set; }
+        public string Amount { get; set; }
+        public string TransactionType { get; set; }
+        public string TotalRemainedPayment { get; set; }
+    }
+
+    public class TradingHistory
+    {
+        public TradingHistory()
+        {
+
+        }
+
+        public string OwnerName { get; set; }
+        public string TradingDate { get; set; }
+        public int CountOfPortion { get; set; }
+        public string Namad { get; set; }
+        public string TradingType { get; set; }
+        public string TotalValue { get; set; }
+        public long Id { get; set; }
+    }
+
     public class PortfoStatus
     {
         public PortfoStatus()

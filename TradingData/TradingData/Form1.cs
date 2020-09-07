@@ -1637,7 +1637,7 @@ namespace TradingData
                 }
                 catch(Exception ex)
                 {
-
+                    LogError(ex);
                 }
 
             }

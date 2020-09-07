@@ -190,6 +190,9 @@
       <DependentUpon>NamadHistory.edmx</DependentUpon>
       <LastGenOutput>NamadHistory1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\0001-create database .txt" />
+    <None Include="Resources\0001-Create Database.sql" />
+    <None Include="Resources\0002-AlterCalculateGroupBenefitProc.sql" />
     <Content Include="Uiconstock-E-Commerce-Chart.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -63,7 +63,6 @@ namespace TradingData
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 // Get the stream associated with the response.
-                InsertNamadHistoryFromStream(response);
 
                 Stream receiveStream = response.GetResponseStream();
 
@@ -78,6 +77,9 @@ namespace TradingData
                         output.Write(buffer, 0, bytesRead);
                     }
                 }
+
+                //InsertNamadHistoryFromStream(response);
+
             }
         }
 

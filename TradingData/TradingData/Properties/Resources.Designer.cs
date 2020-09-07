@@ -59,5 +59,60 @@ namespace TradingData.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USE [Trading]
+        ///GO
+        ////****** Object:  UserDefinedFunction [dbo].[GregorianToPersian]    Script Date: 9/7/2020 8:15:26 AM ******/
+        ///SET ANSI_NULLS ON
+        ///GO
+        ///SET QUOTED_IDENTIFIER ON
+        ///GO
+        ///-- =============================================
+        ///-- Author:		&lt;Author,,Name&gt;
+        ///-- Create date: &lt;Create Date,,&gt;
+        ///-- Description:	&lt;Description,,&gt;
+        ///-- =============================================
+        ///Create FUNCTION [dbo].[GregorianToPersian]
+        ///(
+        ///@Date varchar(10)
+        ///)
+        ///RETURNS varchar(10)
+        ///AS
+        ///BEGIN    DECLARE @ResultVar varchar(10)
+        ///de [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _0001_Create_Database {
+            get {
+                return ResourceManager.GetString("0001_Create_Database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USE [Trading]
+        ///GO
+        ///
+        ////****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/7/2020 8:34:47 AM ******/
+        ///SET ANSI_NULLS ON
+        ///GO
+        ///
+        ///SET QUOTED_IDENTIFIER ON
+        ///GO
+        ///
+        ///-- =============================================
+        ///-- Author:		&lt;Author,,Name&gt;
+        ///-- Create date: &lt;Create Date,,&gt;
+        ///-- Description:	&lt;Description,,&gt;
+        ///-- =============================================
+        ///ALTER PROCEDURE [dbo].[procCalculateMemberBenefits]
+        ///	@GroupId as int
+        ///	-- Add the parameters for the stored procedure here
+        ///A [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string _0002_AlterCalculateGroupBenefitProc {
+            get {
+                return ResourceManager.GetString("0002_AlterCalculateGroupBenefitProc", resourceCulture);
+            }
+        }
     }
 }

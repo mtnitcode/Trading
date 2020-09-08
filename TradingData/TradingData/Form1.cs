@@ -1941,5 +1941,22 @@ namespace TradingData
             //    this.tradingStatusBindingSource.DataSource = namadStatuses2;
             //}
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.cmbBasketIds.Items.Clear();
+
+            var baskets = CustomDataProvider.GetMyPortionStatus();
+
+            var bsk = baskets.OrderBy(x => x.Namad).ToList();
+
+            foreach (Basket n in bsk)
+            {
+                if (n.CountOfPortion > 0)
+                {
+                    this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
+                }
+            }
+        }
     }
 }

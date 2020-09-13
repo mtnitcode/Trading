@@ -830,6 +830,7 @@ namespace TradingData
                     Description = this.txtDescription.Text
                 };
 
+                this.lblShopCountRemained.Text = (int.Parse(this.lblShopCountRemained.Text) - int.Parse(this.txtShopCount.Text)).ToString();
                 dbn1.BasketShoppings.Add(bsk);
                 dbn1.SaveChanges();
                 this.txtDescription.Text = "";
@@ -1781,7 +1782,7 @@ namespace TradingData
                 {
                     OwnerName = this.cmbPaymentOwner.Text,
                      Amount = long.Parse(this.txtPaymentAmount.Text),
-                      PaymentDate = this.txtPaymentDate.Text,
+                      PaymentDate = this.txtPaymentDate.Text.Replace('/' , '-'),
                        BrokerName = this.cmbBroker.Text,
                         Description = this.txtPaymentDesc.Text,
                          TransactionType = this.cmbTransactionType.Text
@@ -1929,7 +1930,7 @@ namespace TradingData
 
         private void cmbBasketIds_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            this.txtShopCount.Text = this.cmbBasketIds.Text.Split('-')[1];
         }
 
         private void dgTradingStatus_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -1958,6 +1959,11 @@ namespace TradingData
                     this.cmbBasketIds.Items.Add(n.id + "-" + n.CountOfPortion + "-" + n.OwnerName + "-" + n.Namad);
                 }
             }
+        }
+
+        private void txtShopCount_KeyUp(object sender, KeyEventArgs e)
+        {
+            this.lblShopCountRemained.Text = this.txtShopCount.Text;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ChartGenerator
         public int RemainedPortion { get; set; }
         public int TotalCost { get; set; }
         public int ToDayCost { get; set; }
-        public long BenefitAmount { get; set; }
+        public long? BenefitAmount { get; set; }
         public double BenefitPercent { get; set; }
         public long TotalMonyeAmount { get; set; }
         public long? BuyAmount { get; set; }

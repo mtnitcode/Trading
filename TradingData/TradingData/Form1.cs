@@ -664,7 +664,7 @@ namespace TradingData
             using (var dbn1 = new TradingContext())
             {
                 Basket bsk = new Basket {BrokerName = this.cmbBroker.Text,  Description = this.txtDesc.Text, AvverageCost = int.Parse(this.txtBuyAvvCost.Text)  , RealCost = int.Parse(this.txtBuyRealCost.Text) , CountOfPortion = int.Parse(this.txtBuyCont.Text)
-                , GroupId = (this.cmbBasketGroup.SelectedItem == null ? 0 :((BasketGroup)this.cmbBasketGroup.SelectedItem).Id) , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text };
+                , GroupId = (this.cmbBasketGroup.SelectedItem == null ? 0 :((BasketGroup)this.cmbBasketGroup.SelectedItem).Id) , InvestmentType = int.Parse(this.cmbInvestmentType.Text) , Namad = this.cmbBuyNamad.Text , OwnerName = this.cmdBuyOwner.Text , TradingDate =this.txtBuyDate.Text.Replace('/', '-') };
 
                 dbn1.Baskets.Add(bsk);
                 dbn1.SaveChanges();
@@ -770,6 +770,7 @@ namespace TradingData
             PersianDate pd = new PersianDate(DateTime.Now);
 
             this.txtDate.Text = pd.ToString("d");
+
             this.txtBuyDate.Text = pd.ToString("d");
             this.txtShopDate.Text = pd.ToString("d");
             this.txtPaymentDate.Text = pd.ToString("d");
@@ -825,7 +826,7 @@ namespace TradingData
                     ShoppingCost = int.Parse(this.txtShopCost.Text),
                     ShopCount = int.Parse(this.txtShopCount.Text),
                     BasketID = int.Parse(this.cmbBasketIds.Text.Split('-')[0]),
-                    ShoppingDate = this.txtShopDate.Text ,
+                    ShoppingDate = this.txtShopDate.Text.Replace('/', '-'),
                     Description = this.txtDescription.Text
                 };
 

@@ -81,6 +81,7 @@
             this.avverageDaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.portfoStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblShopCountRemained = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
@@ -266,7 +267,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.paymentStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblShopCountRemained = new System.Windows.Forms.Label();
+            this.cmbGroupB = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -530,6 +532,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.cmbGroupB);
+            this.groupBox4.Controls.Add(this.label31);
             this.groupBox4.Controls.Add(this.cmbTransactionType);
             this.groupBox4.Controls.Add(this.label29);
             this.groupBox4.Controls.Add(this.dataGridView5);
@@ -693,7 +697,7 @@
             // 
             this.txtPaymentAmount.Location = new System.Drawing.Point(976, 196);
             this.txtPaymentAmount.Name = "txtPaymentAmount";
-            this.txtPaymentAmount.Size = new System.Drawing.Size(154, 20);
+            this.txtPaymentAmount.Size = new System.Drawing.Size(207, 20);
             this.txtPaymentAmount.TabIndex = 45;
             // 
             // label24
@@ -754,7 +758,7 @@
             this.finalBenefitValueDataGridViewTextBoxColumn,
             this.avverageDaysDataGridViewTextBoxColumn});
             this.dataGridView3.DataSource = this.portfoStatusBindingSource;
-            this.dataGridView3.Location = new System.Drawing.Point(611, 19);
+            this.dataGridView3.Location = new System.Drawing.Point(611, 38);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(573, 148);
             this.dataGridView3.TabIndex = 41;
@@ -840,6 +844,15 @@
             this.groupBox3.TabIndex = 41;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " Shop ";
+            // 
+            // lblShopCountRemained
+            // 
+            this.lblShopCountRemained.AutoSize = true;
+            this.lblShopCountRemained.Location = new System.Drawing.Point(188, 28);
+            this.lblShopCountRemained.Name = "lblShopCountRemained";
+            this.lblShopCountRemained.Size = new System.Drawing.Size(13, 13);
+            this.lblShopCountRemained.TabIndex = 50;
+            this.lblShopCountRemained.Text = "0";
             // 
             // toolStrip1
             // 
@@ -2601,14 +2614,26 @@
             // 
             this.paymentStatusBindingSource.DataSource = typeof(ChartGenerator.PaymentStatus);
             // 
-            // lblShopCountRemained
+            // cmbGroupB
             // 
-            this.lblShopCountRemained.AutoSize = true;
-            this.lblShopCountRemained.Location = new System.Drawing.Point(188, 28);
-            this.lblShopCountRemained.Name = "lblShopCountRemained";
-            this.lblShopCountRemained.Size = new System.Drawing.Size(13, 13);
-            this.lblShopCountRemained.TabIndex = 50;
-            this.lblShopCountRemained.Text = "0";
+            this.cmbGroupB.FormattingEnabled = true;
+            this.cmbGroupB.Items.AddRange(new object[] {
+            "آگاه",
+            "تدبیرگران"});
+            this.cmbGroupB.Location = new System.Drawing.Point(658, 14);
+            this.cmbGroupB.Name = "cmbGroupB";
+            this.cmbGroupB.Size = new System.Drawing.Size(138, 21);
+            this.cmbGroupB.TabIndex = 58;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(610, 19);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(42, 13);
+            this.label31.TabIndex = 57;
+            this.label31.Text = "Group :";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 
@@ -2931,6 +2956,8 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label lblShopCountRemained;
+        private System.Windows.Forms.ComboBox cmbGroupB;
+        private System.Windows.Forms.Label label31;
     }
 }
 

@@ -746,9 +746,14 @@ namespace TradingData
                 var groups = db.BasketGroups.ToList();
 
                 var nmds = groups.OrderBy(x => x.Name).ToList();
+
                 this.cmbBasketGroup.DisplayMember = "Name";
                 this.cmbBasketGroup.ValueMember = "Id";
                 this.cmbBasketGroup.DataSource = groups;
+
+                this.cmbGroupB.DisplayMember = "Name";
+                this.cmbGroupB.ValueMember = "Id";
+                this.cmbGroupB.DataSource = groups;
 
                 var owners = db.BasketOwners.ToList();
                 var owns = owners.OrderBy(x => x.Name).ToList();
@@ -1759,7 +1764,7 @@ namespace TradingData
 
         private void button18_Click(object sender, EventArgs e)
         {
-            List<PortfoStatus> ststuses = CustomDataProvider.GetPaymentStatus(1);
+            List<PortfoStatus> ststuses = CustomDataProvider.GetPaymentStatus((int)(this.cmbGroupB.SelectedItem == null ? 0 : ((BasketGroup)this.cmbGroupB.SelectedItem).Id));
             if (ststuses != null)
             {
 
@@ -1781,7 +1786,7 @@ namespace TradingData
                 Payment bsk = new Payment
                 {
                     OwnerName = this.cmbPaymentOwner.Text,
-                     Amount = long.Parse(this.txtPaymentAmount.Text),
+                     Amount = (this.cmbTransactionType.Text == "برداشت" ? long.Parse(this.txtPaymentAmount.Text)*-1 : long.Parse(this.txtPaymentAmount.Text)),
                       PaymentDate = this.txtPaymentDate.Text.Replace('/' , '-'),
                        BrokerName = this.cmbBroker.Text,
                         Description = this.txtPaymentDesc.Text,

@@ -147,26 +147,68 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1001, 53</value>
   </metadata>
+  <metadata name="PaymentDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="PaymentType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="paymentStatusBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1190, 14</value>
+  </metadata>
+  <metadata name="OwnerPayment.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="TotalRealCost.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="OwnerWithdraw.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Debtors.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="DivisionOnAvgDays.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="portfoStatusBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 53</value>
+  </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1001, 53</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
+  <metadata name="contextMenuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 53</value>
+  </metadata>
+  <metadata name="tradingStatusBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>970, 11</value>
+  </metadata>
+  <metadata name="BrokerName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tradingStatusBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>767, 11</value>
+  </metadata>
   <metadata name="BrokerName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -179,17 +221,23 @@
   <metadata name="tradingHistoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>370, 53</value>
   </metadata>
+  <metadata name="dataGridViewTextBoxColumn17.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tradingHistoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>370, 53</value>
+  </metadata>
+  <metadata name="financeHistoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>578, 53</value>
+  </metadata>
   <metadata name="financeHistoryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>578, 53</value>
   </metadata>
   <metadata name="tradingHistoryBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>786, 53</value>
   </metadata>
-  <metadata name="contextMenuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 53</value>
-  </metadata>
-  <metadata name="tradingStatusBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>970, 11</value>
+  <metadata name="tradingHistoryBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>786, 53</value>
   </metadata>
   <metadata name="benefitAvverateInLast2Days.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

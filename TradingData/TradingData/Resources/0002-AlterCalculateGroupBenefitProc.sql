@@ -1,10 +1,8 @@
 ﻿USE [Trading]
 GO
-
-/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/7/2020 8:34:47 AM ******/
+/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/15/2020 11:49:59 PM ******/
 SET ANSI_NULLS ON
 GO
-
 SET QUOTED_IDENTIFIER ON
 GO
 
@@ -98,12 +96,12 @@ select @SumOfDivisionOnDays=sumOfdivisionOndays from sumOfdivisionOndays;
 
 
 --02
-select tPayments.OwnerName , convert(bigint , tPayments.OwnerPayment ) OwnerPayment,
-case when tWithdrawMoney.OwnerWithdraw is null then convert(bigint , 0) when tWithdrawMoney.OwnerWithdraw is not null then convert (bigint , tWithdrawMoney.OwnerWithdraw) end OwnerWithdraw ,
-convert (bigint , tMoney.TotalRealCost ) TotalRealCost, convert (bigint , tMoney.TotalMoney) TotalMoney, tPaymentDuration.avgDays AvverageDays 
+select tPayments.OwnerName , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,tPayments.OwnerPayment ),1), '.00','') OwnerPayment,
+case when tWithdrawMoney.OwnerWithdraw is null then  REPLACE(CONVERT(VARCHAR,CONVERT(MONEY, 0 ),1), '.00','') when tWithdrawMoney.OwnerWithdraw is not null then  REPLACE(CONVERT(VARCHAR,CONVERT(MONEY, tWithdrawMoney.OwnerWithdraw) ,1), '.00','') end OwnerWithdraw ,
+REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,tMoney.TotalRealCost  ),1), '.00','') TotalRealCost, REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,tMoney.TotalMoney),1), '.00','')  TotalMoney, tPaymentDuration.avgDays AvverageDays 
 , round( (( cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays , 5) DivisionOnAvgDays ,
-case when tWithdrawMoney.OwnerWithdraw is null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5)
-	when tWithdrawMoney.OwnerWithdraw is not null then round( (((cast( tPayments.OwnerPayment as float)/@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 5) + tWithdrawMoney.OwnerWithdraw  end FinalBenefitValue,
+case when tWithdrawMoney.OwnerWithdraw is null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,round((((tPayments.OwnerPayment /@TotalDays)*tPaymentDuration.avgDays)/@SumOfDivisionOnDays) * @TotalBenefit , 0)),1), '.00','')
+	 when tWithdrawMoney.OwnerWithdraw is not null then REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,round( (((tPayments.OwnerPayment /@TotalDays)*tPaymentDuration.avgDays) /@SumOfDivisionOnDays) * @TotalBenefit , 0) + tWithdrawMoney.OwnerWithdraw),1), '.00','')  end FinalBenefitValue,
 	 tDebtors.Debtors
 
  from 
@@ -147,7 +145,4 @@ group by bsk.OwnerName) tDebtors
 
 where tPayments.OwnerName = tPaymentDuration.OwnerName and tMoney.OwnerName = tPayments.OwnerName  and tDebtors.OwnerName = tPayments.OwnerName ;
 END
-
-GO
-
 

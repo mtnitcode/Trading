@@ -129,11 +129,11 @@ namespace ChartGenerator
         }
 
         public string OwnerName { get; set; }
-        public long OwnerPayment { get; set; }
-        public long TotalRealCost { get; set; }
-        public long TotalMoney { get; set; }
-        public double FinalBenefitValue { get; set; }
-        public long OwnerWithdraw { get; set; }
+        public string OwnerPayment { get; set; }
+        public string TotalRealCost { get; set; }
+        public string TotalMoney { get; set; }
+        public string FinalBenefitValue { get; set; }
+        public string OwnerWithdraw { get; set; }
         public string Debtors { get; set; }
         public int AvverageDays { get; set; }
         public double DivisionOnAvgDays { get; set; }

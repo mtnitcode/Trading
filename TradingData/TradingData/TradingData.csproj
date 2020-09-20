@@ -194,6 +194,7 @@
     <None Include="Resources\0001-create database .txt" />
     <None Include="Resources\0001-Create Database.sql" />
     <None Include="Resources\0002-AlterCalculateGroupBenefitProc.sql" />
+    <None Include="Resources\0003_Update Data.txt" />
     <Content Include="Uiconstock-E-Commerce-Chart.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -168,9 +168,11 @@ namespace TradingData
                                 union
                                 select b.OwnerName , shoppingdate tdate , sum(ShopCount*ShoppingCost) cost , N'فروش' ttype from BasketShopping bs inner join Basket b on b.id = bs.BasketID group by b.OwnerName , ShoppingDate
                                 union
-                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'پرداخت' ttype from Payments p where p.TransactionType = N'پرداخت' group by p.OwnerName , p.PaymentDate
+                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'واریز وجه' ttype from Payments p where p.TransactionType = N'واریز وجه' group by p.OwnerName , p.PaymentDate
                                 union
-                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'برداشت' ttype from Payments p where p.TransactionType = N'برداشت' group by p.OwnerName , p.PaymentDate
+                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'برداشت وجه' ttype from Payments p where p.TransactionType = N'برداشت وجه' group by p.OwnerName , p.PaymentDate
+                                union
+                                select p.OwnerName , p.PaymentDate tdate , sum(Amount) cost , N'برداشت سود' ttype from Payments p where p.TransactionType = N'برداشت سود' group by p.OwnerName , p.PaymentDate
                                 ) bsk
                                 order by bsk.OwnerName , bsk.tdate";
 

@@ -48,6 +48,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cmbGroupB = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.cmbTransactionType = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
@@ -267,8 +269,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.paymentStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmbGroupB = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -557,12 +557,34 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Transactions";
             // 
+            // cmbGroupB
+            // 
+            this.cmbGroupB.FormattingEnabled = true;
+            this.cmbGroupB.Items.AddRange(new object[] {
+            "آگاه",
+            "تدبیرگران"});
+            this.cmbGroupB.Location = new System.Drawing.Point(658, 14);
+            this.cmbGroupB.Name = "cmbGroupB";
+            this.cmbGroupB.Size = new System.Drawing.Size(138, 21);
+            this.cmbGroupB.TabIndex = 58;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(610, 19);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(42, 13);
+            this.label31.TabIndex = 57;
+            this.label31.Text = "Group :";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // cmbTransactionType
             // 
             this.cmbTransactionType.FormattingEnabled = true;
             this.cmbTransactionType.Items.AddRange(new object[] {
-            "پرداخت",
-            "برداشت"});
+            "واریز وجه",
+            "برداشت وجه",
+            "برداشت سود"});
             this.cmbTransactionType.Location = new System.Drawing.Point(683, 271);
             this.cmbTransactionType.Name = "cmbTransactionType";
             this.cmbTransactionType.Size = new System.Drawing.Size(207, 21);
@@ -651,7 +673,8 @@
             this.cmbPaymentBroker.FormattingEnabled = true;
             this.cmbPaymentBroker.Items.AddRange(new object[] {
             "آگاه",
-            "تدبیرگران"});
+            "تدبیرگران",
+            "مفید"});
             this.cmbPaymentBroker.Location = new System.Drawing.Point(683, 246);
             this.cmbPaymentBroker.Name = "cmbPaymentBroker";
             this.cmbPaymentBroker.Size = new System.Drawing.Size(207, 21);
@@ -2613,27 +2636,6 @@
             // paymentStatusBindingSource
             // 
             this.paymentStatusBindingSource.DataSource = typeof(ChartGenerator.PaymentStatus);
-            // 
-            // cmbGroupB
-            // 
-            this.cmbGroupB.FormattingEnabled = true;
-            this.cmbGroupB.Items.AddRange(new object[] {
-            "آگاه",
-            "تدبیرگران"});
-            this.cmbGroupB.Location = new System.Drawing.Point(658, 14);
-            this.cmbGroupB.Name = "cmbGroupB";
-            this.cmbGroupB.Size = new System.Drawing.Size(138, 21);
-            this.cmbGroupB.TabIndex = 58;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(610, 19);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(42, 13);
-            this.label31.TabIndex = 57;
-            this.label31.Text = "Group :";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Form1
             // 

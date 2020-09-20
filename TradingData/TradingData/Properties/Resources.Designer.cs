@@ -91,11 +91,9 @@ namespace TradingData.Properties {
         /// <summary>
         ///   Looks up a localized string similar to USE [Trading]
         ///GO
-        ///
-        ////****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/7/2020 8:34:47 AM ******/
+        ////****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/15/2020 11:49:59 PM ******/
         ///SET ANSI_NULLS ON
         ///GO
-        ///
         ///SET QUOTED_IDENTIFIER ON
         ///GO
         ///
@@ -107,11 +105,22 @@ namespace TradingData.Properties {
         ///ALTER PROCEDURE [dbo].[procCalculateMemberBenefits]
         ///	@GroupId as int
         ///	-- Add the parameters for the stored procedure here
-        ///A [rest of string was truncated]&quot;;.
+        ///AS        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _0002_AlterCalculateGroupBenefitProc {
             get {
                 return ResourceManager.GetString("0002_AlterCalculateGroupBenefitProc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   update [Trading].[dbo].[Payments] set TransactionType = N&apos;واریز وجه&apos; where TransactionType = N&apos;پرداخت&apos;
+        ///  update [Trading].[dbo].[Payments] set TransactionType = N&apos;برداشت وجه&apos; where TransactionType = N&apos;برداشت&apos;
+        ///.
+        /// </summary>
+        internal static string _0003_Update_Data {
+            get {
+                return ResourceManager.GetString("0003_Update Data", resourceCulture);
             }
         }
     }

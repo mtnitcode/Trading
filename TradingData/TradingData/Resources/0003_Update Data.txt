@@ -1,0 +1,2 @@
+﻿  update [Trading].[dbo].[Payments] set TransactionType = N'واریز وجه' where TransactionType = N'پرداخت'
+  update [Trading].[dbo].[Payments] set TransactionType = N'برداشت وجه' where TransactionType = N'برداشت'

@@ -1786,7 +1786,7 @@ namespace TradingData
                 Payment bsk = new Payment
                 {
                     OwnerName = this.cmbPaymentOwner.Text,
-                     Amount = (this.cmbTransactionType.Text == "برداشت" ? long.Parse(this.txtPaymentAmount.Text)*-1 : long.Parse(this.txtPaymentAmount.Text)),
+                     Amount = (this.cmbTransactionType.Text == "واریز وجه" ? long.Parse(this.txtPaymentAmount.Text) : long.Parse(this.txtPaymentAmount.Text))*-1,
                       PaymentDate = this.txtPaymentDate.Text.Replace('/' , '-'),
                        BrokerName = this.cmbBroker.Text,
                         Description = this.txtPaymentDesc.Text,

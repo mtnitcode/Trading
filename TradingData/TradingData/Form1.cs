@@ -1030,19 +1030,19 @@ namespace TradingData
 
                         foreach (Basket bb in bs)
                         {
-                            sumBuy += (int)bb.RealCost;
+                            sumBuy += (int)bb.RealCost * (int)bb.CountOfPortion;
                             sumCount += (int)bb.CountOfPortion;
                         }
 
                         if (bs.Count > 0)
                         {
-                            n.MyAvverageBuyCost = (int)sumBuy / bs.Count;
+                            n.MyAvverageBuyCost = (int)sumBuy / sumCount;
                             n.CountOfPortion = sumCount;
                             n.LastTradingDate = bs[bs.Count - 1].TradingDate;
                             n.MyAvveragebenefitPercent = (((float)n.LastCost / n.MyAvverageBuyCost) - 1) * 100;
 
                             PortfoCost += n.CountOfPortion * n.LastCost;
-                            PortfoBenefit +=  ((long) n.CountOfPortion * (n.LastCost) - n.MyAvverageBuyCost);
+                            PortfoBenefit +=  (long) n.CountOfPortion * (n.LastCost - n.MyAvverageBuyCost);
 
                             BenefitStatus val = new BenefitStatus { BuyCost = (int)n.MyAvverageBuyCost, CountOfPortion = n.CountOfPortion, LastCost = n.LastCost };
                             _NamadBenefitDiagram.Insert(_NamadBenefitDiagram.Count, s, val);

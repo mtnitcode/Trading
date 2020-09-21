@@ -1,6 +1,6 @@
 ﻿USE [Trading]
 GO
-/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/15/2020 11:49:59 PM ******/
+/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/21/2020 8:40:15 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -71,7 +71,7 @@ select tPayments.OwnerName , tPayments.OwnerPayment, tPaymentDuration.avgDays , 
 (select  ownerPay.tdate ,  ownerPay.OwnerName , (select count(distinct tradingdate) from NamadHistory where TradingDate >= ownerPay.tdate) dys
 from (select p.OwnerName , p.PaymentDate tdate from Payments p) ownerPay) as duration  
 group by duration.OwnerName) as tPaymentDuration,
-(select p.OwnerName , sum(Amount) OwnerPayment  from Payments p where p.TransactionType in (N'پرداخت' , N'برداشت') and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments
+(select p.OwnerName , sum(Amount) OwnerPayment  from Payments p where p.TransactionType in (N'واریز وجه' , N'برداشت وجه') and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments
 where tPayments.OwnerName = tPaymentDuration.OwnerName ) as finalClac1 ,
 
 (select totalMoney.OwnerName , sum(totalMoney.TotalMoney) TotalMoney , sum(TRealCost) TotalRealCost from 
@@ -111,7 +111,7 @@ case when tWithdrawMoney.OwnerWithdraw is null then REPLACE(CONVERT(VARCHAR,CONV
 	group by duration.OwnerName) as tPaymentDuration,
 
 (select p.OwnerName , sum(Amount) OwnerPayment  from Payments p 
-	where p.TransactionType=N'پرداخت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments,
+	where p.TransactionType=N'واریز وجه' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tPayments,
 
 (select totalMoney.OwnerName , sum(totalMoney.TotalMoney) TotalMoney , sum(TRealCost) TotalRealCost from 
 	(select OwnerName , b.TradingDate , n.Namad , RealCost , nh.PayaniGheymat ,	
@@ -132,7 +132,7 @@ case when tWithdrawMoney.OwnerWithdraw is null then REPLACE(CONVERT(VARCHAR,CONV
 	group by totalMoney.OwnerName) tMoney
 	left outer join 
 	(select p.OwnerName , sum(Amount) OwnerWithdraw  from Payments p 
-	where p.TransactionType=N'برداشت' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tWithdrawMoney on tMoney.OwnerName = tWithdrawMoney.OwnerName,
+	where p.TransactionType=N'برداشت وجه' and p.OwnerName in (select Name from BasketOwner where GroupId = @GroupId) group by p.OwnerName ) tWithdrawMoney on tMoney.OwnerName = tWithdrawMoney.OwnerName,
 
 (select bsk.OwnerName , REPLACE(CONVERT(VARCHAR,CONVERT(MONEY,sum(bsk.cost)),1), '.00','') Debtors from
 (select ownername , sum(CountOfPortion*RealCost*-1) cost from basket group by OwnerName 

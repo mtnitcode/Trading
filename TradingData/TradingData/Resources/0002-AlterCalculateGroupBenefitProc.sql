@@ -1,6 +1,6 @@
 ﻿USE [Trading]
 GO
-/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/21/2020 8:40:15 AM ******/
+/****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/21/2020 2:39:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON

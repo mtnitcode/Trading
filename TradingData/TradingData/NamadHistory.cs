@@ -36,5 +36,7 @@ namespace TradingData
         public Nullable<long> ShopHajm { get; set; }
         public Nullable<long> BuyCost { get; set; }
         public Nullable<long> ShopCost { get; set; }
+    
+        public virtual Namad Namad { get; set; }
     }
 }

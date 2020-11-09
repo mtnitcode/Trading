@@ -20,11 +20,11 @@ namespace TradingData
         public static List<Basket> GetMyPortionStatus()
         {
             string sqlQuery = @"select * from (
-                select b.id , b.OwnerName , b.namad ,
+                select b.id ,b.ownerid, b.OwnerName , b.namad , nmd.id NamadId ,
                 b.TradingDate  , bshStatus.ShopDate
                 , case when bshStatus.ShopCount is not null then b.CountOfPortion-bshStatus.ShopCount when bshStatus.ShopCount is null then b.CountOfPortion end CountOfPortion
                 ,b.AvverageCost, b.RealCost
-                , b.FirstOffer , b.investmenttype , b.Description , b.GroupId , b.BrokerName 
+                , b.FirstOffer , b.investmenttype , b.Description , b.GroupId , b.BrokerName ,b.MasterTransactionId
                 from Namad nmd
                 inner join Basket b on b.Namad = nmd.Namad
                 inner join (select max(id) maxID , NamadId from NamadHistory group by NamadId) nhStatus on nhStatus.NamadId = nmd.ID

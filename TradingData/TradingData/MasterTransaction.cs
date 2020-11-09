@@ -14,6 +14,12 @@ namespace TradingData
     
     public partial class MasterTransaction
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MasterTransaction()
+        {
+            this.Baskets = new HashSet<Basket>();
+        }
+    
         public long Id { get; set; }
         public string ActivityType { get; set; }
         public string Description { get; set; }
@@ -23,5 +29,8 @@ namespace TradingData
         public Nullable<long> Remaind { get; set; }
         public string BrokerName { get; set; }
         public string OwnerName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Basket> Baskets { get; set; }
     }
 }

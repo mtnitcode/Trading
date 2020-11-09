@@ -34,9 +34,9 @@ namespace TradingData
         public virtual DbSet<Basket> Baskets { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<BasketShopping> BasketShoppings { get; set; }
+        public virtual DbSet<MasterTransaction> MasterTransactions { get; set; }
         public virtual DbSet<BasketGroup> BasketGroups { get; set; }
         public virtual DbSet<BasketOwner> BasketOwners { get; set; }
-        public virtual DbSet<MasterTransaction> MasterTransactions { get; set; }
     
         public virtual ObjectResult<procCalculateMemberBenefits_Result> procCalculateMemberBenefits(Nullable<int> groupId)
         {

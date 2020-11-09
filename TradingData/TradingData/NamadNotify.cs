@@ -19,5 +19,7 @@ namespace TradingData
         public string Title { get; set; }
         public long Id { get; set; }
         public long NamadId { get; set; }
+    
+        public virtual Namad Namad { get; set; }
     }
 }

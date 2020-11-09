@@ -5,16 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9e4d6419d9cf49568f577fa488c2fd81" Name="Diagram1">
-        <EntityTypeShape EntityType="TradingModel.NamadHistory" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TradingModel.Namad" Width="1.5" PointX="6.5" PointY="0.875" />
-        <EntityTypeShape EntityType="TradingModel.Industry" Width="1.5" PointX="4.625" PointY="0.875" />
+        <EntityTypeShape EntityType="TradingModel.NamadHistory" Width="1.5" PointX="11.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TradingModel.Namad" Width="1.5" PointX="6.75" PointY="0.625" />
+        <EntityTypeShape EntityType="TradingModel.Industry" Width="1.5" PointX="4.125" PointY="0.75" />
         <EntityTypeShape EntityType="TradingModel.NamadNotify" Width="1.5" PointX="1.25" PointY="0.875" />
         <EntityTypeShape EntityType="TradingModel.Basket" Width="1.5" PointX="2.875" PointY="6.625" />
         <EntityTypeShape EntityType="TradingModel.Payment" Width="1.5" PointX="4.75" PointY="6.625" />
         <EntityTypeShape EntityType="TradingModel.BasketShopping" Width="1.5" PointX="0.875" PointY="6.625" />
-        <EntityTypeShape EntityType="TradingModel.BasketGroup" Width="1.5" PointX="8.25" PointY="6.625" />
-        <EntityTypeShape EntityType="TradingModel.BasketOwner" Width="1.5" PointX="6.625" PointY="6.625" />
-        <EntityTypeShape EntityType="TradingModel.MasterTransaction" Width="1.5" PointX="8.25" PointY="0.875" />
+        <EntityTypeShape EntityType="TradingModel.MasterTransaction" Width="1.5" PointX="9" PointY="0.5" />
+        <AssociationConnector Association="TradingModel.FK_Basket_MasterTransaction" />
+        <AssociationConnector Association="TradingModel.FK_Basket_Namad" />
+        <AssociationConnector Association="TradingModel.FK_BasketShopping_Basket" />
+        <AssociationConnector Association="TradingModel.FK_Namad_Industry" />
+        <AssociationConnector Association="TradingModel.FK_NamadHistory_Namad" />
+        <AssociationConnector Association="TradingModel.FK_NamadNotify_Namad" />
+        <EntityTypeShape EntityType="TradingModel.BasketGroup" Width="1.5" PointX="10.5" PointY="10.125" />
+        <EntityTypeShape EntityType="TradingModel.BasketOwner" Width="1.5" PointX="10.75" PointY="7.625" />
+        <AssociationConnector Association="TradingModel.FK_Basket_BasketGroup" />
+        <AssociationConnector Association="TradingModel.FK_Basket_BasketOwner" />
+        <AssociationConnector Association="TradingModel.FK_Payments_BasketOwner" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

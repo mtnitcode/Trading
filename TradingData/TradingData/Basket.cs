@@ -14,6 +14,12 @@ namespace TradingData
     
     public partial class Basket
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Basket()
+        {
+            this.BasketShoppings = new HashSet<BasketShopping>();
+        }
+    
         public string Namad { get; set; }
         public string TradingDate { get; set; }
         public Nullable<int> CountOfPortion { get; set; }
@@ -26,5 +32,15 @@ namespace TradingData
         public string Description { get; set; }
         public Nullable<long> GroupId { get; set; }
         public string BrokerName { get; set; }
+        public Nullable<long> OwnerId { get; set; }
+        public Nullable<long> NamadId { get; set; }
+        public Nullable<long> MasterTransactionId { get; set; }
+    
+        public virtual MasterTransaction MasterTransaction { get; set; }
+        public virtual Namad Namad1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BasketShopping> BasketShoppings { get; set; }
+        public virtual BasketGroup BasketGroup { get; set; }
+        public virtual BasketOwner BasketOwner { get; set; }
     }
 }

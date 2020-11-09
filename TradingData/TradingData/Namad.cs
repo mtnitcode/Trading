@@ -14,6 +14,14 @@ namespace TradingData
     
     public partial class Namad
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Namad()
+        {
+            this.Baskets = new HashSet<Basket>();
+            this.NamadHistories = new HashSet<NamadHistory>();
+            this.NamadNotifies = new HashSet<NamadNotify>();
+        }
+    
         public long ID { get; set; }
         public string Namad1 { get; set; }
         public string Name { get; set; }
@@ -24,5 +32,13 @@ namespace TradingData
         public string NamadGroup { get; set; }
         public string TableName { get; set; }
         public Nullable<long> IndustryID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Basket> Baskets { get; set; }
+        public virtual Industry Industry { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NamadHistory> NamadHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NamadNotify> NamadNotifies { get; set; }
     }
 }

@@ -20,5 +20,7 @@ namespace TradingData
         public int ShopCount { get; set; }
         public int ShoppingCost { get; set; }
         public string Description { get; set; }
+    
+        public virtual Basket Basket { get; set; }
     }
 }

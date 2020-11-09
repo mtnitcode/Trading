@@ -21,5 +21,8 @@ namespace TradingData
         public string Description { get; set; }
         public string BrokerName { get; set; }
         public string TransactionType { get; set; }
+        public Nullable<long> OwnerId { get; set; }
+    
+        public virtual BasketOwner BasketOwner { get; set; }
     }
 }

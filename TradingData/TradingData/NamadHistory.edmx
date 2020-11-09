@@ -21,6 +21,9 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="GroupId" Type="bigint" />
           <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerId" Type="bigint" />
+          <Property Name="NamadId" Type="bigint" />
+          <Property Name="MasterTransactionId" Type="bigint" />
         </EntityType>
         <EntityType Name="BasketGroup">
           <Key>
@@ -35,7 +38,7 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="GroupId" Type="int" />
+          <Property Name="GroupId" Type="bigint" />
         </EntityType>
         <EntityType Name="BasketShopping">
           <Key>
@@ -132,7 +135,116 @@
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="BrokerName" Type="nvarchar" MaxLength="50" />
           <Property Name="TransactionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerId" Type="bigint" />
         </EntityType>
+        <Association Name="FK_Basket_BasketGroup">
+          <End Role="BasketGroup" Type="Self.BasketGroup" Multiplicity="0..1" />
+          <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_BasketOwner">
+          <End Role="BasketOwner" Type="Self.BasketOwner" Multiplicity="0..1" />
+          <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketOwner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_MasterTransaction">
+          <End Role="MasterTransaction" Type="Self.MasterTransaction" Multiplicity="0..1" />
+          <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTransaction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="MasterTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_Namad">
+          <End Role="Namad" Type="Self.Namad" Multiplicity="0..1" />
+          <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasketShopping_Basket">
+          <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
+          <End Role="BasketShopping" Type="Self.BasketShopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BasketShopping">
+              <PropertyRef Name="BasketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namad_Industry">
+          <End Role="Industry" Type="Self.Industry" Multiplicity="0..1" />
+          <End Role="Namad" Type="Self.Namad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Namad">
+              <PropertyRef Name="IndustryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NamadHistory_Namad">
+          <End Role="Namad" Type="Self.Namad" Multiplicity="1" />
+          <End Role="NamadHistory" Type="Self.NamadHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NamadHistory">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NamadNotify_Namad">
+          <End Role="Namad" Type="Self.Namad" Multiplicity="1" />
+          <End Role="NamadNotify" Type="Self.NamadNotify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NamadNotify">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_BasketOwner">
+          <End Role="BasketOwner" Type="Self.BasketOwner" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketOwner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="procCalculateMemberBenefits" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="GroupId" Type="int" Mode="In" />
         </Function>
@@ -147,6 +259,42 @@
           <EntitySet Name="NamadHistory" EntityType="Self.NamadHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NamadNotify" EntityType="Self.NamadNotify" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Basket_BasketGroup" Association="Self.FK_Basket_BasketGroup">
+            <End Role="BasketGroup" EntitySet="BasketGroup" />
+            <End Role="Basket" EntitySet="Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_BasketOwner" Association="Self.FK_Basket_BasketOwner">
+            <End Role="BasketOwner" EntitySet="BasketOwner" />
+            <End Role="Basket" EntitySet="Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_MasterTransaction" Association="Self.FK_Basket_MasterTransaction">
+            <End Role="MasterTransaction" EntitySet="MasterTransaction" />
+            <End Role="Basket" EntitySet="Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_Namad" Association="Self.FK_Basket_Namad">
+            <End Role="Namad" EntitySet="Namad" />
+            <End Role="Basket" EntitySet="Basket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasketShopping_Basket" Association="Self.FK_BasketShopping_Basket">
+            <End Role="Basket" EntitySet="Basket" />
+            <End Role="BasketShopping" EntitySet="BasketShopping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namad_Industry" Association="Self.FK_Namad_Industry">
+            <End Role="Industry" EntitySet="Industry" />
+            <End Role="Namad" EntitySet="Namad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NamadHistory_Namad" Association="Self.FK_NamadHistory_Namad">
+            <End Role="Namad" EntitySet="Namad" />
+            <End Role="NamadHistory" EntitySet="NamadHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NamadNotify_Namad" Association="Self.FK_NamadNotify_Namad">
+            <End Role="Namad" EntitySet="Namad" />
+            <End Role="NamadNotify" EntitySet="NamadNotify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_BasketOwner" Association="Self.FK_Payments_BasketOwner">
+            <End Role="BasketOwner" EntitySet="BasketOwner" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -178,6 +326,7 @@
           <Property Name="ShopHajm" Type="Int64" />
           <Property Name="BuyCost" Type="Int64" />
           <Property Name="ShopCost" Type="Int64" />
+          <NavigationProperty Name="Namad" Relationship="TradingModel.FK_NamadHistory_Namad" FromRole="NamadHistory" ToRole="Namad" />
         </EntityType>
         <EntityContainer Name="TradingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="NamadHistories" EntityType="Self.NamadHistory" />
@@ -187,12 +336,48 @@
           <EntitySet Name="Baskets" EntityType="TradingModel.Basket" />
           <EntitySet Name="Payments" EntityType="TradingModel.Payment" />
           <EntitySet Name="BasketShoppings" EntityType="TradingModel.BasketShopping" />
-          <EntitySet Name="BasketGroups" EntityType="TradingModel.BasketGroup" />
-          <EntitySet Name="BasketOwners" EntityType="TradingModel.BasketOwner" />
           <EntitySet Name="MasterTransactions" EntityType="TradingModel.MasterTransaction" />
           <FunctionImport Name="procCalculateMemberBenefits" ReturnType="Collection(TradingModel.procCalculateMemberBenefits_Result)">
-            <Parameter Name="GroupId" Mode="In" Type="Int32" />
+          <Parameter Name="GroupId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="FK_Basket_MasterTransaction" Association="TradingModel.FK_Basket_MasterTransaction">
+            <End Role="MasterTransaction" EntitySet="MasterTransactions" />
+            <End Role="Basket" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_Namad" Association="TradingModel.FK_Basket_Namad">
+            <End Role="Namad" EntitySet="Namads" />
+            <End Role="Basket" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasketShopping_Basket" Association="TradingModel.FK_BasketShopping_Basket">
+            <End Role="Basket" EntitySet="Baskets" />
+            <End Role="BasketShopping" EntitySet="BasketShoppings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namad_Industry" Association="TradingModel.FK_Namad_Industry">
+            <End Role="Industry" EntitySet="Industries" />
+            <End Role="Namad" EntitySet="Namads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NamadHistory_Namad" Association="TradingModel.FK_NamadHistory_Namad">
+            <End Role="Namad" EntitySet="Namads" />
+            <End Role="NamadHistory" EntitySet="NamadHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NamadNotify_Namad" Association="TradingModel.FK_NamadNotify_Namad">
+            <End Role="Namad" EntitySet="Namads" />
+            <End Role="NamadNotify" EntitySet="NamadNotifies" />
+          </AssociationSet>
+          <EntitySet Name="BasketGroups" EntityType="TradingModel.BasketGroup" />
+          <EntitySet Name="BasketOwners" EntityType="TradingModel.BasketOwner" />
+          <AssociationSet Name="FK_Basket_BasketGroup" Association="TradingModel.FK_Basket_BasketGroup">
+            <End Role="BasketGroup" EntitySet="BasketGroups" />
+            <End Role="Basket" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Basket_BasketOwner" Association="TradingModel.FK_Basket_BasketOwner">
+            <End Role="BasketOwner" EntitySet="BasketOwners" />
+            <End Role="Basket" EntitySet="Baskets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_BasketOwner" Association="TradingModel.FK_Payments_BasketOwner">
+            <End Role="BasketOwner" EntitySet="BasketOwners" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Namad">
           <Key>
@@ -208,6 +393,10 @@
           <Property Name="NamadGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TableName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IndustryID" Type="Int64" />
+          <NavigationProperty Name="Baskets" Relationship="TradingModel.FK_Basket_Namad" FromRole="Namad" ToRole="Basket" />
+          <NavigationProperty Name="Industry" Relationship="TradingModel.FK_Namad_Industry" FromRole="Namad" ToRole="Industry" />
+          <NavigationProperty Name="NamadHistories" Relationship="TradingModel.FK_NamadHistory_Namad" FromRole="Namad" ToRole="NamadHistory" />
+          <NavigationProperty Name="NamadNotifies" Relationship="TradingModel.FK_NamadNotify_Namad" FromRole="Namad" ToRole="NamadNotify" />
         </EntityType>
         <EntityType Name="Industry">
           <Key>
@@ -215,6 +404,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Namads" Relationship="TradingModel.FK_Namad_Industry" FromRole="Industry" ToRole="Namad" />
         </EntityType>
         <EntityType Name="NamadNotify">
           <Key>
@@ -225,6 +415,7 @@
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NamadId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Namad" Relationship="TradingModel.FK_NamadNotify_Namad" FromRole="NamadNotify" ToRole="Namad" />
         </EntityType>
         <EntityType Name="Basket">
           <Key>
@@ -242,6 +433,14 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GroupId" Type="Int64" />
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerId" Type="Int64" />
+          <Property Name="NamadId" Type="Int64" />
+          <Property Name="MasterTransactionId" Type="Int64" />
+          <NavigationProperty Name="MasterTransaction" Relationship="TradingModel.FK_Basket_MasterTransaction" FromRole="Basket" ToRole="MasterTransaction" />
+          <NavigationProperty Name="Namad1" Relationship="TradingModel.FK_Basket_Namad" FromRole="Basket" ToRole="Namad" />
+          <NavigationProperty Name="BasketShoppings" Relationship="TradingModel.FK_BasketShopping_Basket" FromRole="Basket" ToRole="BasketShopping" />
+          <NavigationProperty Name="BasketGroup" Relationship="TradingModel.FK_Basket_BasketGroup" FromRole="Basket" ToRole="BasketGroup" />
+          <NavigationProperty Name="BasketOwner" Relationship="TradingModel.FK_Basket_BasketOwner" FromRole="Basket" ToRole="BasketOwner" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -254,6 +453,8 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TransactionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerId" Type="Int64" />
+          <NavigationProperty Name="BasketOwner" Relationship="TradingModel.FK_Payments_BasketOwner" FromRole="Payment" ToRole="BasketOwner" />
         </EntityType>
         <EntityType Name="BasketShopping">
           <Key>
@@ -265,21 +466,7 @@
           <Property Name="ShopCount" Type="Int32" Nullable="false" />
           <Property Name="ShoppingCost" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="BasketGroup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="BasketOwner">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GroupId" Type="Int32" />
+          <NavigationProperty Name="Basket" Relationship="TradingModel.FK_BasketShopping_Basket" FromRole="BasketShopping" ToRole="Basket" />
         </EntityType>
         <EntityType Name="MasterTransaction">
           <Key>
@@ -294,6 +481,7 @@
           <Property Name="Remaind" Type="Int64" />
           <Property Name="BrokerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Baskets" Relationship="TradingModel.FK_Basket_MasterTransaction" FromRole="MasterTransaction" ToRole="Basket" />
         </EntityType>
         <ComplexType Name="procCalculateMemberBenefits_Result">
           <Property Type="String" Name="OwnerName" Nullable="true" MaxLength="50" />
@@ -306,6 +494,132 @@
           <Property Type="Double" Name="FinalStatus" Nullable="true" />
           <Property Type="String" Name="Debtors" Nullable="true" MaxLength="8000" />
         </ComplexType>
+        <Association Name="FK_Basket_MasterTransaction">
+          <End Type="TradingModel.MasterTransaction" Role="MasterTransaction" Multiplicity="0..1" />
+          <End Type="TradingModel.Basket" Role="Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterTransaction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="MasterTransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_Namad">
+          <End Type="TradingModel.Namad" Role="Namad" Multiplicity="0..1" />
+          <End Type="TradingModel.Basket" Role="Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasketShopping_Basket">
+          <End Type="TradingModel.Basket" Role="Basket" Multiplicity="1" />
+          <End Type="TradingModel.BasketShopping" Role="BasketShopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basket">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BasketShopping">
+              <PropertyRef Name="BasketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namad_Industry">
+          <End Type="TradingModel.Industry" Role="Industry" Multiplicity="0..1" />
+          <End Type="TradingModel.Namad" Role="Namad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Industry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Namad">
+              <PropertyRef Name="IndustryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NamadHistory_Namad">
+          <End Type="TradingModel.Namad" Role="Namad" Multiplicity="1" />
+          <End Type="TradingModel.NamadHistory" Role="NamadHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NamadHistory">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NamadNotify_Namad">
+          <End Type="TradingModel.Namad" Role="Namad" Multiplicity="1" />
+          <End Type="TradingModel.NamadNotify" Role="NamadNotify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Namad">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NamadNotify">
+              <PropertyRef Name="NamadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BasketGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Baskets" Relationship="TradingModel.FK_Basket_BasketGroup" FromRole="BasketGroup" ToRole="Basket" />
+        </EntityType>
+        <EntityType Name="BasketOwner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int64" />
+          <NavigationProperty Name="Baskets" Relationship="TradingModel.FK_Basket_BasketOwner" FromRole="BasketOwner" ToRole="Basket" />
+          <NavigationProperty Name="Payments" Relationship="TradingModel.FK_Payments_BasketOwner" FromRole="BasketOwner" ToRole="Payment" />
+        </EntityType>
+        <Association Name="FK_Basket_BasketGroup">
+          <End Type="TradingModel.BasketGroup" Role="BasketGroup" Multiplicity="0..1" />
+          <End Type="TradingModel.Basket" Role="Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Basket_BasketOwner">
+          <End Type="TradingModel.BasketOwner" Role="BasketOwner" Multiplicity="0..1" />
+          <End Type="TradingModel.Basket" Role="Basket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketOwner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Basket">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_BasketOwner">
+          <End Type="TradingModel.BasketOwner" Role="BasketOwner" Multiplicity="0..1" />
+          <End Type="TradingModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BasketOwner">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -378,6 +692,9 @@
           <EntitySetMapping Name="Baskets">
             <EntityTypeMapping TypeName="TradingModel.Basket">
               <MappingFragment StoreEntitySet="Basket">
+                <ScalarProperty Name="MasterTransactionId" ColumnName="MasterTransactionId" />
+                <ScalarProperty Name="NamadId" ColumnName="NamadId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
                 <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -396,6 +713,7 @@
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="TradingModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
                 <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
                 <ScalarProperty Name="BrokerName" ColumnName="BrokerName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -414,23 +732,6 @@
                 <ScalarProperty Name="ShopCount" ColumnName="ShopCount" />
                 <ScalarProperty Name="ShoppingDate" ColumnName="ShoppingDate" />
                 <ScalarProperty Name="BasketID" ColumnName="BasketID" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BasketGroups">
-            <EntityTypeMapping TypeName="TradingModel.BasketGroup">
-              <MappingFragment StoreEntitySet="BasketGroup">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BasketOwners">
-            <EntityTypeMapping TypeName="TradingModel.BasketOwner">
-              <MappingFragment StoreEntitySet="BasketOwner">
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -465,6 +766,23 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="BasketGroups">
+            <EntityTypeMapping TypeName="TradingModel.BasketGroup">
+              <MappingFragment StoreEntitySet="BasketGroup">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasketOwners">
+            <EntityTypeMapping TypeName="TradingModel.BasketOwner">
+              <MappingFragment StoreEntitySet="BasketOwner">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

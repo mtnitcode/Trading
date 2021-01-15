@@ -1970,5 +1970,24 @@ namespace TradingData
         {
             this.lblShopCountRemained.Text = this.txtShopCount.Text;
         }
+
+        private void dgTradingStatus_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            if ((e.ColumnIndex == 13 ) && e.Value != null && int.Parse(dgTradingStatus.Rows[e.RowIndex].Cells[7].Value.ToString()) > 0)
+            {
+                if (float.Parse(e.Value.ToString()) > 10)
+                    e.CellStyle.BackColor = Color.Green;
+                if (float.Parse(e.Value.ToString()) > 0 && float.Parse(e.Value.ToString()) <= 10)
+                    e.CellStyle.BackColor = Color.GreenYellow;
+                if (float.Parse(e.Value.ToString()) < -10 && float.Parse(e.Value.ToString()) >= -20)
+                    e.CellStyle.BackColor = Color.Red;
+                if (float.Parse(e.Value.ToString()) < 0 && float.Parse(e.Value.ToString()) >= -10)
+                    e.CellStyle.BackColor = Color.OrangeRed;
+                if (float.Parse(e.Value.ToString()) < -20)
+                    e.CellStyle.BackColor = Color.DarkRed;
+            }
+        }
     }
 }

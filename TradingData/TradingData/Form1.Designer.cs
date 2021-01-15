@@ -1387,6 +1387,7 @@
             this.dgTradingStatus.Size = new System.Drawing.Size(1071, 585);
             this.dgTradingStatus.TabIndex = 12;
             this.dgTradingStatus.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTradingStatus_CellEndEdit);
+            this.dgTradingStatus.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgTradingStatus_CellPainting);
             this.dgTradingStatus.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgTradingStatus_ColumnHeaderMouseClick);
             // 
             // reportDateDataGridViewTextBoxColumn

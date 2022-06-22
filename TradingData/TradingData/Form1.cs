@@ -1786,7 +1786,7 @@ namespace TradingData
                 Payment bsk = new Payment
                 {
                     OwnerName = this.cmbPaymentOwner.Text,
-                     Amount = (this.cmbTransactionType.Text == "واریز وجه" ? long.Parse(this.txtPaymentAmount.Text) : long.Parse(this.txtPaymentAmount.Text))*-1,
+                     Amount = (this.cmbTransactionType.SelectedIndex == 0 ? long.Parse(this.txtPaymentAmount.Text) : long.Parse(this.txtPaymentAmount.Text))*-1,
                       PaymentDate = this.txtPaymentDate.Text.Replace('/' , '-'),
                        BrokerName = this.cmbBroker.Text,
                         Description = this.txtPaymentDesc.Text,
@@ -1807,8 +1807,14 @@ namespace TradingData
             List<TradingStatus> ststuses = CustomDataProvider.GetTradingsForMembers(this.cmbTradingStatusOwners.Text);
             if (ststuses != null)
             {
+                if (checkBox1.Checked)
+                {
+                    List<TradingStatus> ststusesFilter = ststuses.Where(x => x.RemainedPortion > 0).ToList();
+                    this.tradingStatusBindingSource.DataSource = ststusesFilter;
+                }
+                else
+                    this.tradingStatusBindingSource.DataSource = ststuses;
 
-                this.tradingStatusBindingSource.DataSource = ststuses;
             }
             List<TradingStatus> ststuses1 = CustomDataProvider.GetBasketTotalStatus();
             if (ststuses1 != null)
@@ -1855,7 +1861,16 @@ namespace TradingData
                 namadStatuses2 = ((List<TradingStatus>)this.tradingStatusBindingSource.DataSource).OrderBy(n => n.NamadName).ThenBy(n => n.TradingDate).ToList();
                 this.tradingStatusBindingSource.DataSource = namadStatuses2;
             }
-
+            if (this.dgTradingStatus.Columns[e.ColumnIndex].HeaderText == "RemainedPortion")
+            {
+                namadStatuses2 = ((List<TradingStatus>)this.tradingStatusBindingSource.DataSource).OrderBy(n => n.RemainedPortion).ThenBy(n => n.TradingDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
+            if (this.dgTradingStatus.Columns[e.ColumnIndex].HeaderText == "BenefitPercent")
+            {
+                namadStatuses2 = ((List<TradingStatus>)this.tradingStatusBindingSource.DataSource).OrderBy(n => n.BenefitPercent).ThenBy(n => n.TradingDate).ToList();
+                this.tradingStatusBindingSource.DataSource = namadStatuses2;
+            }
 
         }
 

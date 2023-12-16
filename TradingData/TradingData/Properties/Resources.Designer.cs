@@ -19,7 +19,7 @@ namespace TradingData.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -91,7 +91,7 @@ namespace TradingData.Properties {
         /// <summary>
         ///   Looks up a localized string similar to USE [Trading]
         ///GO
-        ////****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/15/2020 11:49:59 PM ******/
+        ////****** Object:  StoredProcedure [dbo].[procCalculateMemberBenefits]    Script Date: 9/21/2020 2:39:10 PM ******/
         ///SET ANSI_NULLS ON
         ///GO
         ///SET QUOTED_IDENTIFIER ON
@@ -105,7 +105,8 @@ namespace TradingData.Properties {
         ///ALTER PROCEDURE [dbo].[procCalculateMemberBenefits]
         ///	@GroupId as int
         ///	-- Add the parameters for the stored procedure here
-        ///AS        /// [rest of string was truncated]&quot;;.
+        ///AS
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string _0002_AlterCalculateGroupBenefitProc {
             get {

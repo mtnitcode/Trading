@@ -138,7 +138,7 @@ namespace TradingData
             if (_fb.ShowDialog() == DialogResult.OK)
             {
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.tsetmc.com/tsev2/data/MarketWatchInit.aspx?h=0&r=0");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://old.tsetmc.com/tsev2/data/MarketWatchInit.aspx?h=0&r=0");
                 request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -1436,28 +1436,34 @@ namespace TradingData
 
                 foreach (NamadHistory h in hs)
                 {
-
-                    var n = namads.Find(f => f.ID == h.NamadId);
-
-                    OrderedDictionary outVal = null;
-
-                    if (_NamadDiagramDateHistory[n.Namad1] != null)
+                    try
                     {
+                        var n = namads.Find(f => f.ID == h.NamadId);
 
-                        outVal = (OrderedDictionary)_NamadDiagramDateHistory[n.Namad1];
-                        if(outVal[sdate] == null)
-                            outVal.Insert(outVal.Count , sdate , new ChangeStatus { LastCost = (int)h.PayaniGheymat ,  BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
+                        OrderedDictionary outVal = null;
 
-                        while (outVal.Count > 30)
+                        if (_NamadDiagramDateHistory[n.Namad1] != null)
                         {
-                            outVal.RemoveAt(0);
+
+                            outVal = (OrderedDictionary)_NamadDiagramDateHistory[n.Namad1];
+                            if (outVal[sdate] == null)
+                                outVal.Insert(outVal.Count, sdate, new ChangeStatus { LastCost = (int)h.PayaniGheymat, BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
+
+                            while (outVal.Count > 30)
+                            {
+                                outVal.RemoveAt(0);
+                            }
+                        }
+                        else
+                        {
+                            OrderedDictionary Val = new OrderedDictionary();
+                            Val.Insert(0, sdate, new ChangeStatus { LastCost = (int)h.PayaniGheymat, BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
+                            _NamadDiagramDateHistory.Add(n.Namad1, Val);
                         }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        OrderedDictionary Val = new OrderedDictionary();
-                        Val.Insert(0, sdate, new ChangeStatus { LastCost = (int)h.PayaniGheymat, BenefitChange = (float)h.PayaniDarsad, ShopQueue = (long)h.ShopHajm, BuyQueue = (long)h.BuyHajm });
-                        _NamadDiagramDateHistory.Add(n.Namad1, Val);
+
                     }
                 }
             }
@@ -2002,6 +2008,14 @@ namespace TradingData
                     e.CellStyle.BackColor = Color.OrangeRed;
                 if (float.Parse(e.Value.ToString()) < -20)
                     e.CellStyle.BackColor = Color.DarkRed;
+            }
+        }
+
+        private void txtShopCost_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.txtShopTotal.Text =  (long.Parse( txtShopCount.Text) * long.Parse( txtShopCost.Text)).ToString();
             }
         }
     }

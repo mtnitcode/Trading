@@ -984,6 +984,7 @@
             this.txtShopCost.Name = "txtShopCost";
             this.txtShopCost.Size = new System.Drawing.Size(142, 20);
             this.txtShopCost.TabIndex = 39;
+            this.txtShopCost.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtShopCost_KeyUp);
             // 
             // label15
             // 
